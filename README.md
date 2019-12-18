@@ -1,5 +1,6 @@
 # ECharts build trend charts API
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/edu.hm.hafner/echarts-build-trends/badge.svg)](https://maven-badges.herokuapp.com/maven-central/edu.hm.hafner/echarts-build-trends)
 ![JDK8](https://img.shields.io/badge/jdk-8-yellow.svg?label=min.%20JDK)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
