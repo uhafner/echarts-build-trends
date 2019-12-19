@@ -3,7 +3,8 @@ package edu.hm.hafner.echarts;
 /**
  * Provides results of a build that should be rendered.
  *
- * @param <T> type of the result
+ * @param <T>
+ *         type of the result
  *
  * @author Ullrich Hafner
  */

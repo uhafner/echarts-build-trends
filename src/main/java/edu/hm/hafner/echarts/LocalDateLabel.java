@@ -19,7 +19,7 @@ class LocalDateLabel implements Comparable<LocalDateLabel> {
      * Creates a new instance of {@link LocalDateLabel}.
      *
      * @param date
-     *            the date of the build
+     *         the date of the build
      */
     LocalDateLabel(final LocalDate date) {
         this.date = date;

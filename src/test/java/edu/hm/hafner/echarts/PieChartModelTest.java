@@ -2,10 +2,6 @@ package edu.hm.hafner.echarts;
 
 import org.junit.jupiter.api.Test;
 
-import edu.hm.hafner.echarts.Palette;
-import edu.hm.hafner.echarts.PieChartModel;
-import edu.hm.hafner.echarts.PieData;
-
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.*;
 import static org.assertj.core.api.Assertions.*;
 

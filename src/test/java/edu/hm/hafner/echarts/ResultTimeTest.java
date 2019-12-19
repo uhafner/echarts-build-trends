@@ -5,11 +5,6 @@ import java.time.ZoneId;
 
 import org.junit.jupiter.api.Test;
 
-import edu.hm.hafner.echarts.Build;
-import edu.hm.hafner.echarts.BuildResult;
-import edu.hm.hafner.echarts.ChartModelConfiguration;
-import edu.hm.hafner.echarts.ResultTime;
-import edu.hm.hafner.echarts.TimeFacade;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import static org.assertj.core.api.Assertions.*;
@@ -43,8 +38,8 @@ class ResultTimeTest {
     }
 
     /**
-     * Verifies that the day count property is correctly evaluated if {@link ChartModelConfiguration#isDayCountDefined()} is
-     * enabled.
+     * Verifies that the day count property is correctly evaluated if {@link ChartModelConfiguration#isDayCountDefined()}
+     * is enabled.
      */
     @Test
     void shouldEvaluateDayCountIfOptionIsEnabled() {

@@ -22,7 +22,8 @@ public class ChartModelConfiguration {
     /**
      * Creates a new chart configuration with the specified X-Axis type.
      *
-     * @param axisType the type of the X-Axis
+     * @param axisType
+     *         the type of the X-Axis
      */
     public ChartModelConfiguration(final AxisType axisType) {
         this.axisType = axisType;

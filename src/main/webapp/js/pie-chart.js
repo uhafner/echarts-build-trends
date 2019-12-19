@@ -6,13 +6,13 @@ jQuery3(document).ready(function () {
 /**
  * Renders all charts that have the class 'echarts' using ECharts.
  */
-function renderPieCharts () {
+function renderPieCharts() {
     /**
      * Renders a trend chart in the a div using ECharts.
      *
      * @param {String} chartDivId - the ID of the div where the chart should be shown in
      */
-    function renderPieChart (chartDivId) {
+    function renderPieChart(chartDivId) {
         function isEmpty(string) {
             return (!string || string.length === 0);
         }
@@ -89,7 +89,7 @@ function renderPieCharts () {
             });
         }
 
-        window.onresize = function() {
+        window.onresize = function () {
             chart.resize();
         };
     }

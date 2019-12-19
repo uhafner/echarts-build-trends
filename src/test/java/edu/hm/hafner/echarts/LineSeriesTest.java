@@ -3,8 +3,6 @@ package edu.hm.hafner.echarts;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
-import edu.hm.hafner.echarts.JacksonFacade;
-import edu.hm.hafner.echarts.LineSeries;
 import edu.hm.hafner.echarts.LineSeries.FilledMode;
 import edu.hm.hafner.echarts.LineSeries.StackedMode;
 

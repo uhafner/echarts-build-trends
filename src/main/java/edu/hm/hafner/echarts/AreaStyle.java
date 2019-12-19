@@ -7,6 +7,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
  * <p>
  * This class will be automatically converted to a JSON object.
  * </p>
+ *
  * @author Ullrich Hafner
  */
 @SuppressWarnings("FieldCanBeLocal")

@@ -13,10 +13,9 @@ import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.multimap.list.MutableListMultimap;
 import org.eclipse.collections.impl.multimap.list.FastListMultimap;
 
+import edu.hm.hafner.echarts.ChartModelConfiguration.AxisType;
 import edu.hm.hafner.util.VisibleForTesting;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-
-import edu.hm.hafner.echarts.ChartModelConfiguration.AxisType;
 
 import static java.util.stream.Collectors.*;
 

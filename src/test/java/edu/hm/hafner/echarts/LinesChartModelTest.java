@@ -7,10 +7,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import edu.hm.hafner.echarts.LineSeries;
 import edu.hm.hafner.echarts.LineSeries.FilledMode;
 import edu.hm.hafner.echarts.LineSeries.StackedMode;
-import edu.hm.hafner.echarts.LinesChartModel;
 
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.*;
 import static org.assertj.core.api.Assertions.*;

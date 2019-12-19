@@ -6,7 +6,7 @@
  * @param {String} model - the line chart model
  * @param {String} urlName - the URL to the results, if empty or unset then clicking on the chart is disabled
  */
-function renderTrendChart (chartDivId, model, urlName) { // eslint-disable-line no-unused-vars
+function renderTrendChart(chartDivId, model, urlName) { // eslint-disable-line no-unused-vars
     const chartModel = JSON.parse(model);
     const chartPlaceHolder = document.getElementById(chartDivId);
 

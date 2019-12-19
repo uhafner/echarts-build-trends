@@ -53,8 +53,8 @@ public class LinesDataSet {
     }
 
     /**
-     * Adds data points for a new domainAxisLabel. The data points for the X-axis tick are given by a map. Each dataSetId
-     * provides one value for the specified X-axis label.
+     * Adds data points for a new domainAxisLabel. The data points for the X-axis tick are given by a map. Each
+     * dataSetId provides one value for the specified X-axis label.
      *
      * @param domainAxisLabel
      *         the label of the X-axis
@@ -75,8 +75,8 @@ public class LinesDataSet {
     }
 
     /**
-     * Adds data points for a new domainAxisLabel. The data points for the X-axis tick are given by a map. Each dataSetId
-     * provides one value for the specified X-axis label.
+     * Adds data points for a new domainAxisLabel. The data points for the X-axis tick are given by a map. Each
+     * dataSetId provides one value for the specified X-axis label.
      *
      * @param domainAxisLabel
      *         the label of the X-axis
@@ -91,7 +91,6 @@ public class LinesDataSet {
         if (buildNumbers.contains(buildNumber)) {
             throw new IllegalStateException("Build number already registered: " + buildNumber);
         }
-
 
         buildNumbers.add(buildNumber);
     }

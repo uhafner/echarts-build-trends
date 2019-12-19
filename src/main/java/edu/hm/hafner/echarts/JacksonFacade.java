@@ -18,6 +18,7 @@ public class JacksonFacade {
      *
      * @param bean
      *         the bean to convert
+     *
      * @return the JSON representation (as a String)
      */
     public String toJson(final Object bean) {
