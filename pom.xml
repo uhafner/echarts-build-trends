@@ -51,10 +51,6 @@
     <codingstyle.library.version>${codingstyle.version}</codingstyle.library.version>
     <spotbugs.annotations>3.1.12</spotbugs.annotations>
     <commons.lang.version>3.9</commons.lang.version>
-    <commons.io.version>2.6</commons.io.version>
-    <commons.digester.version>3.2</commons.digester.version>
-    <spotbugs.parser.library.version>6.0.3</spotbugs.parser.library.version>
-    <j2html.version>1.4.0</j2html.version>
     <eclipse-collections.version>9.2.0</eclipse-collections.version>
     <jackson-databind.version>2.9.10.1</jackson-databind.version>
 
@@ -141,11 +137,6 @@
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
       <version>${commons.lang.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>${commons.io.version}</version>
     </dependency>
 
     <!-- Test Dependencies -->
