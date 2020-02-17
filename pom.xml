@@ -49,7 +49,7 @@
     <codingstyle.version>0.4.4</codingstyle.version>
     <codingstyle.config.version>${codingstyle.version}</codingstyle.config.version>
     <codingstyle.library.version>${codingstyle.version}</codingstyle.library.version>
-    <spotbugs.annotations>3.1.12</spotbugs.annotations>
+    <spotbugs.annotations>4.0.0</spotbugs.annotations>
     <commons.lang.version>3.9</commons.lang.version>
     <eclipse-collections.version>9.2.0</eclipse-collections.version>
     <jackson-databind.version>2.9.10.1</jackson-databind.version>
