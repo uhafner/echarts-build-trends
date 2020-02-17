@@ -101,6 +101,18 @@
 
   </dependencies>
 
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.revapi</groupId>
+        <artifactId>revapi-maven-plugin</artifactId>
+        <configuration>
+          <skip>false</skip>  <!-- Should be set to false in the derived POM -->
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
   <distributionManagement>
     <snapshotRepository>
       <id>ossrh</id>

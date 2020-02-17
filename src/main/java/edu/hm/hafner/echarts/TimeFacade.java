@@ -14,7 +14,7 @@ import edu.hm.hafner.util.VisibleForTesting;
  * @author Ullrich Hafner
  */
 @SuppressWarnings("checkstyle:FinalClass")
-public class TimeFacade {
+class TimeFacade {
     private static TimeFacade instance = new TimeFacade();
 
     public static TimeFacade getInstance() {

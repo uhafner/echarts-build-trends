@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
  *
  * @author Ullrich Hafner
  */
-public class JacksonFacade {
+class JacksonFacade {
     private final ObjectMapper mapper = new ObjectMapper();
 
     /**
