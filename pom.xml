@@ -7,7 +7,7 @@
   <parent>
     <groupId>edu.hm.hafner</groupId>
     <artifactId>codingstyle-pom</artifactId>
-    <version>0.1.0</version>
+    <version>1.0.1</version>
     <relativePath/>
   </parent>
 
@@ -107,7 +107,7 @@
         <groupId>org.revapi</groupId>
         <artifactId>revapi-maven-plugin</artifactId>
         <configuration>
-          <skip>false</skip>  <!-- Should be set to false in the derived POM -->
+          <skip>true</skip>
         </configuration>
       </plugin>
     </plugins>
