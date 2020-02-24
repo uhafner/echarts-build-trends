@@ -28,16 +28,10 @@ class LinesDataSetTest {
         assertThat(linesDataSet.hasSeries(FIRST_DATA_SET)).isFalse();
 
         linesDataSet.add(X_AXIS_LABEL, createSeries(1));
-        assertThat(linesDataSet.getDomainAxisSize()).isEqualTo(1);
-        assertThat(linesDataSet.getDomainAxisLabels()).containsOnly(X_AXIS_LABEL);
-        assertThat(linesDataSet.getDataSetIds()).containsOnlyOnce(FIRST_DATA_SET, SECOND_DATA_SET);
+
+        verifyFirstSeries(linesDataSet);
+
         assertThat(linesDataSet.getBuildNumbers()).isEmpty();
-
-        assertThat(linesDataSet.hasSeries(FIRST_DATA_SET)).isTrue();
-        assertThat(linesDataSet.getSeries(FIRST_DATA_SET)).containsOnly(1);
-
-        assertThat(linesDataSet.hasSeries(SECOND_DATA_SET)).isTrue();
-        assertThat(linesDataSet.getSeries(SECOND_DATA_SET)).containsOnly(2);
     }
 
     @Test
@@ -47,19 +41,13 @@ class LinesDataSetTest {
         assertThat(linesDataSet.hasSeries(FIRST_DATA_SET)).isFalse();
 
         linesDataSet.add(X_AXIS_LABEL, createSeries(1), 1);
-        assertThat(linesDataSet.getDomainAxisSize()).isEqualTo(1);
-        assertThat(linesDataSet
-                .getDomainAxisLabels()).containsOnly(X_AXIS_LABEL);
+
+        verifyFirstSeries(linesDataSet);
+
         assertThat(linesDataSet.getBuildNumbers()).containsOnly(1);
-        assertThat(linesDataSet.getDataSetIds()).containsOnlyOnce(FIRST_DATA_SET, SECOND_DATA_SET);
-
-        assertThat(linesDataSet.hasSeries(FIRST_DATA_SET)).isTrue();
-        assertThat(linesDataSet.getSeries(FIRST_DATA_SET)).containsOnly(1);
-
-        assertThat(linesDataSet.hasSeries(SECOND_DATA_SET)).isTrue();
-        assertThat(linesDataSet.getSeries(SECOND_DATA_SET)).containsOnly(2);
 
         linesDataSet.add(ANOTHER_LABEL, createSeries(3), 2);
+
         assertThat(linesDataSet.getDomainAxisSize()).isEqualTo(2);
         assertThat(linesDataSet.getDomainAxisLabels()).containsOnly(X_AXIS_LABEL, ANOTHER_LABEL);
         assertThat(linesDataSet.getBuildNumbers()).containsOnly(1, 2);
@@ -70,6 +58,18 @@ class LinesDataSetTest {
 
         assertThat(linesDataSet.hasSeries(SECOND_DATA_SET)).isTrue();
         assertThat(linesDataSet.getSeries(SECOND_DATA_SET)).containsExactly(2, 4);
+    }
+
+    private void verifyFirstSeries(final LinesDataSet linesDataSet) {
+        assertThat(linesDataSet.getDomainAxisSize()).isEqualTo(1);
+        assertThat(linesDataSet.getDomainAxisLabels()).containsOnly(X_AXIS_LABEL);
+        assertThat(linesDataSet.getDataSetIds()).containsOnlyOnce(FIRST_DATA_SET, SECOND_DATA_SET);
+
+        assertThat(linesDataSet.hasSeries(FIRST_DATA_SET)).isTrue();
+        assertThat(linesDataSet.getSeries(FIRST_DATA_SET)).containsOnly(1);
+
+        assertThat(linesDataSet.hasSeries(SECOND_DATA_SET)).isTrue();
+        assertThat(linesDataSet.getSeries(SECOND_DATA_SET)).containsOnly(2);
     }
 
     @Test
