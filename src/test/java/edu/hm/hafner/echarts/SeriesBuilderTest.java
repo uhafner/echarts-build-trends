@@ -52,7 +52,7 @@ class SeriesBuilderTest {
     private static final String SECOND_KEY = "normal";
     private static final String THIRD_KEY = "low";
 
-    @SuppressWarnings("PMD.UnusedPrivateMethod")
+    @SuppressWarnings({"PMD.UnusedPrivateMethod", "unused"})
     @SuppressFBWarnings("UPM")
     private static Iterable<Object> createDataSetData() {
         return asList(

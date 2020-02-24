@@ -15,6 +15,7 @@ import static org.mockito.Mockito.*;
  *
  * @author Ullrich Hafner
  */
+@SuppressWarnings("JavaTimeDefaultTimeZone")
 class ResultTimeTest {
     private static final int DAY_COUNT = 2;
 

@@ -10,9 +10,9 @@ import edu.hm.hafner.util.VisibleForTesting;
  * @author Ullrich Hafner
  */
 public class Build implements Comparable<Build> {
-    private int buildTime;
-    private int number;
-    private String displayName;
+    private final int buildTime;
+    private final int number;
+    private final String displayName;
 
     /**
      * Creates a new instance of {@link Build}.

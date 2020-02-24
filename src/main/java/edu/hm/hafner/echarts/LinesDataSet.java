@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -49,7 +50,7 @@ public class LinesDataSet {
             throw new NoSuchElementException(String.format("No dataset '%s' registered", dataSetId));
         }
 
-        return dataSetSeries.get(dataSetId);
+        return Objects.requireNonNull(dataSetSeries.get(dataSetId));
     }
 
     /**
@@ -70,7 +71,7 @@ public class LinesDataSet {
 
         for (Entry<String, Integer> dataPoints : dataSetValues.entrySet()) {
             dataSetSeries.putIfAbsent(dataPoints.getKey(), new ArrayList<>());
-            dataSetSeries.get(dataPoints.getKey()).add(dataPoints.getValue());
+            dataSetSeries.get(dataPoints.getKey()).add(Objects.requireNonNull(dataPoints.getValue()));
         }
     }
 

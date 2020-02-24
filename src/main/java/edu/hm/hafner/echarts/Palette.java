@@ -35,7 +35,7 @@ public enum Palette {
      */
     public static Palette color(final int index) {
         Palette[] colors = Palette.values();
-        return colors[index % (colors.length)];
+        return colors[index % colors.length];
     }
 
     public String getNormal() {

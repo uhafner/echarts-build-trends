@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.*;
  * Verifies that a multi map is capable of storing duplicate key-value pairs.
  */
 class MultiMapTest {
-    @Test
+    @Test @SuppressWarnings("JavaTimeDefaultTimeZone")
     void shouldStoreDuplicatesInMultiMap() {
         FastListMultimap<LocalDate, List<Integer>> valuesPerDate = FastListMultimap.newMultimap();
         valuesPerDate.put(LocalDate.now(), asList(1));
