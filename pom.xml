@@ -8,12 +8,12 @@
     <groupId>edu.hm.hafner</groupId>
     <artifactId>codingstyle-pom</artifactId>
     <version>1.0.1</version>
-    <relativePath/>
+    <relativePath />
   </parent>
 
   <groupId>edu.hm.hafner</groupId>
   <artifactId>echarts-build-trends</artifactId>
-  <version>0.1.4-SNAPSHOT</version>
+  <version>0.1.4</version>
 
   <packaging>jar</packaging>
 
@@ -24,7 +24,7 @@
     <connection>scm:git:git://github.com/uhafner/${project.artifactId}.git</connection>
     <developerConnection>scm:git:git@github.com:uhafner/${project.artifactId}.git</developerConnection>
     <url>https://github.com/uhafner/${project.artifactId}</url>
-    <tag>HEAD</tag>
+    <tag>echarts-build-trends-0.1.4</tag>
   </scm>
 
   <licenses>
