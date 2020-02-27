@@ -107,7 +107,8 @@
         <groupId>org.revapi</groupId>
         <artifactId>revapi-maven-plugin</artifactId>
         <configuration>
-          <skip>true</skip>
+          <oldVersion>-</oldVersion>
+          <skip>false</skip>
         </configuration>
       </plugin>
     </plugins>

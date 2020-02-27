@@ -13,6 +13,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import edu.hm.hafner.echarts.ChartModelConfiguration.AxisType;
 import edu.hm.hafner.util.VisibleForTesting;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import static java.util.Arrays.*;
@@ -226,10 +227,15 @@ class SeriesBuilderTest {
      * Helps building arguments to parameterized test.
      */
     private static class TestArgumentsBuilder {
+        @Nullable
         private String testName;
+        @Nullable
         private ChartModelConfiguration config;
+        @Nullable
         private List<BuildResult<?>> runs;
+        @Nullable
         private List<List<Integer>> series;
+        @Nullable
         private ResultTime time;
 
         /**

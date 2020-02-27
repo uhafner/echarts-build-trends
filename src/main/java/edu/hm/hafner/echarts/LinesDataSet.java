@@ -50,7 +50,7 @@ public class LinesDataSet {
             throw new NoSuchElementException(String.format("No dataset '%s' registered", dataSetId));
         }
 
-        return Objects.requireNonNull(dataSetSeries.get(dataSetId));
+        return getSeriesFromMap(dataSetId);
     }
 
     /**
@@ -71,8 +71,12 @@ public class LinesDataSet {
 
         for (Entry<String, Integer> dataPoints : dataSetValues.entrySet()) {
             dataSetSeries.putIfAbsent(dataPoints.getKey(), new ArrayList<>());
-            dataSetSeries.get(dataPoints.getKey()).add(Objects.requireNonNull(dataPoints.getValue()));
+            getSeriesFromMap(dataPoints.getKey()).add(Objects.requireNonNull(dataPoints.getValue()));
         }
+    }
+
+    private List<Integer> getSeriesFromMap(final String key) {
+        return Objects.requireNonNull(dataSetSeries.get(key));
     }
 
     /**

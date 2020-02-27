@@ -9,8 +9,8 @@ package edu.hm.hafner.echarts;
 public class ChartModelConfiguration {
     private final AxisType axisType;
 
-    private int buildCount = 50;
-    private int dayCount = 0;
+    private final int buildCount = 50;
+    private final int dayCount = 0;
 
     /**
      * Creates a new chart configuration with the Jenkins build number as X-Axis.
@@ -76,7 +76,7 @@ public class ChartModelConfiguration {
 
     /** Type of the X-Axis. */
     public enum AxisType {
-        /** Jenkins build numbers. */
+        /** Build IDs or numbers. */
         BUILD,
         /** Dates with build results. */
         DATE
