@@ -18,9 +18,10 @@ node {
         recordIssues tools: [checkStyle(pattern: 'target/checkstyle-result.xml'),
             spotBugs(pattern: 'target/spotbugsXml.xml'),
             pmdParser(pattern: 'target/pmd.xml'),
-            cpd(pattern: 'target/cpd.xml'),
-            taskScanner(highTags:'FIXME', normalTags:'TODO', includePattern: '**/*.java', excludePattern: 'target/**/*')],
+            cpd(pattern: 'target/cpd.xml')],
             qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]]
+        recordIssues tool: taskScanner(highTags:'FIXME', normalTags:'TODO',
+                includePattern: '**/*.java', excludePattern: 'target/**/*')]
     }
 
     stage ('Line and Branch Coverage') {
