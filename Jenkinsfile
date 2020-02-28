@@ -21,7 +21,7 @@ node {
             cpd(pattern: 'target/cpd.xml')],
             qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]]
         recordIssues tool: taskScanner(highTags:'FIXME', normalTags:'TODO',
-                includePattern: '**/*.java', excludePattern: 'target/**/*')]
+                includePattern: '**/*.java', excludePattern: 'target/**/*')
     }
 
     stage ('Line and Branch Coverage') {
