@@ -5,7 +5,7 @@ package edu.hm.hafner.echarts;
  *
  * @author Ullrich Hafner
  */
-// TODO: make this configurable in the UI
+// TODO: Make this configurable in the UI and provide two configurations - one for BUILD and one for DATE
 public class ChartModelConfiguration {
     private final AxisType axisType;
 

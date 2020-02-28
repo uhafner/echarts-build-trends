@@ -43,7 +43,7 @@ public class TimeFacade {
      *
      * @return current date from the system clock in the default time-zone
      */
-    @SuppressWarnings("JavaTimeDefaultTimeZone") // TODO: We should consider to draw the charts using the current users time zone
+    @SuppressWarnings("JavaTimeDefaultTimeZone") // TODO: It would make sense to render charts using the time zone of the user
     public Temporal getToday() {
         return LocalDate.now();
     }
