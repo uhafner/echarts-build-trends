@@ -75,10 +75,6 @@ public class LinesDataSet {
         }
     }
 
-    private List<Integer> getSeriesFromMap(final String key) {
-        return Objects.requireNonNull(dataSetSeries.get(key));
-    }
-
     /**
      * Adds data points for a new domainAxisLabel. The data points for the X-axis tick are given by a map. Each
      * dataSetId provides one value for the specified X-axis label.
@@ -98,6 +94,10 @@ public class LinesDataSet {
         }
 
         buildNumbers.add(buildNumber);
+    }
+
+    private List<Integer> getSeriesFromMap(final String key) {
+        return Objects.requireNonNull(dataSetSeries.get(key));
     }
 
     public List<Integer> getBuildNumbers() {
