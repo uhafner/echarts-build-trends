@@ -55,7 +55,7 @@
 
     <!-- Project Dependencies Configuration -->
     <codingstyle.library.version>1.0.2</codingstyle.library.version>
-    <commons.lang.version>3.9</commons.lang.version>
+    <commons.lang.version>3.10</commons.lang.version>
     <eclipse-collections.version>9.2.0</eclipse-collections.version>
     <jackson-databind.version>2.9.10.3</jackson-databind.version>
     <json-unit-fluent.version>2.16.1</json-unit-fluent.version>
