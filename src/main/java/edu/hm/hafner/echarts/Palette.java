@@ -15,7 +15,8 @@ public enum Palette {
     INDIGO("#9FA8DA", "#C5CAE9"),
     PURPLE("#CE93D8", "#E1BEE7"),
     RED("#EF9A9A", "#FFCDD2"),
-    BROWN("#BCAAA4", "#D7CCC8");
+    BROWN("#BCAAA4", "#D7CCC8"),
+    GRAY("#D0D0D0 ", "#E0E0E0");
 
     private final String normal;
     private final String hover;
