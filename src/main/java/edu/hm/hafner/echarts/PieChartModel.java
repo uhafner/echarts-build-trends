@@ -48,6 +48,19 @@ public class PieChartModel {
         colors.add(color.getNormal());
     }
 
+    /**
+     * Adds the specified data element to the existing set of data elements.
+     *
+     * @param pieData
+     *         the data element to add
+     * @param color
+     *         the color of the element
+     */
+    public void add(final PieData pieData, final String color) {
+        data.add(pieData);
+        colors.add(color);
+    }
+
     public String getName() {
         return name;
     }
