@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import edu.hm.hafner.echarts.LineSeries.FilledMode;
 import edu.hm.hafner.echarts.LineSeries.StackedMode;
 
+import static edu.hm.hafner.echarts.assertions.Assertions.*;
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.*;
-import static org.assertj.core.api.Assertions.*;
 
 /**
  * Tests the class {@link LinesChartModel}.
@@ -28,8 +28,9 @@ class LinesChartModelTest {
         LinesChartModel model = new LinesChartModel();
 
         assertThat(model.getId()).isEmpty();
-        assertThat(model.getSeries()).isEmpty();
-        assertThat(model.getDomainAxisLabels()).isEmpty();
+        assertThat(model).hasNoSeries();
+        assertThat(model).hasNoDomainAxisLabels();
+        assertThat(model).hasNoBuildNumbers();
     }
 
     @Test
@@ -38,19 +39,15 @@ class LinesChartModelTest {
 
         model.setDomainAxisLabels(BUILDS);
 
+        assertThat(model).hasId(ID);
         assertThat(model.size()).isEqualTo(3);
-        assertThat(model.getDomainAxisLabels()).hasSize(3);
-        assertThat(model.toString()).isEqualTo(
+        assertThat(model).hasDomainAxisLabels("#1", "#2", "#3");
+        assertThat(model).hasToString(
                 "{\"domainAxisLabels\":[\"#1\",\"#2\",\"#3\"],\"buildNumbers\":[],\"series\":[],\"id\":\"spotbugs\"}");
-    }
 
-    @Test
-    void testGetId() {
-        LinesChartModel model = new LinesChartModel(ID);
-        assertThat(model.getId()).isEqualTo(ID);
-
-        model.setId("anotherSpotbugs");
-        assertThat(model.getId()).isEqualTo("anotherSpotbugs");
+        String anotherId = "anotherId";
+        model.setId(anotherId);
+        assertThat(model).hasId(anotherId);
     }
 
     @Test
@@ -60,26 +57,23 @@ class LinesChartModelTest {
 
         model.addSeries(series);
 
-        assertThat(model.getSeries().get(0)).isEqualTo(series);
+        assertThat(model).hasSeries(series);
     }
 
     @Test
     void testGetDomainAxisLabels() {
-        LinesChartModel modelForSingleXAxisLabelTest = new LinesChartModel(ID);
-        modelForSingleXAxisLabelTest.setDomainAxisLabels(Collections.singletonList("a"));
-        assertThat(modelForSingleXAxisLabelTest.getDomainAxisLabels())
-                .hasSize(1)
-                .isEqualTo(Collections.singletonList("a"));
+        LinesChartModel singleLabelModel = new LinesChartModel(ID);
+        singleLabelModel.setDomainAxisLabels(Collections.singletonList("a"));
+        assertThat(singleLabelModel).hasDomainAxisLabels("a");
 
-        LinesChartModel modelForXAxisListLabelTest = new LinesChartModel(ID);
-        modelForXAxisListLabelTest.setDomainAxisLabels(Arrays.asList("a", "b", "c"));
-        assertThat(modelForXAxisListLabelTest.getDomainAxisLabels())
-                .hasSize(3)
-                .isEqualTo(Arrays.asList("a", "b", "c"));
-        modelForXAxisListLabelTest.setDomainAxisLabels(Arrays.asList("d", "e", "f"));
-        assertThat(modelForXAxisListLabelTest.getDomainAxisLabels())
-                .hasSize(6)
-                .isEqualTo(Arrays.asList("a", "b", "c", "d", "e", "f"));
+        LinesChartModel multipleLabelModel = new LinesChartModel(ID);
+        multipleLabelModel.setDomainAxisLabels(Arrays.asList("a", "b", "c"));
+
+        assertThat(multipleLabelModel).hasDomainAxisLabels("a", "b", "c");
+
+        multipleLabelModel.setDomainAxisLabels(Arrays.asList("d", "e", "f"));
+
+        assertThat(multipleLabelModel).hasDomainAxisLabels("a", "b", "c", "d", "e", "f");
     }
 
     @Test
