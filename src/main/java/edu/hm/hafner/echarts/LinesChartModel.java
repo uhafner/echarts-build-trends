@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import edu.hm.hafner.util.Generated;
+
 /**
  * UI model for an ECharts line chart. Simple data bean that will be converted to JSON. On the client side the three
  * properties need to be placed into the correct place in the options structure.
@@ -109,7 +111,7 @@ public class LinesChartModel {
         return domainAxisLabels.size();
     }
 
-    @Override
+    @Override @Generated
     public String toString() {
         return new JacksonFacade().toJson(this);
     }

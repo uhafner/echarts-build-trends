@@ -2,6 +2,8 @@ package edu.hm.hafner.echarts;
 
 import java.util.Objects;
 
+import edu.hm.hafner.util.Generated;
+
 /**
  * UI model for an ECharts pie chart.
  * <p>
@@ -35,7 +37,7 @@ public class PieData {
         return name;
     }
 
-    @Override
+    @Override @Generated
     public boolean equals(final Object o) {
         if (this == o) {
             return true;
@@ -47,8 +49,13 @@ public class PieData {
         return value == pieData.value && Objects.equals(name, pieData.name);
     }
 
-    @Override
+    @Override @Generated
     public int hashCode() {
         return Objects.hash(value, name);
+    }
+
+    @Override @Generated
+    public String toString() {
+        return String.format("%s->%d", name, value);
     }
 }
