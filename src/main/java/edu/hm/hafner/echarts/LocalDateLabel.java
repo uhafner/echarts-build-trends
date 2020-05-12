@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+import edu.hm.hafner.util.Generated;
 import edu.umd.cs.findbugs.annotations.NonNull;
 
 /**
@@ -36,7 +37,7 @@ class LocalDateLabel implements Comparable<LocalDateLabel> {
         return formatter.format(date);
     }
 
-    @Override
+    @Override @Generated
     public boolean equals(final Object o) {
         if (this == o) {
             return true;
@@ -48,7 +49,7 @@ class LocalDateLabel implements Comparable<LocalDateLabel> {
         return date.equals(that.date) && formatter.equals(that.formatter);
     }
 
-    @Override
+    @Override @Generated
     public int hashCode() {
         return Objects.hash(date, formatter);
     }

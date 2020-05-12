@@ -2,6 +2,7 @@ package edu.hm.hafner.echarts;
 
 import java.util.Objects;
 
+import edu.hm.hafner.util.Generated;
 import edu.hm.hafner.util.VisibleForTesting;
 
 /**
@@ -75,7 +76,7 @@ public class Build implements Comparable<Build> {
         return getNumber() - o.getNumber();
     }
 
-    @Override
+    @Override @Generated
     public boolean equals(final Object o) {
         if (this == o) {
             return true;
@@ -87,12 +88,12 @@ public class Build implements Comparable<Build> {
         return number == that.number;
     }
 
-    @Override
+    @Override @Generated
     public int hashCode() {
         return Objects.hash(number);
     }
 
-    @Override
+    @Override @Generated
     public String toString() {
         return getDisplayName();
     }
