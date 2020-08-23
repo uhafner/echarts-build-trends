@@ -1,6 +1,6 @@
 /* global jQuery3 */
 jQuery3(document).ready(function () {
-    renderPieCharts(jQuery3);
+    renderPieCharts();
 });
 
 /**
@@ -98,7 +98,6 @@ function renderPieCharts() {
     allCharts.each(function () {
         const chart = jQuery3(this);
         const id = chart.attr('id');
-
         renderPieChart(id);
     });
 }
