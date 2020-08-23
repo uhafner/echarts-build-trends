@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-import edu.umd.cs.findbugs.annotations.Nullable;
+import edu.umd.cs.findbugs.annotations.CheckForNull;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 /**
@@ -64,7 +64,7 @@ public class LineSeries {
         return type;
     }
 
-    @Nullable
+    @CheckForNull
     public AreaStyle getAreaStyle() {
         return filledMode == FilledMode.FILLED ? new AreaStyle() : null;
     }
