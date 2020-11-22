@@ -40,6 +40,7 @@ public class LineSeries {
      * @param filledMode
      *         determines the {@link FilledMode} to use
      */
+    // TODO: add constructor with dataset
     public LineSeries(final String name, final String color,
             final StackedMode stackedMode, final FilledMode filledMode) {
         this.name = name;
