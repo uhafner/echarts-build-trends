@@ -63,10 +63,6 @@ public class LinesDataSet {
      *         the values for each of the series at the given X-axis tick
      */
     public void add(final String domainAxisLabel, final Map<String, Integer> dataSetValues) {
-        if (domainAxisLabels.contains(domainAxisLabel)) {
-            throw new IllegalStateException("Label already registered: " + domainAxisLabel);
-        }
-
         domainAxisLabels.add(domainAxisLabel);
 
         for (Entry<String, Integer> dataPoints : dataSetValues.entrySet()) {

@@ -90,9 +90,10 @@ class LinesDataSetTest {
         Map<String, Integer> dataSetSeries = Collections.emptyMap();
 
         linesDataSet.add(X_AXIS_LABEL, dataSetSeries);
-        assertThatThrownBy(() -> linesDataSet.add(X_AXIS_LABEL, dataSetSeries))
-                .isInstanceOf(IllegalStateException.class)
-                .hasMessage("Label already registered: " + X_AXIS_LABEL);
+        linesDataSet.add(X_AXIS_LABEL, dataSetSeries);
+
+        assertThat(linesDataSet.getDomainAxisSize()).isEqualTo(2);
+        assertThat(linesDataSet.getDomainAxisLabels()).containsExactly(X_AXIS_LABEL, X_AXIS_LABEL);
     }
 
     @Test
