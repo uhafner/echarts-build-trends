@@ -37,6 +37,10 @@ public class LinesDataSet {
         return dataSetSeries.containsKey(dataSetId);
     }
 
+    public boolean isEmpty() {
+        return domainAxisLabels.isEmpty();
+    }
+
     /**
      * Returns the data series of the specified dataSetId.
      *
