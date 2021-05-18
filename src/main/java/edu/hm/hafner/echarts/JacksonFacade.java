@@ -89,7 +89,7 @@ public class JacksonFacade {
      * @param json
      *         the JSON object to extract the property value from
      * @param property
-     *         the name of the propety
+     *         the name of the property
      * @param defaultValue
      *         the default value if the property is undefined or invalid
      *
@@ -101,6 +101,33 @@ public class JacksonFacade {
             JsonNode typeNode = node.get(property);
             if (typeNode != null) {
                 return typeNode.asText(defaultValue);
+            }
+        }
+        catch (JsonProcessingException exception) {
+            // ignore
+        }
+
+        return defaultValue;
+    }
+
+    /**
+     * Returns the text value of the specified JSON property.
+     *
+     * @param json
+     *         the JSON object to extract the property value from
+     * @param property
+     *         the name of the property
+     * @param defaultValue
+     *         the default value if the property is undefined or invalid
+     *
+     * @return the value of the property
+     */
+    public int getInteger(final String json, final String property, final int defaultValue) {
+        try {
+            ObjectNode node = mapper.readValue(json, ObjectNode.class);
+            JsonNode typeNode = node.get(property);
+            if (typeNode != null) {
+                return typeNode.asInt(defaultValue);
             }
         }
         catch (JsonProcessingException exception) {
