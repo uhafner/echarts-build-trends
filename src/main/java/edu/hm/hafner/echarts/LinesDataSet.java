@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Set;
@@ -69,7 +68,7 @@ public class LinesDataSet {
     public void add(final String domainAxisLabel, final Map<String, Integer> dataSetValues) {
         domainAxisLabels.add(domainAxisLabel);
 
-        for (Entry<String, Integer> dataPoints : dataSetValues.entrySet()) {
+        for (Map.Entry<String, Integer> dataPoints : dataSetValues.entrySet()) {
             dataSetSeries.putIfAbsent(dataPoints.getKey(), new ArrayList<>());
             getSeriesFromMap(dataPoints.getKey()).add(Objects.requireNonNull(dataPoints.getValue()));
         }

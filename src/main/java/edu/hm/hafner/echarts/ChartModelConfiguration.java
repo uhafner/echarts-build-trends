@@ -1,11 +1,5 @@
 package edu.hm.hafner.echarts;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 /**
  * Configures the model of a trend chart.
  *
@@ -19,6 +13,7 @@ public class ChartModelConfiguration {
     private static final String NUMBER_OF_BUILDS_PROPERTY = "numberOfBuilds";
     private static final String NUMBER_OF_DAYS_PROPERTY = "numberOfDays";
     private static final String BUILD_AS_DOMAIN_PROPERTY = "buildAsDomain";
+    private static final JacksonFacade JACKSON = new JacksonFacade();
 
     private final AxisType axisType;
 
@@ -54,8 +49,8 @@ public class ChartModelConfiguration {
      */
     public ChartModelConfiguration(final AxisType axisType, final int buildCount, final int dayCount) {
         this.axisType = axisType;
-        this.buildCount = buildCount;
-        this.dayCount = dayCount;
+        this.buildCount = buildCount < 0 ? DEFAULT_BUILD_COUNT : buildCount;
+        this.dayCount = dayCount < 0 ? DEFAULT_DAY_COUNT : dayCount;
     }
 
     /**
@@ -67,41 +62,10 @@ public class ChartModelConfiguration {
      * @return the created configuration instance
      */
     public static ChartModelConfiguration fromJson(final String json) {
-        try {
-            return configure(json);
-        }
-        catch (JsonProcessingException exception) {
-            return new ChartModelConfiguration();
-        }
-    }
-
-    private static ChartModelConfiguration configure(final String json) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper()
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        ObjectNode node = mapper.readValue(json, ObjectNode.class);
-        return new ChartModelConfiguration(getAxisType(node),
-                getInteger(node, NUMBER_OF_BUILDS_PROPERTY, ChartModelConfiguration.DEFAULT_BUILD_COUNT),
-                getInteger(node, NUMBER_OF_DAYS_PROPERTY, ChartModelConfiguration.DEFAULT_DAY_COUNT));
-    }
-
-    private static AxisType getAxisType(final ObjectNode node) {
-        JsonNode typeNode = node.get(BUILD_AS_DOMAIN_PROPERTY);
-        AxisType axisType = DEFAULT_DOMAIN_AXIS_TYPE;
-        if (typeNode != null) {
-            axisType = typeNode.asBoolean(true) ? AxisType.BUILD : AxisType.DATE;
-        }
-        return axisType;
-    }
-
-    private static int getInteger(final ObjectNode node, final String property, final int defaultValue) {
-        JsonNode typeNode = node.get(property);
-        if (typeNode != null) {
-            int value = typeNode.asInt(defaultValue);
-            if (value > 1) {
-                return value;
-            }
-        }
-        return defaultValue;
+        return new ChartModelConfiguration(
+                JACKSON.getBoolean(json, BUILD_AS_DOMAIN_PROPERTY, true) ? AxisType.BUILD : AxisType.DATE,
+                JACKSON.getInteger(json, NUMBER_OF_BUILDS_PROPERTY, ChartModelConfiguration.DEFAULT_BUILD_COUNT),
+                JACKSON.getInteger(json, NUMBER_OF_DAYS_PROPERTY, ChartModelConfiguration.DEFAULT_DAY_COUNT));
     }
 
     /**

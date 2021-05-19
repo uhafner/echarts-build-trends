@@ -62,28 +62,6 @@ public class JacksonFacade {
     }
 
     /**
-     * Creates a bean from the specified JSON node.
-     *
-     * @param jsonNode
-     *         the JSON node providing all properties of the bean
-     * @param type
-     *         the type of the bean
-     * @param <T>
-     *         type of the bean
-     *
-     * @return the JSON representation (as a String)
-     */
-    public <T> T fromJson(final JsonNode jsonNode, final Class<T> type) {
-        try {
-            return mapper.treeToValue(jsonNode, type);
-        }
-        catch (JsonProcessingException exception) {
-            throw new IllegalArgumentException(
-                    String.format("Can't convert JSON '%s' to bean", jsonNode.asText()), exception);
-        }
-    }
-
-    /**
      * Returns the text value of the specified JSON property.
      *
      * @param json
@@ -97,8 +75,7 @@ public class JacksonFacade {
      */
     public String getString(final String json, final String property, final String defaultValue) {
         try {
-            ObjectNode node = mapper.readValue(json, ObjectNode.class);
-            JsonNode typeNode = node.get(property);
+            JsonNode typeNode = getPropertyAsNode(json, property);
             if (typeNode != null) {
                 return typeNode.asText(defaultValue);
             }
@@ -124,10 +101,41 @@ public class JacksonFacade {
      */
     public int getInteger(final String json, final String property, final int defaultValue) {
         try {
-            ObjectNode node = mapper.readValue(json, ObjectNode.class);
-            JsonNode typeNode = node.get(property);
+            JsonNode typeNode = getPropertyAsNode(json, property);
             if (typeNode != null) {
                 return typeNode.asInt(defaultValue);
+            }
+        }
+        catch (JsonProcessingException exception) {
+            // ignore
+        }
+
+        return defaultValue;
+    }
+
+    private JsonNode getPropertyAsNode(final String json, final String property)
+            throws JsonProcessingException {
+        ObjectNode node = mapper.readValue(json, ObjectNode.class);
+        return node.get(property);
+    }
+
+    /**
+     * Returns the boolean value of the specified JSON property.
+     *
+     * @param json
+     *         the JSON object to extract the property value from
+     * @param property
+     *         the name of the property
+     * @param defaultValue
+     *         the default value if the property is undefined or invalid
+     *
+     * @return the value of the property
+     */
+    public boolean getBoolean(final String json, final String property, final boolean defaultValue) {
+        try {
+            JsonNode typeNode = getPropertyAsNode(json, property);
+            if (typeNode != null) {
+                return typeNode.asBoolean(defaultValue);
             }
         }
         catch (JsonProcessingException exception) {

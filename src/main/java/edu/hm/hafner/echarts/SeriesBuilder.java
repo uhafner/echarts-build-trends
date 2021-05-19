@@ -3,7 +3,6 @@ package edu.hm.hafner.echarts;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -144,7 +143,7 @@ public abstract class SeriesBuilder<T> {
     private LinesDataSet createDataSetPerBuildNumber(
             final SortedMap<Build, Map<String, Integer>> valuesPerBuild) {
         LinesDataSet model = new LinesDataSet();
-        for (Entry<Build, Map<String, Integer>> series : valuesPerBuild.entrySet()) {
+        for (Map.Entry<Build, Map<String, Integer>> series : valuesPerBuild.entrySet()) {
             model.add(series.getKey().getDisplayName(), series.getValue(), series.getKey().getNumber());
         }
         return model;
@@ -160,7 +159,7 @@ public abstract class SeriesBuilder<T> {
      */
     private LinesDataSet createDataSetPerDay(final SortedMap<LocalDate, Map<String, Integer>> averagePerDay) {
         LinesDataSet model = new LinesDataSet();
-        for (Entry<LocalDate, Map<String, Integer>> series : averagePerDay.entrySet()) {
+        for (Map.Entry<LocalDate, Map<String, Integer>> series : averagePerDay.entrySet()) {
             String label = new LocalDateLabel(series.getKey()).toString();
             model.add(label, series.getValue());
         }
@@ -186,10 +185,10 @@ public abstract class SeriesBuilder<T> {
             Map<String, Integer> mapOfDay =
                     seriesPerDay.stream()
                             .flatMap(m -> m.entrySet().stream())
-                            .collect(groupingBy(Entry::getKey, summingInt(Entry::getValue)));
+                            .collect(groupingBy(Map.Entry::getKey, summingInt(Map.Entry::getValue)));
             Map<String, Integer> averagePerDay =
                     mapOfDay.entrySet().stream()
-                            .collect(toMap(Entry::getKey, e -> e.getValue() / seriesPerDay.size()));
+                            .collect(toMap(Map.Entry::getKey, e -> e.getValue() / seriesPerDay.size()));
             seriesPerDate.put(date, averagePerDay);
         }
         return seriesPerDate;

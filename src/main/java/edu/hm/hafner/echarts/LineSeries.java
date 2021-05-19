@@ -20,8 +20,10 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 public class LineSeries {
     private final String name;
     @SuppressFBWarnings("SS_SHOULD_BE_STATIC")
+    @SuppressWarnings("FieldCanBeStatic")
     private final String type = "line";
     @SuppressFBWarnings("SS_SHOULD_BE_STATIC")
+    @SuppressWarnings("FieldCanBeStatic")
     private final String symbol = "circle";
     private final List<Integer> data = new ArrayList<>();
     private final ItemStyle itemStyle;

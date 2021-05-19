@@ -13,6 +13,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 @SuppressWarnings("FieldCanBeLocal")
 public class AreaStyle {
     @SuppressFBWarnings("SS_SHOULD_BE_STATIC")
+    @SuppressWarnings("FieldCanBeStatic")
     private final boolean normal = true;
 
     AreaStyle() {
