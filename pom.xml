@@ -52,7 +52,7 @@
     <module.name>${project.groupId}.echarts.build.trends</module.name>
 
     <!-- Project Dependencies Configuration -->
-    <codingstyle.library.version>2.4.0</codingstyle.library.version>
+    <codingstyle.library.version>2.5.0</codingstyle.library.version>
     <commons.lang.version>3.12.0</commons.lang.version>
     <eclipse-collections.version>9.2.0</eclipse-collections.version>
     <jackson-databind.version>2.12.3</jackson-databind.version>
