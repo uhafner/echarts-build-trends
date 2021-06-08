@@ -26,14 +26,44 @@ public class LinesChartModel {
     private String id;
 
     /**
-     * Creates a new {@link LinesChartModel} with no id.
+     * Creates a new {@link LinesChartModel}.
+     *
+     * @param dataSet
+     *         the dataset to render
+     */
+    public LinesChartModel(final LinesDataSet dataSet) {
+        this(StringUtils.EMPTY);
+
+        if (!dataSet.isEmpty()) {
+            setDomainAxisLabels(dataSet.getDomainAxisLabels());
+            setBuildNumbers(dataSet.getBuildNumbers());
+        }
+    }
+
+    /**
+     * Creates a new {@link LinesChartModel}.
+     *
+     * @param labels
+     *         the X-axis labels of the model
+     * @param builds
+     *         the build numbers of the model
+     */
+    public LinesChartModel(final List<String> labels, final List<Integer> builds) {
+        this(StringUtils.EMPTY);
+
+        setDomainAxisLabels(labels);
+        setBuildNumbers(builds);
+    }
+
+    /**
+     * Creates a new {@link LinesChartModel}.
      */
     public LinesChartModel() {
         this(StringUtils.EMPTY);
     }
 
     /**
-     * Creates a new {@link LinesChartModel} with the specified id.
+     * Creates a new {@link LinesChartModel} with the specified ID.
      *
      * @param id
      *         the ID to use
@@ -42,10 +72,26 @@ public class LinesChartModel {
         this.id = id;
     }
 
+    /**
+     * Not used anymore.
+     *
+     * @param id
+     *         the ID
+     *
+     * @deprecated not used anymore
+     */
+    @Deprecated
     public void setId(final String id) {
         this.id = id;
     }
 
+    /**
+     * Not used anymore.
+     *
+     * @return the ID
+     * @deprecated not used anymore
+     */
+    @Deprecated
     public String getId() {
         return id;
     }
@@ -56,7 +102,7 @@ public class LinesChartModel {
      * @param labels
      *         the X-axis labels of the model
      */
-    public void setDomainAxisLabels(final List<String> labels) {
+    public final void setDomainAxisLabels(final List<String> labels) {
         domainAxisLabels.addAll(labels);
     }
 
@@ -66,7 +112,7 @@ public class LinesChartModel {
      * @param builds
      *         the build numbers of the model
      */
-    public void setBuildNumbers(final List<Integer> builds) {
+    public final void setBuildNumbers(final List<Integer> builds) {
         buildNumbers.addAll(builds);
     }
 
@@ -111,7 +157,8 @@ public class LinesChartModel {
         return domainAxisLabels.size();
     }
 
-    @Override @Generated
+    @Override
+    @Generated
     public String toString() {
         return new JacksonFacade().toJson(this);
     }
