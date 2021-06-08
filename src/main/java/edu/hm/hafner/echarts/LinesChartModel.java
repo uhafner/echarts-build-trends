@@ -35,8 +35,8 @@ public class LinesChartModel {
         this(StringUtils.EMPTY);
 
         if (!dataSet.isEmpty()) {
-            setDomainAxisLabels(dataSet.getDomainAxisLabels());
-            setBuildNumbers(dataSet.getBuildNumbers());
+            domainAxisLabels.addAll(dataSet.getDomainAxisLabels());
+            buildNumbers.addAll(dataSet.getBuildNumbers());
         }
     }
 
@@ -51,8 +51,8 @@ public class LinesChartModel {
     public LinesChartModel(final List<String> labels, final List<Integer> builds) {
         this(StringUtils.EMPTY);
 
-        setDomainAxisLabels(labels);
-        setBuildNumbers(builds);
+        domainAxisLabels.addAll(labels);
+        buildNumbers.addAll(builds);
     }
 
     /**
@@ -102,7 +102,7 @@ public class LinesChartModel {
      * @param labels
      *         the X-axis labels of the model
      */
-    public final void setDomainAxisLabels(final List<String> labels) {
+    public void setDomainAxisLabels(final List<String> labels) {
         domainAxisLabels.addAll(labels);
     }
 
@@ -112,7 +112,7 @@ public class LinesChartModel {
      * @param builds
      *         the build numbers of the model
      */
-    public final void setBuildNumbers(final List<Integer> builds) {
+    public void setBuildNumbers(final List<Integer> builds) {
         buildNumbers.addAll(builds);
     }
 
