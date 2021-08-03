@@ -43,7 +43,7 @@ class LinesChartModelTest {
         assertThat(model.size()).isEqualTo(3);
         assertThat(model).hasDomainAxisLabels("#1", "#2", "#3");
         assertThat(model).hasToString(
-                "{\"domainAxisLabels\":[\"#1\",\"#2\",\"#3\"],\"buildNumbers\":[],\"series\":[],\"id\":\"spotbugs\"}");
+                "{\"domainAxisLabels\":[\"#1\",\"#2\",\"#3\"],\"buildNumbers\":[],\"series\":[],\"id\":\"spotbugs\",\"domainAxisItemName\":\"Build\"}");
 
         String anotherId = "anotherId";
         model.setId(anotherId);
