@@ -24,6 +24,7 @@ public class LinesChartModel {
     private final List<LineSeries> series = new ArrayList<>();
 
     private String id;
+    private String domainAxisItemName = "Build";
 
     /**
      * Creates a new {@link LinesChartModel}.
@@ -94,6 +95,19 @@ public class LinesChartModel {
     @Deprecated
     public String getId() {
         return id;
+    }
+
+    /**
+     * Sets the name of the X-axis items. This name is used in the tooltip of the charts.
+     *
+     * @param name the name
+     */
+    public void setDomainAxisItemName(final String name) {
+        domainAxisItemName = name;
+    }
+
+    public String getDomainAxisItemName() {
+        return domainAxisItemName;
     }
 
     /**
