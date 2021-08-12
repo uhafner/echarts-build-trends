@@ -21,13 +21,11 @@ import static net.javacrumbs.jsonunit.assertj.JsonAssertions.*;
 class LinesChartModelTest {
     private static final String COLOR = "#fff";
     private static final List<String> BUILDS = Arrays.asList("#1", "#2", "#3");
-    private static final String ID = "spotbugs";
 
     @Test
     void shouldBeEmptyWhenCreated() {
         LinesChartModel model = new LinesChartModel();
 
-        assertThat(model.getId()).isEmpty();
         assertThat(model).hasNoSeries();
         assertThat(model).hasNoDomainAxisLabels();
         assertThat(model).hasNoBuildNumbers();
@@ -35,24 +33,19 @@ class LinesChartModelTest {
 
     @Test
     void shouldAddLabels() {
-        LinesChartModel model = new LinesChartModel(ID);
+        LinesChartModel model = new LinesChartModel();
 
         model.setDomainAxisLabels(BUILDS);
 
-        assertThat(model).hasId(ID);
         assertThat(model.size()).isEqualTo(3);
         assertThat(model).hasDomainAxisLabels("#1", "#2", "#3");
         assertThat(model).hasToString(
-                "{\"domainAxisLabels\":[\"#1\",\"#2\",\"#3\"],\"buildNumbers\":[],\"series\":[],\"id\":\"spotbugs\",\"domainAxisItemName\":\"Build\"}");
-
-        String anotherId = "anotherId";
-        model.setId(anotherId);
-        assertThat(model).hasId(anotherId);
+                "{\"domainAxisLabels\":[\"#1\",\"#2\",\"#3\"],\"buildNumbers\":[],\"series\":[],\"domainAxisItemName\":\"Build\",\"rangeMax\":null,\"rangeMin\":null}");
     }
 
     @Test
     void testGetSeries() {
-        LinesChartModel model = new LinesChartModel(ID);
+        LinesChartModel model = new LinesChartModel();
         LineSeries series = new LineSeries("TestName", "TestColor", StackedMode.STACKED, FilledMode.FILLED);
 
         model.addSeries(series);
@@ -62,11 +55,11 @@ class LinesChartModelTest {
 
     @Test
     void testGetDomainAxisLabels() {
-        LinesChartModel singleLabelModel = new LinesChartModel(ID);
+        LinesChartModel singleLabelModel = new LinesChartModel();
         singleLabelModel.setDomainAxisLabels(Collections.singletonList("a"));
         assertThat(singleLabelModel).hasDomainAxisLabels("a");
 
-        LinesChartModel multipleLabelModel = new LinesChartModel(ID);
+        LinesChartModel multipleLabelModel = new LinesChartModel();
         multipleLabelModel.setDomainAxisLabels(Arrays.asList("a", "b", "c"));
 
         assertThat(multipleLabelModel).hasDomainAxisLabels("a", "b", "c");
@@ -78,7 +71,7 @@ class LinesChartModelTest {
 
     @Test
     void shouldCreateLineModel() {
-        LinesChartModel model = new LinesChartModel(ID);
+        LinesChartModel model = new LinesChartModel();
         List<String> builds = new ArrayList<>();
         List<LineSeries> series = new ArrayList<>();
         for (int i = 0; i < 5; i++) {

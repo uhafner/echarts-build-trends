@@ -33,7 +33,7 @@ public abstract class SeriesBuilder<T> {
     /**
      * Creates a new {@link SeriesBuilder}.
      */
-    public SeriesBuilder() {
+    protected SeriesBuilder() {
         this(new ResultTime());
     }
 

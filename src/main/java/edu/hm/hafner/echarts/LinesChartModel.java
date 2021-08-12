@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
-
 import edu.hm.hafner.util.Generated;
+import edu.umd.cs.findbugs.annotations.CheckForNull;
 
 /**
- * UI model for an ECharts line chart. Simple data bean that will be converted to JSON. On the client side the three
+ * UI model for an ECharts line chart. Simple data bean that will be converted to JSON. On the client side the
  * properties need to be placed into the correct place in the options structure.
  * <p>
  * This class will be automatically converted to a JSON object.
@@ -23,8 +22,11 @@ public class LinesChartModel {
     private final List<Integer> buildNumbers = new ArrayList<>();
     private final List<LineSeries> series = new ArrayList<>();
 
-    private String id;
     private String domainAxisItemName = "Build";
+    @CheckForNull
+    private Integer rangeMax;
+    @CheckForNull
+    private Integer rangeMin;
 
     /**
      * Creates a new {@link LinesChartModel}.
@@ -33,7 +35,7 @@ public class LinesChartModel {
      *         the dataset to render
      */
     public LinesChartModel(final LinesDataSet dataSet) {
-        this(StringUtils.EMPTY);
+        this();
 
         if (!dataSet.isEmpty()) {
             domainAxisLabels.addAll(dataSet.getDomainAxisLabels());
@@ -50,8 +52,6 @@ public class LinesChartModel {
      *         the build numbers of the model
      */
     public LinesChartModel(final List<String> labels, final List<Integer> builds) {
-        this(StringUtils.EMPTY);
-
         domainAxisLabels.addAll(labels);
         buildNumbers.addAll(builds);
     }
@@ -60,47 +60,14 @@ public class LinesChartModel {
      * Creates a new {@link LinesChartModel}.
      */
     public LinesChartModel() {
-        this(StringUtils.EMPTY);
-    }
-
-    /**
-     * Creates a new {@link LinesChartModel} with the specified ID.
-     *
-     * @param id
-     *         the ID to use
-     */
-    LinesChartModel(final String id) {
-        this.id = id;
-    }
-
-    /**
-     * Not used anymore.
-     *
-     * @param id
-     *         the ID
-     *
-     * @deprecated not used anymore
-     */
-    @Deprecated
-    public void setId(final String id) {
-        this.id = id;
-    }
-
-    /**
-     * Not used anymore.
-     *
-     * @return the ID
-     * @deprecated not used anymore
-     */
-    @Deprecated
-    public String getId() {
-        return id;
+        // nothing to do
     }
 
     /**
      * Sets the name of the X-axis items. This name is used in the tooltip of the charts.
      *
-     * @param name the name
+     * @param name
+     *         the name
      */
     public void setDomainAxisItemName(final String name) {
         domainAxisItemName = name;
@@ -108,6 +75,36 @@ public class LinesChartModel {
 
     public String getDomainAxisItemName() {
         return domainAxisItemName;
+    }
+
+    /**
+     * Sets the maximum value of the range axis. By default, the maximum is automatically computed.
+     *
+     * @param rangeMax
+     *         the maximum to use
+     */
+    public void setRangeMax(final int rangeMax) {
+        this.rangeMax = rangeMax;
+    }
+
+    @CheckForNull
+    public Integer getRangeMax() {
+        return rangeMax;
+    }
+
+    /**
+     * Sets the minimum value of the range axis. By default, the minimum is automatically computed.
+     *
+     * @param rangeMin
+     *         the minimum to use
+     */
+    public void setRangeMin(final int rangeMin) {
+        this.rangeMin = rangeMin;
+    }
+
+    @CheckForNull
+    public Integer getRangeMin() {
+        return rangeMin;
     }
 
     /**
