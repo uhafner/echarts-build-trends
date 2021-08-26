@@ -23,6 +23,8 @@ public class LinesChartModel {
     private final List<LineSeries> series = new ArrayList<>();
 
     private String domainAxisItemName = "Build";
+    private boolean integerRangeAxis = true;
+
     @CheckForNull
     private Integer rangeMax;
     @CheckForNull
@@ -75,6 +77,17 @@ public class LinesChartModel {
 
     public String getDomainAxisItemName() {
         return domainAxisItemName;
+    }
+
+    /**
+     * Sets the type of the range axis (Y-axis) to a continuous axis. Otherwise, an integer axis is used.
+     */
+    public void useContinuousRangeAxis() {
+        integerRangeAxis = false;
+    }
+
+    public boolean isIntegerRangeAxis() {
+        return integerRangeAxis;
     }
 
     /**
