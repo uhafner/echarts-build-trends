@@ -9,7 +9,7 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * Model of a line chart with multiple data sets. Each data set is represented by a unique ID. The actual data of each
+ * Model of a line chart with multiple data sets. Each data-set is represented by a unique ID. The actual data of each
  * data set is stored in a list of integer values which represent a value for an X-axis tick. In order to get multiple
  * data sets correctly aligned, the data points for each data set must contain exactly the same number of values.
  *

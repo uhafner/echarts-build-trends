@@ -40,7 +40,14 @@ class LinesChartModelTest {
         assertThat(model.size()).isEqualTo(3);
         assertThat(model).hasDomainAxisLabels("#1", "#2", "#3");
         assertThat(model).hasToString(
-                "{\"domainAxisLabels\":[\"#1\",\"#2\",\"#3\"],\"buildNumbers\":[],\"series\":[],\"domainAxisItemName\":\"Build\",\"rangeMax\":null,\"rangeMin\":null}");
+                "{\"domainAxisLabels\":[\"#1\",\"#2\",\"#3\"],\"buildNumbers\":[],\"series\":[],\"domainAxisItemName\":\"Build\",\"integerRangeAxis\":true,\"rangeMax\":null,\"rangeMin\":null}");
+
+        model.setRangeMax(100);
+        model.setRangeMin(1000);
+        model.useContinuousRangeAxis();
+
+        assertThat(model).hasToString(
+                "{\"domainAxisLabels\":[\"#1\",\"#2\",\"#3\"],\"buildNumbers\":[],\"series\":[],\"domainAxisItemName\":\"Build\",\"integerRangeAxis\":false,\"rangeMax\":100,\"rangeMin\":1000}");
     }
 
     @Test
