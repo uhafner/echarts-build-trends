@@ -27,6 +27,7 @@ import static java.util.stream.Collectors.*;
  *
  * @author Ullrich Hafner
  */
+// FIXME: can we change the signature to double?
 public abstract class SeriesBuilder<T> {
     private final ResultTime resultTime;
 
