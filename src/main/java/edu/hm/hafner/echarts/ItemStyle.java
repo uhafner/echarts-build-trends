@@ -11,7 +11,13 @@ package edu.hm.hafner.echarts;
 public class ItemStyle {
     private final String color;
 
-    ItemStyle(final String color) {
+    /**
+     * Creates a new {@link ItemStyle} instance with the specified color.
+     *
+     * @param color
+     *         the color to use
+     */
+    public ItemStyle(final String color) {
         this.color = color;
     }
 
