@@ -26,7 +26,7 @@ public class PieChartModel {
     }
 
     /**
-     * Creates a new {@link PieChartModel} with the specified human readable name.
+     * Creates a new {@link PieChartModel} with the specified human-readable name.
      *
      * @param name
      *         the name of the chart

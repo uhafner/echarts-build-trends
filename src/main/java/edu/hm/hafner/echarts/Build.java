@@ -32,7 +32,7 @@ public class Build implements Comparable<Build> {
      * @param number
      *         build number
      * @param displayName
-     *         human readable name of the build
+     *         human-readable name of the build
      * @param buildTime
      *         the build time (given as number of seconds since the standard base time known as "the epoch", namely
      *         January 1, 1970, 00:00:00 GMT).
@@ -63,7 +63,7 @@ public class Build implements Comparable<Build> {
     }
 
     /**
-     * Returns a human readable label for this build.
+     * Returns a human-readable label for this build.
      *
      * @return the name to be used in the user interface
      */
