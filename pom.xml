@@ -55,7 +55,7 @@
     <codingstyle.library.version>2.24.0</codingstyle.library.version>
     <commons.lang.version>3.12.0</commons.lang.version>
     <eclipse-collections.version>9.2.0</eclipse-collections.version>
-    <jackson-databind.version>2.13.2.2</jackson-databind.version>
+    <jackson-databind.version>2.13.3</jackson-databind.version>
     <json-unit-fluent.version>2.34.0</json-unit-fluent.version>
 
   </properties>
