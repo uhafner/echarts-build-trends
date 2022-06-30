@@ -13,6 +13,7 @@ import org.apache.commons.lang3.ArrayUtils;
  * @author Andreas Pabst
  * @author Ullrich Hafner
  */
+// TODO: in order to locate a selected element we need to provide an additional reference for each node
 public class TreeMapNode {
     private final ItemStyle itemStyle;
     private String name;
