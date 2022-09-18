@@ -20,6 +20,14 @@ class TreeMapNodeTest {
         assertThat(root.getItemStyle()).satisfies(
                 itemStyle -> assertThat(itemStyle.getColor()).isEqualTo("-")
         );
+        assertThat(root.getLabel()).satisfies(
+                label -> assertThat(label.getShow()).isEqualTo(false),
+                label -> assertThat(label.getColor()).isEqualTo("#ffffff")
+        );
+        assertThat(root.getUpperLabel()).satisfies(
+                upperLabel -> assertThat(upperLabel.getShow()).isEqualTo(false),
+                upperLabel -> assertThat(upperLabel.getColor()).isEqualTo("#ffffff")
+        );
     }
 
     @Test
