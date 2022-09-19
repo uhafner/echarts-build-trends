@@ -17,7 +17,7 @@ import org.apache.commons.lang3.ArrayUtils;
 public class TreeMapNode {
     private final ItemStyle itemStyle;
     private final Label label;
-    private final UpperLabel upperLabel;
+    private final Label upperLabel;
     private String name;
     private final List<Double> values = new ArrayList<>();
 
@@ -59,7 +59,7 @@ public class TreeMapNode {
      */
     public TreeMapNode(final String name, final String color, final double value, final double... additionalValues) {
         this(name, new ItemStyle(color), new Label(false, "#ffffff"),
-                new UpperLabel(false, "#ffffff"), value, additionalValues);
+                new Label(false, "#ffffff"), value, additionalValues);
     }
 
     /**
@@ -78,7 +78,7 @@ public class TreeMapNode {
      * @param additionalValues
      *         additional values of the node
      */
-    public TreeMapNode(final String name, final ItemStyle itemStyle, final Label label, final UpperLabel upperLabel,
+    public TreeMapNode(final String name, final ItemStyle itemStyle, final Label label, final Label upperLabel,
                        final double value, final double... additionalValues) {
         this.itemStyle = itemStyle;
         this.label = label;
@@ -104,7 +104,7 @@ public class TreeMapNode {
         return label;
     }
 
-    public UpperLabel getUpperLabel() {
+    public Label getUpperLabel() {
         return upperLabel;
     }
 
