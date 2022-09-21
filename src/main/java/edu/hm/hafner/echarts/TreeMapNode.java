@@ -16,6 +16,8 @@ import org.apache.commons.lang3.ArrayUtils;
 // TODO: in order to locate a selected element we need to provide an additional reference for each node
 public class TreeMapNode {
     private final ItemStyle itemStyle;
+    private final Label label;
+    private final Label upperLabel;
     private String name;
     private final List<Double> values = new ArrayList<>();
 
@@ -56,7 +58,31 @@ public class TreeMapNode {
      *         additional values of the node
      */
     public TreeMapNode(final String name, final String color, final double value, final double... additionalValues) {
-        this.itemStyle = new ItemStyle(color);
+        this(name, new ItemStyle(color), new Label(false, "#ffffff"),
+                new Label(false, "#ffffff"), value, additionalValues);
+    }
+
+    /**
+     * Creates a new {@link TreeMapNode} with the given values.
+     *
+     * @param name
+     *         the name of the node
+     * @param itemStyle
+     *         the style of the node
+     * @param label
+     *         the label style of the node
+     * @param upperLabel
+     *         the label style of the node if it contains children
+     * @param value
+     *         the value of the node
+     * @param additionalValues
+     *         additional values of the node
+     */
+    public TreeMapNode(final String name, final ItemStyle itemStyle, final Label label, final Label upperLabel,
+                       final double value, final double... additionalValues) {
+        this.itemStyle = itemStyle;
+        this.label = label;
+        this.upperLabel = upperLabel;
         this.name = name;
         this.values.add(value);
         Collections.addAll(values, ArrayUtils.toObject(additionalValues));
@@ -72,6 +98,14 @@ public class TreeMapNode {
 
     public ItemStyle getItemStyle() {
         return itemStyle;
+    }
+
+    public Label getLabel() {
+        return label;
+    }
+
+    public Label getUpperLabel() {
+        return upperLabel;
     }
 
     public List<TreeMapNode> getChildren() {
@@ -122,6 +156,12 @@ public class TreeMapNode {
         if (!itemStyle.equals(that.itemStyle)) {
             return false;
         }
+        if (!label.equals(that.label)) {
+            return false;
+        }
+        if (!upperLabel.equals(that.upperLabel)) {
+            return false;
+        }
         if (!name.equals(that.name)) {
             return false;
         }
@@ -134,6 +174,8 @@ public class TreeMapNode {
     @Override
     public int hashCode() {
         int result = itemStyle.hashCode();
+        result = 31 * result + label.hashCode();
+        result = 31 * result + upperLabel.hashCode();
         result = 31 * result + name.hashCode();
         result = 31 * result + values.hashCode();
         result = 31 * result + children.hashCode();
