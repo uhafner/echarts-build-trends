@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -22,9 +23,7 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 /**
- * Tests the class for {@link SeriesBuilder}
- * <p>
- * The class is tested using the dumb implementation {@link TestSeriesBuilder} for testing purposes to not depend on any
+ * Tests the class {@link SeriesBuilder} using the dumb implementation {@link TestSeriesBuilder} for testing purposes to not depend on any
  * concrete implementations.
  *
  * @author Florian Pirchmoser
@@ -55,8 +54,8 @@ class SeriesBuilderTest {
 
     @SuppressWarnings({"PMD.UnusedPrivateMethod", "unused"})
     @SuppressFBWarnings("UPM")
-    private static Iterable<Object> createDataSetData() {
-        return asList(
+    private static Stream<Arguments> createDataSetData() {
+        return Stream.of(
                 new TestArgumentsBuilder()
                         .setTestName("build count 0, 2 runs")
                         .setTime(resultTime(false))
@@ -333,7 +332,7 @@ class SeriesBuilderTest {
          *
          * @return test arg
          */
-        Object build() {
+        Arguments build() {
             return Arguments.of(
                     testName,
                     time,
