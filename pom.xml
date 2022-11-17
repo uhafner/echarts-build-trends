@@ -21,7 +21,7 @@
   <description>Provides a Java API to render build trend charts with ECharts JS library.</description>
 
   <scm>
-    <connection>scm:git:git://github.com/uhafner/echarts-build-trends.git</connection>
+    <connection>scm:git:https://github.com/uhafner/echarts-build-trends.git</connection>
     <developerConnection>scm:git:git@github.com:uhafner/echarts-build-trends.git</developerConnection>
     <url>https://github.com/uhafner/echarts-build-trends</url>
     <tag>HEAD</tag>
