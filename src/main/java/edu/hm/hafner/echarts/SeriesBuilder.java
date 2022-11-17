@@ -1,16 +1,13 @@
 package edu.hm.hafner.echarts;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.stream.Stream;
-
-import org.eclipse.collections.api.list.MutableList;
-import org.eclipse.collections.api.multimap.list.MutableListMultimap;
-import org.eclipse.collections.impl.multimap.list.FastListMultimap;
 
 import edu.hm.hafner.echarts.ChartModelConfiguration.AxisType;
 import edu.hm.hafner.util.VisibleForTesting;
@@ -177,11 +174,11 @@ public abstract class SeriesBuilder<T> {
      * @return the values as one series per day (average)
      */
     private SortedMap<LocalDate, Map<String, Integer>> createSeriesPerDay(
-            final MutableListMultimap<LocalDate, Map<String, Integer>> multiSeriesPerDate) {
+            final Map<LocalDate, List<Map<String, Integer>>> multiSeriesPerDate) {
         SortedMap<LocalDate, Map<String, Integer>> seriesPerDate = new TreeMap<>();
 
         for (LocalDate date : multiSeriesPerDate.keySet()) {
-            MutableList<Map<String, Integer>> seriesPerDay = multiSeriesPerDate.get(date);
+            List<Map<String, Integer>> seriesPerDay = multiSeriesPerDate.get(date);
 
             Map<String, Integer> mapOfDay =
                     seriesPerDay.stream()
@@ -210,7 +207,7 @@ public abstract class SeriesBuilder<T> {
 
     private SortedMap<LocalDate, Map<String, Integer>> averageByDate(final ChartModelConfiguration configuration,
             final List<Iterable<? extends BuildResult<T>>> results) {
-        MutableListMultimap<LocalDate, Map<String, Integer>> valuesPerDate = FastListMultimap.newMultimap();
+        Map<LocalDate, List<Map<String, Integer>>> valuesPerDate = new TreeMap<>();
         for (Iterable<? extends BuildResult<T>> result : results) {
             valuesPerDate.putAll(createMultiSeriesPerDay(createSeriesPerBuild(configuration, result)));
         }
@@ -226,12 +223,12 @@ public abstract class SeriesBuilder<T> {
      * @return the multi map with the values per day
      */
     @SuppressFBWarnings("WMI")
-    private MutableListMultimap<LocalDate, Map<String, Integer>> createMultiSeriesPerDay(
+    private Map<LocalDate, List<Map<String, Integer>>> createMultiSeriesPerDay(
             final Map<Build, Map<String, Integer>> valuesPerBuild) {
-        MutableListMultimap<LocalDate, Map<String, Integer>> valuesPerDate = FastListMultimap.newMultimap();
+        Map<LocalDate, List<Map<String, Integer>>> valuesPerDate = new TreeMap<>();
         for (Build build : valuesPerBuild.keySet()) {
             LocalDate buildDate = TimeFacade.getInstance().getBuildDate(build);
-            valuesPerDate.put(buildDate, valuesPerBuild.get(build));
+            valuesPerDate.computeIfAbsent(buildDate, k -> new ArrayList<>()).add(valuesPerBuild.get(build));
         }
         return valuesPerDate;
     }

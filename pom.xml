@@ -54,7 +54,6 @@
     <!-- Project Dependencies Configuration -->
     <codingstyle.library.version>3.3.0</codingstyle.library.version>
     <commons.lang.version>3.12.0</commons.lang.version>
-    <eclipse-collections.version>9.2.0</eclipse-collections.version>
     <jackson-databind.version>2.14.0</jackson-databind.version>
     <json-unit-fluent.version>2.36.0</json-unit-fluent.version>
 
@@ -67,16 +66,6 @@
       <version>${codingstyle.library.version}</version>
     </dependency>
 
-    <dependency>
-      <groupId>org.eclipse.collections</groupId>
-      <artifactId>eclipse-collections-api</artifactId>
-      <version>${eclipse-collections.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.collections</groupId>
-      <artifactId>eclipse-collections</artifactId>
-      <version>${eclipse-collections.version}</version>
-    </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
