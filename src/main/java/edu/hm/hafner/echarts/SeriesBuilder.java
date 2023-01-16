@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -17,7 +18,7 @@ import static java.util.stream.Collectors.*;
 
 /**
  * Provides the base algorithms to create a data set for a static analysis graph. The actual series for each result
- * needs to be implemented by sub classes in method {@link #computeSeries}.
+ * needs to be implemented by subclasses in method {@link #computeSeries}.
  *
  * @param <T>
  *         type of the result
@@ -43,8 +44,8 @@ public abstract class SeriesBuilder<T> {
     /**
      * Creates a new data set for a category graph from the specified static analysis results. The list of results (each
      * one provided by an iterator) must be sorted by build number in descending order. I.e., the iterator starts with
-     * the newest build and stops at the oldest build. The actual series for each result needs to be implemented by sub
-     * classes by overriding method {@link #computeSeries}.
+     * the newest build and stops at the oldest build. The actual series for each result needs to be implemented by
+     * subclasses by overriding method {@link #computeSeries}.
      *
      * @param configuration
      *         configures the data set (how many results should be process, etc.)
@@ -177,8 +178,8 @@ public abstract class SeriesBuilder<T> {
             final Map<LocalDate, List<Map<String, Integer>>> multiSeriesPerDate) {
         SortedMap<LocalDate, Map<String, Integer>> seriesPerDate = new TreeMap<>();
 
-        for (LocalDate date : multiSeriesPerDate.keySet()) {
-            List<Map<String, Integer>> seriesPerDay = multiSeriesPerDate.get(date);
+        for (Entry<LocalDate, List<Map<String, Integer>>> entry : multiSeriesPerDate.entrySet()) {
+            List<Map<String, Integer>> seriesPerDay = entry.getValue();
 
             Map<String, Integer> mapOfDay =
                     seriesPerDay.stream()
@@ -187,7 +188,7 @@ public abstract class SeriesBuilder<T> {
             Map<String, Integer> averagePerDay =
                     mapOfDay.entrySet().stream()
                             .collect(toMap(Map.Entry::getKey, e -> e.getValue() / seriesPerDay.size()));
-            seriesPerDate.put(date, averagePerDay);
+            seriesPerDate.put(entry.getKey(), averagePerDay);
         }
         return seriesPerDate;
     }
