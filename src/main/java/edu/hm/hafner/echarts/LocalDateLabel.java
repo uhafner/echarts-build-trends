@@ -12,7 +12,7 @@ import edu.umd.cs.findbugs.annotations.NonNull;
  *
  * @author Ullrich Hafner
  */
-class LocalDateLabel implements Comparable<LocalDateLabel> {
+public class LocalDateLabel implements Comparable<LocalDateLabel> {
     private final LocalDate date;
     private final DateTimeFormatter formatter;
 
@@ -22,7 +22,7 @@ class LocalDateLabel implements Comparable<LocalDateLabel> {
      * @param date
      *         the date of the build
      */
-    LocalDateLabel(final LocalDate date) {
+    public LocalDateLabel(final LocalDate date) {
         this.date = date;
         formatter = DateTimeFormatter.ofPattern("MM-dd");
     }
