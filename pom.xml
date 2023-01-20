@@ -7,13 +7,13 @@
   <parent>
     <groupId>edu.hm.hafner</groupId>
     <artifactId>codingstyle-pom</artifactId>
-    <version>2.29.0</version>
+    <version>3.13.0</version>
     <relativePath />
   </parent>
 
   <groupId>edu.hm.hafner</groupId>
   <artifactId>echarts-build-trends</artifactId>
-  <version>3.6.0-SNAPSHOT</version>
+  <version>4.0.0-SNAPSHOT</version>
 
   <packaging>jar</packaging>
 
@@ -47,12 +47,11 @@
   <url>https://www.cs.hm.edu/die_fakultaet/ansprechpartner/professoren/hafner/index.de.html</url>
 
   <properties>
-    <java.version>1.8</java.version>
-
     <module.name>${project.groupId}.echarts.build.trends</module.name>
 
     <!-- Project Dependencies Configuration -->
-    <codingstyle.library.version>3.10.0</codingstyle.library.version>
+    <codingstyle.library.version>${codingstyle.config.version}</codingstyle.library.version>
+
     <commons.lang.version>3.12.0</commons.lang.version>
     <jackson-databind.version>2.14.1</jackson-databind.version>
     <json-unit-fluent.version>2.36.0</json-unit-fluent.version>
@@ -91,31 +90,12 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.revapi</groupId>
-        <artifactId>revapi-maven-plugin</artifactId>
-        <configuration>
-          <analysisConfiguration>
-            <revapi.ignore>
-              <item>
-                <code>java.annotation.removed</code>
-                <annotation>@edu.umd.cs.findbugs.annotations.Nullable</annotation>
-                <justification>Annotation should be save to change.</justification>
-              </item>
-              <item>
-                <code>java.annotation.added</code>
-                <annotation>@edu.umd.cs.findbugs.annotations.CheckForNull</annotation>
-                <justification>Annotation should be save to change.</justification>
-              </item>
-            </revapi.ignore>
-          </analysisConfiguration>
-        </configuration>
-      </plugin>
-      <plugin>
         <groupId>org.assertj</groupId>
         <artifactId>assertj-assertions-generator-maven-plugin</artifactId>
         <configuration>
           <packages>
             <package>edu.hm.hafner.echarts</package>
+            <package>edu.hm.hafner.echarts.line</package>
           </packages>
           <excludes combine.children="append">
             <exclude>.*BuildResult</exclude>
@@ -138,6 +118,13 @@
             </configuration>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.revapi</groupId>
+        <artifactId>revapi-maven-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
       </plugin>
 
     </plugins>
