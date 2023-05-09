@@ -50,7 +50,7 @@
     <module.name>${project.groupId}.echarts.build.trends</module.name>
 
     <!-- Project Dependencies Configuration -->
-    <codingstyle.library.version>3.15.0</codingstyle.library.version>
+    <codingstyle.library.version>3.16.0</codingstyle.library.version>
 
     <commons.lang.version>3.12.0</commons.lang.version>
     <jackson-databind.version>2.15.0</jackson-databind.version>
