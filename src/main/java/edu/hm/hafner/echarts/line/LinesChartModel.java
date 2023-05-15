@@ -9,8 +9,8 @@ import edu.hm.hafner.util.Generated;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 
 /**
- * UI model for an ECharts line chart. Simple data bean that will be converted to JSON. On the client side the
- * properties need to be placed into the correct place in the options structure.
+ * UI model for an ECharts line chart. Simple data bean that will be converted to JSON. On the client side, the
+ * properties need to be placed into the correct place in the {@code options} structure.
  * <p>
  * This class will be automatically converted to a JSON object.
  * </p>
