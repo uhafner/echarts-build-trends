@@ -53,7 +53,7 @@
     <codingstyle.library.version>3.17.0</codingstyle.library.version>
 
     <commons.lang.version>3.12.0</commons.lang.version>
-    <jackson-databind.version>2.15.0</jackson-databind.version>
+    <jackson-databind.version>2.15.2</jackson-databind.version>
     <json-unit-fluent.version>2.38.0</json-unit-fluent.version>
 
   </properties>
