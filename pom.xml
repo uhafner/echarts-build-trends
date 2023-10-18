@@ -7,7 +7,7 @@
   <parent>
     <groupId>edu.hm.hafner</groupId>
     <artifactId>codingstyle-pom</artifactId>
-    <version>3.16.0</version>
+    <version>3.32.0</version>
     <relativePath />
   </parent>
 
@@ -50,9 +50,6 @@
     <module.name>${project.groupId}.echarts.build.trends</module.name>
 
     <!-- Project Dependencies Configuration -->
-    <codingstyle.library.version>3.21.0</codingstyle.library.version>
-
-    <commons.lang.version>3.13.0</commons.lang.version>
     <jackson-databind.version>2.15.3</jackson-databind.version>
     <json-unit-fluent.version>2.38.0</json-unit-fluent.version>
 
@@ -60,21 +57,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>edu.hm.hafner</groupId>
-      <artifactId>codingstyle</artifactId>
-      <version>${codingstyle.library.version}</version>
-    </dependency>
-
-    <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
       <version>${jackson-databind.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>${commons.lang.version}</version>
     </dependency>
 
     <!-- Test Dependencies -->
