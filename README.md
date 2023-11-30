@@ -1,6 +1,5 @@
 # ECharts build trend charts API
 
-[![Changelog](https://img.shields.io/github/release/uhafner/echarts-build-trends.svg?label=changelog)](https://github.com/uhafner/echarts-build-trends/releases/latest)
 [![GitHub Actions](https://github.com/uhafner/echarts-build-trends/workflows/GitHub%20CI/badge.svg)](https://github.com/uhafner/echarts-build-trends/actions)
 [![CodeQL](https://github.com/uhafner/echarts-build-trends/workflows/CodeQL/badge.svg)](https://github.com/uhafner/echarts-build-trends/actions/workflows/codeql.yml)
 [![Line Coverage](https://raw.githubusercontent.com/uhafner/echarts-build-trends/main/badges/line-coverage.svg)](https://app.codecov.io/gh/uhafner/echarts-build-trends)
