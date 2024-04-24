@@ -153,7 +153,7 @@ public class LinesDataSet {
     }
 
     private double round(final Double value) {
-        return (double) Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
+        return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
     }
 
     public List<Integer> getBuildNumbers() {

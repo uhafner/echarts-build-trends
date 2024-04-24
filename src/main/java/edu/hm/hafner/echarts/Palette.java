@@ -35,7 +35,7 @@ public enum Palette {
      * @return the color at the index
      */
     public static Palette color(final int index) {
-        Palette[] colors = Palette.values();
+        Palette[] colors = values();
         return colors[index % colors.length];
     }
 
