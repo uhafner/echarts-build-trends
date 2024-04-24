@@ -163,7 +163,6 @@ public abstract class SeriesBuilder<T> {
             model.add(label, series.getValue());
         }
         return model;
-
     }
 
     /**

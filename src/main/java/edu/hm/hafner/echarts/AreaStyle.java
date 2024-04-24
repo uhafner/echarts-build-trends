@@ -16,12 +16,6 @@ public class AreaStyle {
     @SuppressWarnings("FieldCanBeStatic")
     private final boolean normal = true;
 
-    /**
-     * Creates a new instance of {@link AreaStyle}.
-     */
-    public AreaStyle() {
-    }
-
     public boolean isNormal() {
         return normal;
     }

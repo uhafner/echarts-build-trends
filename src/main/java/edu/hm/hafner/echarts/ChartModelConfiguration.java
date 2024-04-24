@@ -64,8 +64,8 @@ public class ChartModelConfiguration {
     public static ChartModelConfiguration fromJson(final String json) {
         return new ChartModelConfiguration(
                 JACKSON.getBoolean(json, BUILD_AS_DOMAIN_PROPERTY, true) ? AxisType.BUILD : AxisType.DATE,
-                JACKSON.getInteger(json, NUMBER_OF_BUILDS_PROPERTY, ChartModelConfiguration.DEFAULT_BUILD_COUNT),
-                JACKSON.getInteger(json, NUMBER_OF_DAYS_PROPERTY, ChartModelConfiguration.DEFAULT_DAY_COUNT));
+                JACKSON.getInteger(json, NUMBER_OF_BUILDS_PROPERTY, DEFAULT_BUILD_COUNT),
+                JACKSON.getInteger(json, NUMBER_OF_DAYS_PROPERTY, DEFAULT_DAY_COUNT));
     }
 
     /**

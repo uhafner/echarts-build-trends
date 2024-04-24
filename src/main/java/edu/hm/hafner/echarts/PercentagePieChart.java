@@ -10,6 +10,9 @@ import edu.hm.hafner.util.Ensure;
  * @author Ullrich Hafner
  */
 public class PercentagePieChart {
+    private static final int YELLOW_LIMIT = 50;
+    private static final int GREEN_LIMIT = 80;
+
     /**
      * Creates the chart for the specified percentage. Uses the default color model.
      *
@@ -63,10 +66,10 @@ public class PercentagePieChart {
     }
 
     private Palette computeColor(final int percentage) {
-        if (percentage < 50) {
+        if (percentage < YELLOW_LIMIT) {
             return Palette.RED;
         }
-        else if (percentage < 80) {
+        else if (percentage < GREEN_LIMIT) {
             return Palette.YELLOW;
         }
         else {
