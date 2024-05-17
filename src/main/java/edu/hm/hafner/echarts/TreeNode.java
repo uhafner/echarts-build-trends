@@ -11,6 +11,8 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 /**
  * Node for constructing a tree structure for a sunburst or treemap ECharts diagram.
  *
@@ -140,7 +142,7 @@ public class TreeNode {
         return Objects.hash(value, childrenMap, name);
     }
 
-    @Override
+    @Override @SuppressFBWarnings("FE_FLOATING_POINT_EQUALITY")
     public boolean equals(final Object o) {
         if (this == o) {
             return true;
