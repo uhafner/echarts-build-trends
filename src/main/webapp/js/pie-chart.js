@@ -32,9 +32,8 @@ function renderPieCharts() {
                     },
                     left: 'center'
                 };
-            } else {
-                return null;
             }
+            return null;
         }
 
         const chartPlaceHolder = jQuery3("#" + chartDivId);
