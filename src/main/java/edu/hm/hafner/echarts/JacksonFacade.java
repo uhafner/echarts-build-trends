@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import edu.umd.cs.findbugs.annotations.CheckForNull;
+
 /**
  * Facade for Jackson that does wrap an exception into a {@link RuntimeException}.
  *
@@ -113,6 +115,7 @@ public class JacksonFacade {
         return defaultValue;
     }
 
+    @CheckForNull
     private JsonNode getPropertyAsNode(final String json, final String property)
             throws JsonProcessingException {
         ObjectNode node = mapper.readValue(json, ObjectNode.class);
