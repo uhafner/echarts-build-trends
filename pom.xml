@@ -50,7 +50,7 @@
     <module.name>${project.groupId}.echarts.build.trends</module.name>
 
     <!-- Project Dependencies Configuration -->
-    <jackson-databind.version>2.17.1</jackson-databind.version>
+    <jackson-databind.version>2.17.2</jackson-databind.version>
     <json-unit-fluent.version>2.40.1</json-unit-fluent.version>
 
   </properties>
