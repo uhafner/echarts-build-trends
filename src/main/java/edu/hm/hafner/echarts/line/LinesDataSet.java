@@ -12,8 +12,8 @@ import java.util.stream.DoubleStream;
 import static java.util.stream.Collectors.*;
 
 /**
- * Model of a line chart with multiple data sets. Each data-set is represented by a unique ID. The actual data of each
- * data set is stored in a list of double values which represent a value for an X-axis tick. In order to get multiple
+ * Model of a line chart with multiple data sets. A unique ID represents each data-set. The actual data of each
+ * data set is stored in a list of double values which represent a value for an X-axis tick. To get multiple
  * data sets correctly aligned, the data points for each data set must contain exactly the same number of values.
  *
  * @author Ullrich Hafner

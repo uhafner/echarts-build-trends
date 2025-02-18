@@ -4,6 +4,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 /**
  * Area style for a stacked chart.
+ *
  * <p>
  * This class will be automatically converted to a JSON object.
  * </p>

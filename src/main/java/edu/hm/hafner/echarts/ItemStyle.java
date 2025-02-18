@@ -2,6 +2,7 @@ package edu.hm.hafner.echarts;
 
 /**
  * Item style for a chart.
+ *
  * <p>
  * This class will be automatically converted to a JSON object.
  * </p>

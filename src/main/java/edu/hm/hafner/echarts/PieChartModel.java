@@ -1,12 +1,13 @@
 package edu.hm.hafner.echarts;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
-
 /**
  * UI model for the data series of an ECharts pie chart.
+ *
  * <p>
  * This class will be automatically converted to a JSON object.
  * </p>

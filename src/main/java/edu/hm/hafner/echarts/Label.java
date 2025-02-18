@@ -4,6 +4,7 @@ import java.util.Locale;
 
 /**
  * Label style for an item without children.
+ *
  * <p>
  * This class will be automatically converted to a JSON object.
  * </p>

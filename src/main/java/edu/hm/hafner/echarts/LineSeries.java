@@ -1,15 +1,16 @@
 package edu.hm.hafner.echarts;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * UI model for a ECharts line chart series property. Simple data bean that will be converted to JSON.
+ * UI model for an ECharts line chart series property. Simple data bean that will be converted to JSON.
+ *
  * <p>
  * This class will be automatically converted to a JSON object.
  * </p>

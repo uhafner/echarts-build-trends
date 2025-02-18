@@ -1,8 +1,5 @@
 package edu.hm.hafner.echarts.line;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 
 import edu.hm.hafner.echarts.AreaStyle;
@@ -10,8 +7,12 @@ import edu.hm.hafner.echarts.ItemStyle;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * UI model for an ECharts line chart series property. Simple data bean that will be converted to JSON.
+ *
  * <p>
  * This class will be automatically converted to a JSON object.
  * </p>
