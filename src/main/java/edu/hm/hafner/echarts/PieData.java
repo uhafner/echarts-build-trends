@@ -1,11 +1,12 @@
 package edu.hm.hafner.echarts;
 
-import java.util.Objects;
-
 import edu.hm.hafner.util.Generated;
+
+import java.util.Objects;
 
 /**
  * UI model for an ECharts pie chart.
+ *
  * <p>
  * This class will be automatically converted to a JSON object.
  * </p>

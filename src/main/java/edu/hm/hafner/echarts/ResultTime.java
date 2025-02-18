@@ -6,13 +6,13 @@ import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 
 /**
- * Determines whether a build result is too old in order to be considered for a trend graph.
+ * Determines whether a build result is too old to be considered for a trend graph.
  *
  * @author Ullrich Hafner
  */
 public class ResultTime {
     /**
-     * Returns whether the specified build result is too old in order to be considered for the trend graph.
+     * Returns whether the specified build result is too old to be considered for the trend graph.
      *
      * @param configuration
      *         configuration of the model

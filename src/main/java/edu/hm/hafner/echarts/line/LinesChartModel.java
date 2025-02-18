@@ -1,16 +1,17 @@
 package edu.hm.hafner.echarts.line;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import edu.hm.hafner.echarts.JacksonFacade;
 import edu.hm.hafner.util.Generated;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * UI model for an ECharts line chart. Simple data bean that will be converted to JSON. On the client side, the
  * properties need to be placed into the correct place in the {@code options} structure.
+ *
  * <p>
  * This class will be automatically converted to a JSON object.
  * </p>
