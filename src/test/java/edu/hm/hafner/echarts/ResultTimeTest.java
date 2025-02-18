@@ -1,11 +1,11 @@
 package edu.hm.hafner.echarts;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-
 import org.junit.jupiter.api.Test;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -28,9 +28,9 @@ class ResultTimeTest {
     void shouldNotEvaluateDayCountIfOptionIsDeactivated() {
         LocalDate today = LocalDate.now();
         stubToday(today);
-        ResultTime time = new ResultTime();
+        var time = new ResultTime();
 
-        ChartModelConfiguration configuration = createConfiguration(false);
+        var configuration = createConfiguration(false);
 
         BuildResult<?> run = createRunAt(today.minusYears(20));
 
@@ -46,7 +46,7 @@ class ResultTimeTest {
     void shouldEvaluateDayCountIfOptionIsEnabled() {
         LocalDate today = LocalDate.now();
         stubToday(today);
-        ResultTime time = new ResultTime();
+        var time = new ResultTime();
 
         assertThatRunIsWithinDayCount(today, time);
 
@@ -84,7 +84,7 @@ class ResultTimeTest {
     }
 
     private void assertThatRunIsOutsideOfDayCount(final LocalDate runDate, final ResultTime time) {
-        ChartModelConfiguration configuration = createChartModelConfigurationWithDayCount();
+        var configuration = createChartModelConfigurationWithDayCount();
 
         BuildResult<?> run = createRunAt(runDate);
 
@@ -92,7 +92,7 @@ class ResultTimeTest {
     }
 
     private void assertThatRunIsWithinDayCount(final LocalDate runDate, final ResultTime time) {
-        ChartModelConfiguration configuration = createChartModelConfigurationWithDayCount();
+        var configuration = createChartModelConfigurationWithDayCount();
 
         BuildResult<?> run = createRunAt(runDate);
 
@@ -100,7 +100,7 @@ class ResultTimeTest {
     }
 
     private ChartModelConfiguration createChartModelConfigurationWithDayCount() {
-        ChartModelConfiguration configuration = createConfiguration(true);
+        var configuration = createConfiguration(true);
         when(configuration.getDayCount()).thenReturn(DAY_COUNT);
         return configuration;
     }

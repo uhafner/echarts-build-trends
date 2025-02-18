@@ -1,13 +1,5 @@
 package edu.hm.hafner.echarts.line;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Stream;
-
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -21,6 +13,14 @@ import edu.hm.hafner.echarts.TimeFacade;
 import edu.hm.hafner.util.VisibleForTesting;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
 
 import static java.util.Arrays.*;
 import static org.assertj.core.api.Assertions.*;
@@ -159,7 +159,7 @@ class SeriesBuilderTest {
         TimeFacade.reset();
         SeriesBuilder<Object> seriesBuilder = new TestSeriesBuilder(time);
 
-        LinesDataSet result = seriesBuilder.createDataSet(config, runs);
+        var result = seriesBuilder.createDataSet(config, runs);
 
         if (expected.isEmpty()) {
             assertThat(result.getDataSetIds()).isEmpty();
@@ -189,7 +189,7 @@ class SeriesBuilderTest {
     }
 
     private static BuildResult<?> createRun(final int buildNumber, final LocalDateTime buildTime) {
-        Build build = new Build(buildNumber, String.format("#%s", buildNumber),
+        var build = new Build(buildNumber, "#%s".formatted(buildNumber),
                 (int) buildTime.atZone(ZoneId.systemDefault()).toInstant().getEpochSecond());
 
         return new BuildResult<>(build, DAY);

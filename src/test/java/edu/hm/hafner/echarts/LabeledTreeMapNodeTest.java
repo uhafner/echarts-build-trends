@@ -15,7 +15,7 @@ class LabeledTreeMapNodeTest {
 
     @Test
     void shouldCreateNode() {
-        LabeledTreeMapNode root = createRoot();
+        var root = createRoot();
 
         assertThat(root).hasName("Root")
                 .hasNoChildren()
@@ -35,8 +35,8 @@ class LabeledTreeMapNodeTest {
 
     @Test
     void shouldInsertNode() {
-        LabeledTreeMapNode root = createRoot();
-        LabeledTreeMapNode child = new LabeledTreeMapNode(ID, "Child");
+        var root = createRoot();
+        var child = new LabeledTreeMapNode(ID, "Child");
         root.insertNode(child);
 
         assertThat(root).hasChildren(child);
@@ -44,25 +44,25 @@ class LabeledTreeMapNodeTest {
 
     @Test
     void shouldCollapseChildNodes() {
-        LabeledTreeMapNode root = new LabeledTreeMapNode(ID, "Root");
+        var root = new LabeledTreeMapNode(ID, "Root");
 
         root.collapseEmptyPackages();
 
         assertThat(root.getChildren()).isEmpty();
         assertThat(root).hasName("Root");
 
-        LabeledTreeMapNode one = new LabeledTreeMapNode(ID, "1");
+        var one = new LabeledTreeMapNode(ID, "1");
         root.insertNode(one);
         root.collapseEmptyPackages();
         assertThat(root).hasName("Root.1");
 
-        LabeledTreeMapNode two = new LabeledTreeMapNode(ID, "2");
+        var two = new LabeledTreeMapNode(ID, "2");
         two.insertNode(new LabeledTreeMapNode(ID, "3"));
         root.insertNode(two);
         root.collapseEmptyPackages();
         assertThat(root).hasName("Root.1.2.3");
 
-        LabeledTreeMapNode four = new LabeledTreeMapNode(ID, "4");
+        var four = new LabeledTreeMapNode(ID, "4");
         four.insertNode(new LabeledTreeMapNode(ID, "5"));
         four.collapseEmptyPackages();
         root.insertNode(four);
@@ -72,7 +72,7 @@ class LabeledTreeMapNodeTest {
 
     @Test
     void shouldHaveToString() {
-        LabeledTreeMapNode root = new LabeledTreeMapNode(ID, "Root");
+        var root = new LabeledTreeMapNode(ID, "Root");
         assertThat(root.toString()).isEqualTo("'Root' ([])");
     }
 

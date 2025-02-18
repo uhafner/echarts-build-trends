@@ -70,7 +70,7 @@ public class LinesDataSet {
      */
     public List<Double> getSeries(final String dataSetId) {
         if (!containsSeries(dataSetId)) {
-            throw new NoSuchElementException(String.format("No dataset '%s' registered", dataSetId));
+            throw new NoSuchElementException("No dataset '%s' registered".formatted(dataSetId));
         }
 
         return getSeriesFromMap(dataSetId).stream().map(this::round).collect(toList());

@@ -14,7 +14,7 @@ import static edu.hm.hafner.echarts.assertions.Assertions.*;
 class ChartModelConfigurationTest {
     @Test
     void shouldProvideDefaultValues() {
-        ChartModelConfiguration configuration = new ChartModelConfiguration();
+        var configuration = new ChartModelConfiguration();
 
         assertThat(configuration).hasAxisType(ChartModelConfiguration.DEFAULT_DOMAIN_AXIS_TYPE);
         assertThat(configuration).hasBuildCount(ChartModelConfiguration.DEFAULT_BUILD_COUNT);

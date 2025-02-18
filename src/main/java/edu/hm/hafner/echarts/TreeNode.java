@@ -1,5 +1,9 @@
 package edu.hm.hafner.echarts;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,10 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 /**
  * Node for constructing a tree structure for a sunburst or treemap ECharts diagram.
@@ -91,7 +91,7 @@ public class TreeNode {
     @SuppressWarnings("PMD.UnusedAssignment") // false positive https://github.com/pmd/pmd/issues/4960
     public void collapsePackage() {
         while (getChildren().size() == 1) {
-            TreeNode singleChild = getChildrenMap().values().iterator().next();
+            var singleChild = getChildrenMap().values().iterator().next();
             if (name.isEmpty()) {
                 setName(singleChild.getName());
             }
@@ -114,7 +114,7 @@ public class TreeNode {
     }
 
     private void insertNode(final TreeNode node, final Deque<String> levels) {
-        String nextLevelName = levels.pop();
+        var nextLevelName = levels.pop();
 
         addValue(node.getValue());
         if (levels.isEmpty()) {
@@ -134,7 +134,7 @@ public class TreeNode {
 
     @Override
     public String toString() {
-        return String.format("TreeNode '%s' (%s)", name, value);
+        return "TreeNode '%s' (%s)".formatted(name, value);
     }
 
     @Override
@@ -148,8 +148,7 @@ public class TreeNode {
             return true;
         }
 
-        if (o instanceof TreeNode) {
-            TreeNode other = (TreeNode) o;
+        if (o instanceof TreeNode other) {
             return Objects.equals(name, other.name)
                     && value == other.value
                     && Objects.equals(childrenMap, other.childrenMap);

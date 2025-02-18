@@ -1,11 +1,11 @@
 package edu.hm.hafner.echarts;
 
+import edu.hm.hafner.util.VisibleForTesting;
+
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.Temporal;
-
-import edu.hm.hafner.util.VisibleForTesting;
 
 /**
  * Facade to the current time. Encapsulates all calls that require the current time so that tests can replace this
@@ -14,7 +14,7 @@ import edu.hm.hafner.util.VisibleForTesting;
  * @author Ullrich Hafner
  */
 @SuppressWarnings("checkstyle:FinalClass")
-public class TimeFacade {
+public final class TimeFacade {
     private static TimeFacade instance = new TimeFacade();
 
     public static TimeFacade getInstance() {
