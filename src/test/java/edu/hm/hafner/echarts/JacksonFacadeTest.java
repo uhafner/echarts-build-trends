@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.*;
 class JacksonFacadeTest {
     @Test
     void shouldReadStringProperty() {
-        JacksonFacade jackson = new JacksonFacade();
+        var jackson = new JacksonFacade();
 
         assertThat(jackson.getString(
                 "{\"numberOfBuilds\":\"25\",\"numberOfDays\":\"0\",\"buildAsDomain\":\"true\",\"chartType\":\"loc\"}",
@@ -24,7 +24,7 @@ class JacksonFacadeTest {
 
     @Test
     void shouldReadIntegerProperty() {
-        JacksonFacade jackson = new JacksonFacade();
+        var jackson = new JacksonFacade();
 
         assertThat(jackson.getInteger(
                 "{\"numberOfBuilds\":\"25\",\"numberOfDays\":\"0\",\"buildAsDomain\":\"true\",\"chartType\":\"loc\"}",

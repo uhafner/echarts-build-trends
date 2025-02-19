@@ -1,11 +1,11 @@
 package edu.hm.hafner.echarts;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
-
-import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -23,7 +23,7 @@ class LinesDataSetTest {
 
     @Test
     void shouldAddSeries() {
-        LinesDataSet linesDataSet = new LinesDataSet();
+        var linesDataSet = new LinesDataSet();
         assertThat(linesDataSet.getDomainAxisSize()).isEqualTo(0);
         assertThat(linesDataSet.hasSeries(FIRST_DATA_SET)).isFalse();
 
@@ -36,7 +36,7 @@ class LinesDataSetTest {
 
     @Test
     void shouldAddSeriesWithUrls() {
-        LinesDataSet linesDataSet = new LinesDataSet();
+        var linesDataSet = new LinesDataSet();
         assertThat(linesDataSet.getDomainAxisSize()).isEqualTo(0);
         assertThat(linesDataSet.hasSeries(FIRST_DATA_SET)).isFalse();
 
@@ -74,7 +74,7 @@ class LinesDataSetTest {
 
     @Test
     void shouldThrowExceptionIfSeriesDoesNotExist() {
-        LinesDataSet linesDataSet = new LinesDataSet();
+        var linesDataSet = new LinesDataSet();
 
         linesDataSet.add(X_AXIS_LABEL, createSeries(1));
 
@@ -86,7 +86,7 @@ class LinesDataSetTest {
 
     @Test
     void shouldThrowExceptionIfSameLabelIsAddedTwice() {
-        LinesDataSet linesDataSet = new LinesDataSet();
+        var linesDataSet = new LinesDataSet();
         Map<String, Integer> dataSetSeries = Collections.emptyMap();
 
         linesDataSet.add(X_AXIS_LABEL, dataSetSeries);
@@ -98,7 +98,7 @@ class LinesDataSetTest {
 
     @Test
     void shouldThrowExceptionIfSameBuildNumberIsAddedTwice() {
-        LinesDataSet linesDataSet = new LinesDataSet();
+        var linesDataSet = new LinesDataSet();
         Map<String, Integer> dataSetSeries = Collections.emptyMap();
 
         linesDataSet.add(X_AXIS_LABEL, dataSetSeries, 1);
