@@ -152,7 +152,7 @@ public class LinesDataSet {
         return Objects.requireNonNull(dataSetSeries.get(key));
     }
 
-    private double round(final Double value) {
+    private double round(final double value) {
         return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
     }
 

@@ -4,6 +4,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
+
 import edu.hm.hafner.echarts.Build;
 import edu.hm.hafner.echarts.BuildResult;
 import edu.hm.hafner.echarts.ChartModelConfiguration;
@@ -242,6 +244,7 @@ class SeriesBuilderTest {
         @CheckForNull
         private ResultTime time;
 
+        @CanIgnoreReturnValue
         TestArgumentsBuilder setConfig(final ChartModelConfiguration config) {
             this.config = config;
 
@@ -256,6 +259,7 @@ class SeriesBuilderTest {
          *
          * @return this
          */
+        @CanIgnoreReturnValue
         TestArgumentsBuilder setTestName(final String name) {
             testName = name;
 
@@ -270,6 +274,7 @@ class SeriesBuilderTest {
          *
          * @return this
          */
+        @CanIgnoreReturnValue
         TestArgumentsBuilder setTime(final ResultTime time) {
             this.time = time;
 
@@ -284,6 +289,7 @@ class SeriesBuilderTest {
          *
          * @return this
          */
+        @CanIgnoreReturnValue
         TestArgumentsBuilder setRuns(final BuildResult<?>... runs) {
             this.runs = asList(runs);
 
@@ -299,6 +305,7 @@ class SeriesBuilderTest {
          * @return this
          */
         @SafeVarargs
+        @CanIgnoreReturnValue
         final TestArgumentsBuilder setExpected(final List<Double>... expectedSeries) {
             series = new ArrayList<>();
 

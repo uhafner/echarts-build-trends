@@ -5,6 +5,7 @@ import edu.umd.cs.findbugs.annotations.NonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Objects;
 
 /**
@@ -24,7 +25,7 @@ public class LocalDateLabel implements Comparable<LocalDateLabel> {
      */
     public LocalDateLabel(final LocalDate date) {
         this.date = date;
-        formatter = DateTimeFormatter.ofPattern("MM-dd");
+        formatter = DateTimeFormatter.ofPattern("MM-dd", Locale.ENGLISH);
     }
 
     @Override

@@ -39,7 +39,7 @@ public final class TimeFacade {
     }
 
     /**
-     * Return today, i.e. the current date from the system clock in the default time-zone.
+     * Return today, i.e., the current date from the system clock in the default time-zone.
      *
      * @return current date from the system clock in the default time-zone
      */
@@ -49,7 +49,7 @@ public final class TimeFacade {
     }
 
     /**
-     * Return the date of a build, i.e. a {@code LocalDate} with the same year, month and day as today.
+     * Return the date of a build, i.e., a {@code LocalDate} with the same year, month and day as today.
      *
      * @param build
      *         the build to get the date for

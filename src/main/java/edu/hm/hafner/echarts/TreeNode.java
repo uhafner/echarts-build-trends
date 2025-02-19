@@ -2,7 +2,7 @@ package edu.hm.hafner.echarts;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import edu.hm.hafner.util.Generated;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -138,22 +138,20 @@ public class TreeNode {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(value, childrenMap, name);
+    @Generated
+    public boolean equals(final Object o) {
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        var treeNode = (TreeNode) o;
+        return Double.compare(value, treeNode.value) == 0
+                && Objects.equals(name, treeNode.name)
+                && Objects.equals(childrenMap, treeNode.childrenMap);
     }
 
-    @Override @SuppressFBWarnings("FE_FLOATING_POINT_EQUALITY")
-    public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
-        }
-
-        if (o instanceof TreeNode other) {
-            return Objects.equals(name, other.name)
-                    && value == other.value
-                    && Objects.equals(childrenMap, other.childrenMap);
-        }
-
-        return false;
+    @Override
+    @Generated
+    public int hashCode() {
+        return Objects.hash(name, value, childrenMap);
     }
 }

@@ -3,6 +3,9 @@ package edu.hm.hafner.echarts;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+import nl.jqno.equalsverifier.EqualsVerifier;
+
 import static edu.hm.hafner.echarts.assertions.Assertions.*;
 
 /**
@@ -102,22 +105,9 @@ public class TreeNodeTest {
      */
     @Test
     public void shouldBeEqualAndHash() {
-        final var name = "name";
-        final double one = 1.0;
-        var node = new TreeNode(name);
-
-        assertThat(node).isNotEqualTo(new TreeNode(name, one));
-        assertThat(node).isEqualTo(node);
-        assertThat(node).isEqualTo(new TreeNode(name));
-
-        node.insertNode(new TreeNode("name1"));
-        assertThat(node).isNotEqualTo(new TreeNode(name));
-
-        assertThat(node).isNotEqualTo("test");
-
-        Assertions.assertThat(node.hashCode()).isEqualTo(node.hashCode());
-
-        Assertions.assertThat(node.hashCode()).isNotEqualTo(new TreeNode(name).hashCode());
+        EqualsVerifier.simple().forClass(TreeNode.class)
+                .withPrefabValues(Map.class, Map.of("key", "value"), Map.of())
+                .verify();
     }
 
     /**

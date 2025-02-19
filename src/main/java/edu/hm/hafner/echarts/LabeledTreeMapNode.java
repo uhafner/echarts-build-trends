@@ -13,6 +13,7 @@ import java.util.Objects;
  * @author Andreas Pabst
  * @author Ullrich Hafner
  */
+@SuppressWarnings("InconsistentOverloads")
 // FIXME: we should use a builder pattern here
 // FIXME: values should still be doubles and one other element should be the label
 public class LabeledTreeMapNode {

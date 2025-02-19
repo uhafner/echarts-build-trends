@@ -13,6 +13,7 @@ import java.util.List;
  * @author Andreas Pabst
  * @author Ullrich Hafner
  */
+@SuppressWarnings("InconsistentOverloads")
 // TODO: in order to locate a selected element we need to provide an additional reference for each node
 public class TreeMapNode {
     private final ItemStyle itemStyle;
