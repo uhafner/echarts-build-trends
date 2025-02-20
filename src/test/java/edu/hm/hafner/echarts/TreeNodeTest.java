@@ -3,6 +3,9 @@ package edu.hm.hafner.echarts;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+import nl.jqno.equalsverifier.EqualsVerifier;
+
 import static edu.hm.hafner.echarts.assertions.Assertions.*;
 
 /**
@@ -16,16 +19,16 @@ public class TreeNodeTest {
      */
     @Test
     public void shouldInsertTwoLevelPackage() {
-        TreeNode root = new TreeNode("");
+        var root = new TreeNode("");
 
-        TreeNode myClass = new TreeNode("com.example.MyClass");
-        TreeNode otherClass = new TreeNode("com.example.other.OtherClass");
+        var myClass = new TreeNode("com.example.MyClass");
+        var otherClass = new TreeNode("com.example.other.OtherClass");
 
         root.insertNode(myClass);
         root.insertNode(otherClass);
 
         assertThat(root.getChildren()).hasSize(1);
-        TreeNode child = root.getChildren().get(0);
+        var child = root.getChildren().get(0);
         assertThat(child).hasName("com");
 
         Assertions.assertThat(child.getChildren()).hasSize(1);
@@ -48,7 +51,7 @@ public class TreeNodeTest {
     public void shouldGetSpecificMetricValue() {
         final double metricValue = 42;
 
-        TreeNode node = new TreeNode("node", metricValue);
+        var node = new TreeNode("node", metricValue);
         Assertions.assertThat(node.getValue()).isEqualTo(42);
     }
 
@@ -61,7 +64,7 @@ public class TreeNodeTest {
         final double metricValue2 = 47;
         final double metricValue3 = 11;
 
-        TreeNode root = new TreeNode("");
+        var root = new TreeNode("");
         root.insertNode(new TreeNode("test.node1", metricValue1));
         root.insertNode(new TreeNode("test.node2", metricValue2));
         root.insertNode(new TreeNode("node3", metricValue3));
@@ -74,7 +77,7 @@ public class TreeNodeTest {
      */
     @Test
     public void shouldCollapsePackage() {
-        TreeNode rootNode = threeLevelTree();
+        var rootNode = threeLevelTree();
         rootNode.collapsePackage();
 
         Assertions.assertThat(rootNode.getName()).isEqualTo("levelOneNode.levelTwoNode");
@@ -82,16 +85,16 @@ public class TreeNodeTest {
     }
 
     private TreeNode threeLevelTree() {
-        TreeNode leafNode2 = new TreeNode("leafNode1");
-        TreeNode leafNode1 = new TreeNode("leafNode2");
-        TreeNode levelTwoNode = new TreeNode("levelTwoNode");
+        var leafNode2 = new TreeNode("leafNode1");
+        var leafNode1 = new TreeNode("leafNode2");
+        var levelTwoNode = new TreeNode("levelTwoNode");
         levelTwoNode.insertNode(leafNode1);
         levelTwoNode.insertNode(leafNode2);
 
-        TreeNode levelOneNode = new TreeNode("levelOneNode");
+        var levelOneNode = new TreeNode("levelOneNode");
         levelOneNode.insertNode(levelTwoNode);
 
-        TreeNode rootNode = new TreeNode("");
+        var rootNode = new TreeNode("");
         rootNode.insertNode(levelOneNode);
 
         return rootNode;
@@ -102,22 +105,9 @@ public class TreeNodeTest {
      */
     @Test
     public void shouldBeEqualAndHash() {
-        final String name = "name";
-        final double one = 1.0;
-        TreeNode node = new TreeNode(name);
-
-        assertThat(node).isNotEqualTo(new TreeNode(name, one));
-        assertThat(node).isEqualTo(node);
-        assertThat(node).isEqualTo(new TreeNode(name));
-
-        node.insertNode(new TreeNode("name1"));
-        assertThat(node).isNotEqualTo(new TreeNode(name));
-
-        assertThat(node).isNotEqualTo("test");
-
-        Assertions.assertThat(node.hashCode()).isEqualTo(node.hashCode());
-
-        Assertions.assertThat(node.hashCode()).isNotEqualTo(new TreeNode(name).hashCode());
+        EqualsVerifier.simple().forClass(TreeNode.class)
+                .withPrefabValues(Map.class, Map.of("key", "value"), Map.of())
+                .verify();
     }
 
     /**
@@ -125,8 +115,8 @@ public class TreeNodeTest {
      */
     @Test
     public void shouldContainRelevantInformationInJson() {
-        JacksonFacade facade = new JacksonFacade();
-        TreeNode root = new TreeNode("");
+        var facade = new JacksonFacade();
+        var root = new TreeNode("");
         root.insertNode(new TreeNode("com.example.Bar", 5.0));
         root.insertNode(new TreeNode("com.example.package.Foo", 2.0));
         root.collapsePackage();

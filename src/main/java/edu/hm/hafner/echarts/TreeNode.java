@@ -1,5 +1,9 @@
 package edu.hm.hafner.echarts;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import edu.hm.hafner.util.Generated;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,10 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 /**
  * Node for constructing a tree structure for a sunburst or treemap ECharts diagram.
@@ -91,7 +91,7 @@ public class TreeNode {
     @SuppressWarnings("PMD.UnusedAssignment") // false positive https://github.com/pmd/pmd/issues/4960
     public void collapsePackage() {
         while (getChildren().size() == 1) {
-            TreeNode singleChild = getChildrenMap().values().iterator().next();
+            var singleChild = getChildrenMap().values().iterator().next();
             if (name.isEmpty()) {
                 setName(singleChild.getName());
             }
@@ -114,7 +114,7 @@ public class TreeNode {
     }
 
     private void insertNode(final TreeNode node, final Deque<String> levels) {
-        String nextLevelName = levels.pop();
+        var nextLevelName = levels.pop();
 
         addValue(node.getValue());
         if (levels.isEmpty()) {
@@ -134,27 +134,24 @@ public class TreeNode {
 
     @Override
     public String toString() {
-        return String.format("TreeNode '%s' (%s)", name, value);
+        return "TreeNode '%s' (%s)".formatted(name, value);
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(value, childrenMap, name);
+    @Generated
+    public boolean equals(final Object o) {
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        var treeNode = (TreeNode) o;
+        return Double.compare(value, treeNode.value) == 0
+                && Objects.equals(name, treeNode.name)
+                && Objects.equals(childrenMap, treeNode.childrenMap);
     }
 
-    @Override @SuppressFBWarnings("FE_FLOATING_POINT_EQUALITY")
-    public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
-        }
-
-        if (o instanceof TreeNode) {
-            TreeNode other = (TreeNode) o;
-            return Objects.equals(name, other.name)
-                    && value == other.value
-                    && Objects.equals(childrenMap, other.childrenMap);
-        }
-
-        return false;
+    @Override
+    @Generated
+    public int hashCode() {
+        return Objects.hash(name, value, childrenMap);
     }
 }

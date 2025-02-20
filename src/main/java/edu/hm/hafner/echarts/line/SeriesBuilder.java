@@ -1,15 +1,5 @@
 package edu.hm.hafner.echarts.line;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.SortedMap;
-import java.util.TreeMap;
-import java.util.stream.Stream;
-
 import edu.hm.hafner.echarts.Build;
 import edu.hm.hafner.echarts.BuildResult;
 import edu.hm.hafner.echarts.ChartModelConfiguration;
@@ -19,6 +9,16 @@ import edu.hm.hafner.echarts.ResultTime;
 import edu.hm.hafner.echarts.TimeFacade;
 import edu.hm.hafner.util.VisibleForTesting;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
 
@@ -164,7 +164,7 @@ public abstract class SeriesBuilder<T> {
     private LinesDataSet createDataSetPerDay(final SortedMap<LocalDate, Map<String, Double>> averagePerDay) {
         var model = new LinesDataSet();
         for (Entry<LocalDate, Map<String, Double>> series : averagePerDay.entrySet()) {
-            String label = new LocalDateLabel(series.getKey()).toString();
+            var label = new LocalDateLabel(series.getKey()).toString();
             model.add(label, series.getValue());
         }
         return model;
@@ -232,7 +232,7 @@ public abstract class SeriesBuilder<T> {
             final Map<Build, Map<String, Double>> valuesPerBuild) {
         Map<LocalDate, List<Map<String, Double>>> valuesPerDate = new TreeMap<>();
         for (Build build : valuesPerBuild.keySet()) {
-            LocalDate buildDate = TimeFacade.getInstance().getBuildDate(build);
+            var buildDate = TimeFacade.getInstance().getBuildDate(build);
             valuesPerDate.computeIfAbsent(buildDate, k -> new ArrayList<>()).add(valuesPerBuild.get(build));
         }
         return valuesPerDate;

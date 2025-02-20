@@ -1,5 +1,9 @@
 package edu.hm.hafner.echarts;
 
+import edu.hm.hafner.echarts.ChartModelConfiguration.AxisType;
+import edu.hm.hafner.util.VisibleForTesting;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +13,6 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.stream.Stream;
-
-import edu.hm.hafner.echarts.ChartModelConfiguration.AxisType;
-import edu.hm.hafner.util.VisibleForTesting;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import static java.util.stream.Collectors.*;
 
@@ -141,7 +141,7 @@ public abstract class SeriesBuilder<T> {
      */
     private LinesDataSet createDataSetPerBuildNumber(
             final SortedMap<Build, Map<String, Integer>> valuesPerBuild) {
-        LinesDataSet model = new LinesDataSet();
+        var model = new LinesDataSet();
         for (Map.Entry<Build, Map<String, Integer>> series : valuesPerBuild.entrySet()) {
             model.add(series.getKey().getDisplayName(), series.getValue(), series.getKey().getNumber());
         }
@@ -157,9 +157,9 @@ public abstract class SeriesBuilder<T> {
      * @return a data set
      */
     private LinesDataSet createDataSetPerDay(final SortedMap<LocalDate, Map<String, Integer>> averagePerDay) {
-        LinesDataSet model = new LinesDataSet();
+        var model = new LinesDataSet();
         for (Map.Entry<LocalDate, Map<String, Integer>> series : averagePerDay.entrySet()) {
-            String label = new LocalDateLabel(series.getKey()).toString();
+            var label = new LocalDateLabel(series.getKey()).toString();
             model.add(label, series.getValue());
         }
         return model;
@@ -227,7 +227,7 @@ public abstract class SeriesBuilder<T> {
             final Map<Build, Map<String, Integer>> valuesPerBuild) {
         Map<LocalDate, List<Map<String, Integer>>> valuesPerDate = new TreeMap<>();
         for (Build build : valuesPerBuild.keySet()) {
-            LocalDate buildDate = TimeFacade.getInstance().getBuildDate(build);
+            var buildDate = TimeFacade.getInstance().getBuildDate(build);
             valuesPerDate.computeIfAbsent(buildDate, k -> new ArrayList<>()).add(valuesPerBuild.get(build));
         }
         return valuesPerDate;

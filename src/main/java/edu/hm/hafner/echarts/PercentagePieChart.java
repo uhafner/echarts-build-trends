@@ -1,8 +1,8 @@
 package edu.hm.hafner.echarts;
 
-import java.util.function.Function;
-
 import edu.hm.hafner.util.Ensure;
+
+import java.util.function.Function;
 
 /**
  * Builds the model for a pie chart showing a percentage.
@@ -57,7 +57,7 @@ public class PercentagePieChart {
         Ensure.that(percentage < 0 || percentage > 100)
                 .isFalse("Percentage %s must be in interval [0,100]", percentage);
 
-        PieChartModel model = new PieChartModel("Percentage");
+        var model = new PieChartModel("Percentage");
 
         model.add(new PieData("Filled", percentage), actualColorValue);
         model.add(new PieData("NotFilled", 100 - percentage), Palette.GRAY);
