@@ -7,6 +7,7 @@ import edu.umd.cs.findbugs.annotations.CheckForNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.DoubleStream;
 
 /**
  * UI model for an ECharts line chart. Simple data bean that will be converted to JSON. On the client side, the
@@ -120,6 +121,21 @@ public class LinesChartModel {
     @CheckForNull
     public Double getRangeMin() {
         return rangeMin;
+    }
+
+    /**
+     * Computes the range of the data points in this model. The range is computed only once.
+     */
+    public void computeVisibleRange() {
+        rangeMax = streamValues().max().orElse(0);
+        rangeMin = streamValues().min().orElse(0);
+    }
+
+    private DoubleStream streamValues() {
+        return series.stream()
+                .map(LineSeries::getData)
+                .flatMap(List::stream)
+                .mapToDouble(Number::doubleValue);
     }
 
     /**

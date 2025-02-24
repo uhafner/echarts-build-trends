@@ -29,6 +29,10 @@ class LinesChartModelTest {
         assertThat(model).hasNoSeries();
         assertThat(model).hasNoDomainAxisLabels();
         assertThat(model).hasNoBuildNumbers();
+
+        model.computeVisibleRange();
+        assertThat(model.getRangeMax()).isZero();
+        assertThat(model.getRangeMin()).isZero();
     }
 
     @Test
@@ -90,7 +94,7 @@ class LinesChartModelTest {
 
         for (LineSeries severity : series) {
             for (int i = 0; i < 5; i++) {
-                severity.add(i * 10);
+                severity.add(i * 10 + 5);
             }
         }
 
@@ -106,5 +110,9 @@ class LinesChartModelTest {
                 .contains("#5");
 
         assertThatJson(model).node("series").isArray().hasSize(3);
+
+        model.computeVisibleRange();
+        assertThat(model.getRangeMax()).isEqualTo(45);
+        assertThat(model.getRangeMin()).isEqualTo(5);
     }
 }
