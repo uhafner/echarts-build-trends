@@ -1,8 +1,8 @@
 package edu.hm.hafner.echarts;
 
-import java.util.function.Function;
-
 import org.junit.jupiter.api.Test;
+
+import java.util.function.Function;
 
 import static edu.hm.hafner.echarts.assertions.Assertions.*;
 
@@ -22,7 +22,7 @@ class PercentagePieChartTest {
 
     @Test
     void shouldThrowExceptionIfInvalid() {
-        PercentagePieChart chart = new PercentagePieChart();
+        var chart = new PercentagePieChart();
 
         assertThatExceptionOfType(AssertionError.class)
                 .isThrownBy(() -> chart.create(-1))
@@ -34,7 +34,7 @@ class PercentagePieChartTest {
 
     @Test
     void shouldComputeColorWithCustomMapper() {
-        PercentagePieChart chart = new PercentagePieChart();
+        var chart = new PercentagePieChart();
 
         Function<Integer, String> colorMapper = p -> p < 10 ? FIRST : SECOND;
         assertThat(chart.createWithStringMapper(9, colorMapper))
@@ -47,7 +47,7 @@ class PercentagePieChartTest {
 
     @Test
     void shouldComputeColorToRedLowerBoundary() {
-        PercentagePieChart chart = new PercentagePieChart();
+        var chart = new PercentagePieChart();
 
         assertThat(chart.create(0)).hasColors(RED, GRAY)
                 .hasData(createFilledTo(0), getNotFilledTo(100));
@@ -55,7 +55,7 @@ class PercentagePieChartTest {
 
     @Test
     void shouldComputeColorToRedUpperBoundary() {
-        PercentagePieChart chart = new PercentagePieChart();
+        var chart = new PercentagePieChart();
 
         assertThat(chart.create(49)).hasColors(RED, GRAY)
                 .hasData(createFilledTo(49), getNotFilledTo(51));
@@ -63,7 +63,7 @@ class PercentagePieChartTest {
 
     @Test
     void shouldComputeColorToYellowLowerBoundary() {
-        PercentagePieChart chart = new PercentagePieChart();
+        var chart = new PercentagePieChart();
 
         assertThat(chart.create(50)).hasColors(YELLOW, GRAY)
                 .hasData(createFilledTo(50), getNotFilledTo(50));
@@ -71,7 +71,7 @@ class PercentagePieChartTest {
 
     @Test
     void shouldComputeColorToYellowUpperBoundary() {
-        PercentagePieChart chart = new PercentagePieChart();
+        var chart = new PercentagePieChart();
 
         assertThat(chart.create(79)).hasColors(YELLOW, GRAY)
                 .hasData(createFilledTo(79), getNotFilledTo(21));
@@ -79,7 +79,7 @@ class PercentagePieChartTest {
 
     @Test
     void shouldComputeColorToGreenLowerBoundary() {
-        PercentagePieChart chart = new PercentagePieChart();
+        var chart = new PercentagePieChart();
 
         assertThat(chart.create(80)).hasColors(GREEN, GRAY)
                 .hasData(createFilledTo(80), getNotFilledTo(20));
@@ -87,7 +87,7 @@ class PercentagePieChartTest {
 
     @Test
     void shouldComputeColorToGreenUpperBoundary() {
-        PercentagePieChart chart = new PercentagePieChart();
+        var chart = new PercentagePieChart();
 
         assertThat(chart.create(100)).hasColors(GREEN, GRAY)
                 .hasData(createFilledTo(100), getNotFilledTo(0));

@@ -1,9 +1,9 @@
 package edu.hm.hafner.echarts;
 
-import java.util.Objects;
-
 import edu.hm.hafner.util.Generated;
 import edu.hm.hafner.util.VisibleForTesting;
+
+import java.util.Objects;
 
 /**
  * Represents the build that contains results that should be rendered using ECharts.
@@ -84,7 +84,7 @@ public class Build implements Comparable<Build> {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Build that = (Build) o;
+        var that = (Build) o;
         return number == that.number;
     }
 

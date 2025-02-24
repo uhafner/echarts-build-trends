@@ -15,9 +15,9 @@ class PieChartModelTest {
 
     @Test
     void shouldCreatePieModel() {
-        PieChartModel model = new PieChartModel(NAME);
-        PieData first = new PieData("ONE", 1);
-        PieData second = new PieData("TWO", 2);
+        var model = new PieChartModel(NAME);
+        var first = new PieData("ONE", 1);
+        var second = new PieData("TWO", 2);
 
         model.add(first, Palette.BLUE);
         model.add(second, Palette.RED);

@@ -23,7 +23,7 @@ class LineSeriesTest {
 
     @Test
     void shouldCreateLineSeriesStackedLines() {
-        String lineSeries = createLineSeries(StackedMode.STACKED, FilledMode.LINES);
+        var lineSeries = createLineSeries(StackedMode.STACKED, FilledMode.LINES);
 
         assertThatJson(lineSeries).node("areaStyle").isNull();
         assertThatJson(lineSeries).node("stack").isEqualTo(STACKED);
@@ -38,7 +38,7 @@ class LineSeriesTest {
 
     @Test
     void shouldCreateLineSeriesLines() {
-        String lineSeries = createLineSeries(StackedMode.SEPARATE_LINES, FilledMode.LINES);
+        var lineSeries = createLineSeries(StackedMode.SEPARATE_LINES, FilledMode.LINES);
 
         assertThatJson(lineSeries).node("areaStyle").isNull();
         assertThatJson(lineSeries).node("stack").isEqualTo(StringUtils.EMPTY);
@@ -47,7 +47,7 @@ class LineSeriesTest {
 
     @Test
     void shouldCreateLineSeriesStackedFilled() {
-        String lineSeries = createLineSeries(StackedMode.STACKED, FilledMode.FILLED);
+        var lineSeries = createLineSeries(StackedMode.STACKED, FilledMode.FILLED);
 
         assertThatJson(lineSeries).node("areaStyle").isEqualTo(new AreaStyle());
         assertThatJson(lineSeries).node("stack").isEqualTo(STACKED);
@@ -56,7 +56,7 @@ class LineSeriesTest {
 
     @Test
     void shouldCreateLineSeriesLinesFilled() {
-        String lineSeries = createLineSeries(StackedMode.SEPARATE_LINES, FilledMode.FILLED);
+        var lineSeries = createLineSeries(StackedMode.SEPARATE_LINES, FilledMode.FILLED);
 
         assertThatJson(lineSeries).node("areaStyle").isEqualTo(new AreaStyle());
         assertThatJson(lineSeries).node("stack").isEqualTo(StringUtils.EMPTY);
@@ -65,7 +65,7 @@ class LineSeriesTest {
 
     @Test
     void shouldCreateLineSeriesWithValues() {
-        LineSeries lineSeries = new LineSeries(SEVERITY, COLOR, StackedMode.STACKED, FilledMode.LINES);
+        var lineSeries = new LineSeries(SEVERITY, COLOR, StackedMode.STACKED, FilledMode.LINES);
         lineSeries.add(22);
 
         assertThatJson(lineSeries).node("data").isArray().hasSize(1).contains(22.0);

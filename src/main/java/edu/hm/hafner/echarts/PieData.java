@@ -46,7 +46,7 @@ public class PieData {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        PieData pieData = (PieData) o;
+        var pieData = (PieData) o;
         return value == pieData.value && Objects.equals(name, pieData.name);
     }
 
@@ -57,6 +57,6 @@ public class PieData {
 
     @Override @Generated
     public String toString() {
-        return String.format("%s->%d", name, value);
+        return "%s->%d".formatted(name, value);
     }
 }

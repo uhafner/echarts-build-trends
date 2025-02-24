@@ -37,7 +37,7 @@ public class JacksonFacade {
         }
         catch (JsonProcessingException exception) {
             throw new IllegalArgumentException(
-                    String.format("Can't convert %s to JSON object", bean), exception);
+                    "Can't convert %s to JSON object".formatted(bean), exception);
         }
     }
 
@@ -59,7 +59,7 @@ public class JacksonFacade {
         }
         catch (JsonProcessingException exception) {
             throw new IllegalArgumentException(
-                    String.format("Can't convert JSON '%s' to bean", json), exception);
+                    "Can't convert JSON '%s' to bean".formatted(json), exception);
         }
     }
 
@@ -77,7 +77,7 @@ public class JacksonFacade {
      */
     public String getString(final String json, final String property, final String defaultValue) {
         try {
-            JsonNode typeNode = getPropertyAsNode(json, property);
+            var typeNode = getPropertyAsNode(json, property);
             if (typeNode != null) {
                 return typeNode.asText(defaultValue);
             }
@@ -103,7 +103,7 @@ public class JacksonFacade {
      */
     public int getInteger(final String json, final String property, final int defaultValue) {
         try {
-            JsonNode typeNode = getPropertyAsNode(json, property);
+            var typeNode = getPropertyAsNode(json, property);
             if (typeNode != null) {
                 return typeNode.asInt(defaultValue);
             }
@@ -118,7 +118,7 @@ public class JacksonFacade {
     @CheckForNull
     private JsonNode getPropertyAsNode(final String json, final String property)
             throws JsonProcessingException {
-        ObjectNode node = mapper.readValue(json, ObjectNode.class);
+        var node = mapper.readValue(json, ObjectNode.class);
         return node.get(property);
     }
 
@@ -136,7 +136,7 @@ public class JacksonFacade {
      */
     public boolean getBoolean(final String json, final String property, final boolean defaultValue) {
         try {
-            JsonNode typeNode = getPropertyAsNode(json, property);
+            var typeNode = getPropertyAsNode(json, property);
             if (typeNode != null) {
                 return typeNode.asBoolean(defaultValue);
             }

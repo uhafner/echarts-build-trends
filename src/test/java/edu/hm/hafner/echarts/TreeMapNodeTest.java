@@ -12,7 +12,7 @@ import static edu.hm.hafner.echarts.assertions.Assertions.*;
 class TreeMapNodeTest {
     @Test
     void shouldCreateNode() {
-        TreeMapNode root = createRoot();
+        var root = createRoot();
 
         assertThat(root).hasName("Root")
                 .hasNoChildren()
@@ -32,8 +32,8 @@ class TreeMapNodeTest {
 
     @Test
     void shouldInsertNode() {
-        TreeMapNode root = createRoot();
-        TreeMapNode child = new TreeMapNode("Child");
+        var root = createRoot();
+        var child = new TreeMapNode("Child");
         root.insertNode(child);
 
         assertThat(root).hasChildren(child);
@@ -41,25 +41,25 @@ class TreeMapNodeTest {
 
     @Test
     void shouldCollapseChildNodes() {
-        TreeMapNode root = new TreeMapNode("Root");
+        var root = new TreeMapNode("Root");
 
         root.collapseEmptyPackages();
 
         assertThat(root.getChildren()).isEmpty();
         assertThat(root).hasName("Root");
 
-        TreeMapNode one = new TreeMapNode("1");
+        var one = new TreeMapNode("1");
         root.insertNode(one);
         root.collapseEmptyPackages();
         assertThat(root).hasName("Root.1");
 
-        TreeMapNode two = new TreeMapNode("2");
+        var two = new TreeMapNode("2");
         two.insertNode(new TreeMapNode("3"));
         root.insertNode(two);
         root.collapseEmptyPackages();
         assertThat(root).hasName("Root.1.2.3");
 
-        TreeMapNode four = new TreeMapNode("4");
+        var four = new TreeMapNode("4");
         four.insertNode(new TreeMapNode("5"));
         four.collapseEmptyPackages();
         root.insertNode(four);
@@ -69,7 +69,7 @@ class TreeMapNodeTest {
 
     @Test
     void shouldHaveToString() {
-        TreeMapNode root = new TreeMapNode("Root");
+        var root = new TreeMapNode("Root");
         assertThat(root.toString()).isEqualTo("'Root' ([0.0])");
     }
 

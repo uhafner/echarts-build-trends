@@ -1,10 +1,10 @@
 package edu.hm.hafner.echarts;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import org.apache.commons.lang3.ArrayUtils;
 
 /**
  * Node for constructing a tree structure of {@code double} values for a sunburst or treemap
@@ -13,6 +13,7 @@ import org.apache.commons.lang3.ArrayUtils;
  * @author Andreas Pabst
  * @author Ullrich Hafner
  */
+@SuppressWarnings("InconsistentOverloads")
 // TODO: in order to locate a selected element we need to provide an additional reference for each node
 public class TreeMapNode {
     private final ItemStyle itemStyle;
@@ -129,7 +130,7 @@ public class TreeMapNode {
      */
     public void collapseEmptyPackages() {
         while (children.size() == 1) {
-            TreeMapNode singleChild = children.iterator().next();
+            var singleChild = children.iterator().next();
             name = String.join(".", name, singleChild.getName());
 
             children.clear();
@@ -139,7 +140,7 @@ public class TreeMapNode {
 
     @Override
     public String toString() {
-        return String.format("'%s' (%s)", name, values);
+        return "'%s' (%s)".formatted(name, values);
     }
 
     @Override
@@ -151,7 +152,7 @@ public class TreeMapNode {
             return false;
         }
 
-        TreeMapNode that = (TreeMapNode) o;
+        var that = (TreeMapNode) o;
 
         if (!itemStyle.equals(that.itemStyle)) {
             return false;

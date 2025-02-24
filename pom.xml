@@ -7,7 +7,7 @@
   <parent>
     <groupId>edu.hm.hafner</groupId>
     <artifactId>codingstyle-pom</artifactId>
-    <version>5.11.0</version>
+    <version>5.12.0</version>
     <relativePath />
   </parent>
 
@@ -20,12 +20,7 @@
   <name>ECharts build trend charts API</name>
   <description>Provides a Java API to render build trend charts with ECharts JS library.</description>
 
-  <scm>
-    <connection>scm:git:https://github.com/uhafner/echarts-build-trends.git</connection>
-    <developerConnection>scm:git:git@github.com:uhafner/echarts-build-trends.git</developerConnection>
-    <url>https://github.com/uhafner/echarts-build-trends</url>
-    <tag>HEAD</tag>
-  </scm>
+  <url>https://cs.hm.edu/~hafner</url>
 
   <licenses>
     <license>
@@ -44,14 +39,30 @@
     </developer>
   </developers>
 
-  <url>https://cs.hm.edu/~hafner</url>
+  <scm>
+    <connection>scm:git:https://github.com/uhafner/echarts-build-trends.git</connection>
+    <developerConnection>scm:git:git@github.com:uhafner/echarts-build-trends.git</developerConnection>
+    <url>https://github.com/uhafner/echarts-build-trends</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
 
   <properties>
     <module.name>${project.groupId}.echarts.build.trends</module.name>
 
     <!-- Project Dependencies Configuration -->
     <jackson-databind.version>2.18.2</jackson-databind.version>
-    <json-unit-assertj.version>2.40.1</json-unit-assertj.version>
+    <json-unit-assertj.version>4.1.0</json-unit-assertj.version>
 
   </properties>
 
@@ -114,16 +125,5 @@
 
     </plugins>
   </build>
-
-  <distributionManagement>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-    <repository>
-      <id>ossrh</id>
-      <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-    </repository>
-  </distributionManagement>
 
 </project>

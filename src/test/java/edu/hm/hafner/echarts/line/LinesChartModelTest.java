@@ -1,14 +1,14 @@
 package edu.hm.hafner.echarts.line;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import edu.hm.hafner.echarts.line.LineSeries.FilledMode;
 import edu.hm.hafner.echarts.line.LineSeries.StackedMode;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static edu.hm.hafner.echarts.assertions.Assertions.*;
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.*;
@@ -24,16 +24,20 @@ class LinesChartModelTest {
 
     @Test
     void shouldBeEmptyWhenCreated() {
-        LinesChartModel model = new LinesChartModel();
+        var model = new LinesChartModel();
 
         assertThat(model).hasNoSeries();
         assertThat(model).hasNoDomainAxisLabels();
         assertThat(model).hasNoBuildNumbers();
+
+        model.computeVisibleRange();
+        assertThat(model.getRangeMax()).isZero();
+        assertThat(model.getRangeMin()).isZero();
     }
 
     @Test
     void shouldAddLabels() {
-        LinesChartModel model = new LinesChartModel();
+        var model = new LinesChartModel();
 
         model.setDomainAxisLabels(BUILDS);
 
@@ -52,8 +56,8 @@ class LinesChartModelTest {
 
     @Test
     void testGetSeries() {
-        LinesChartModel model = new LinesChartModel();
-        LineSeries series = new LineSeries("TestName", "TestColor", StackedMode.STACKED, FilledMode.FILLED);
+        var model = new LinesChartModel();
+        var series = new LineSeries("TestName", "TestColor", StackedMode.STACKED, FilledMode.FILLED);
 
         model.addSeries(series);
 
@@ -62,11 +66,11 @@ class LinesChartModelTest {
 
     @Test
     void testGetDomainAxisLabels() {
-        LinesChartModel singleLabelModel = new LinesChartModel();
+        var singleLabelModel = new LinesChartModel();
         singleLabelModel.setDomainAxisLabels(Collections.singletonList("a"));
         assertThat(singleLabelModel).hasDomainAxisLabels("a");
 
-        LinesChartModel multipleLabelModel = new LinesChartModel();
+        var multipleLabelModel = new LinesChartModel();
         multipleLabelModel.setDomainAxisLabels(Arrays.asList("a", "b", "c"));
 
         assertThat(multipleLabelModel).hasDomainAxisLabels("a", "b", "c");
@@ -78,7 +82,7 @@ class LinesChartModelTest {
 
     @Test
     void shouldCreateLineModel() {
-        LinesChartModel model = new LinesChartModel();
+        var model = new LinesChartModel();
         List<String> builds = new ArrayList<>();
         List<LineSeries> series = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
@@ -90,7 +94,7 @@ class LinesChartModelTest {
 
         for (LineSeries severity : series) {
             for (int i = 0; i < 5; i++) {
-                severity.add(i * 10);
+                severity.add(i * 10 + 5);
             }
         }
 
@@ -106,5 +110,9 @@ class LinesChartModelTest {
                 .contains("#5");
 
         assertThatJson(model).node("series").isArray().hasSize(3);
+
+        model.computeVisibleRange();
+        assertThat(model.getRangeMax()).isEqualTo(45);
+        assertThat(model.getRangeMin()).isEqualTo(5);
     }
 }

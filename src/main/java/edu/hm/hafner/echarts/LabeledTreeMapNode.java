@@ -1,11 +1,11 @@
 package edu.hm.hafner.echarts;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * Node for constructing a tree structure of {@code double} values for a sunburst or treemap ECharts diagram.
@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author Andreas Pabst
  * @author Ullrich Hafner
  */
+@SuppressWarnings("InconsistentOverloads")
 // FIXME: we should use a builder pattern here
 // FIXME: values should still be doubles and one other element should be the label
 public class LabeledTreeMapNode {
@@ -142,7 +143,7 @@ public class LabeledTreeMapNode {
      */
     public void collapseEmptyPackages() {
         while (children.size() == 1) {
-            LabeledTreeMapNode singleChild = children.iterator().next();
+            var singleChild = children.iterator().next();
             name = String.join(".", name, singleChild.getName());
 
             children.clear();
@@ -152,7 +153,7 @@ public class LabeledTreeMapNode {
 
     @Override
     public String toString() {
-        return String.format("'%s' (%s)", name, values);
+        return "'%s' (%s)".formatted(name, values);
     }
 
     @Override
@@ -163,7 +164,7 @@ public class LabeledTreeMapNode {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        LabeledTreeMapNode that = (LabeledTreeMapNode) o;
+        var that = (LabeledTreeMapNode) o;
         return Objects.equals(itemStyle, that.itemStyle) && Objects.equals(label, that.label)
                 && Objects.equals(upperLabel, that.upperLabel) && Objects.equals(id, that.id)
                 && Objects.equals(name, that.name) && Objects.equals(values, that.values)
