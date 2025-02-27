@@ -81,6 +81,11 @@ public class LineSeries {
         return itemStyle;
     }
 
+    @CheckForNull
+    public Emphasis getEmphasis() {
+        return filledMode == FilledMode.LINES ? new Emphasis() : null;
+    }
+
     /**
      * Adds a new build result to this series.
      *
