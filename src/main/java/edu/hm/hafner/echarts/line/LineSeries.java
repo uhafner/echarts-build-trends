@@ -3,6 +3,7 @@ package edu.hm.hafner.echarts.line;
 import org.apache.commons.lang3.StringUtils;
 
 import edu.hm.hafner.echarts.AreaStyle;
+import edu.hm.hafner.echarts.Emphasis;
 import edu.hm.hafner.echarts.ItemStyle;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -102,6 +103,11 @@ public class LineSeries {
 
     public ItemStyle getItemStyle() {
         return itemStyle;
+    }
+
+    @CheckForNull
+    public Emphasis getEmphasis() {
+        return filledMode == FilledMode.LINES ? new Emphasis() : null;
     }
 
     /**
