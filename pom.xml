@@ -7,7 +7,7 @@
   <parent>
     <groupId>edu.hm.hafner</groupId>
     <artifactId>codingstyle-pom</artifactId>
-    <version>5.13.0</version>
+    <version>5.16.0</version>
     <relativePath />
   </parent>
 
@@ -115,14 +115,6 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.revapi</groupId>
-        <artifactId>revapi-maven-plugin</artifactId>
-        <configuration>
-          <skip>true</skip>
-        </configuration>
-      </plugin>
-
     </plugins>
   </build>
 

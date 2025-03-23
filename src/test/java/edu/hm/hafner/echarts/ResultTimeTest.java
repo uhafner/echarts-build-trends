@@ -2,8 +2,6 @@ package edu.hm.hafner.echarts;
 
 import org.junit.jupiter.api.Test;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-
 import java.time.LocalDate;
 import java.time.ZoneId;
 
@@ -24,7 +22,6 @@ class ResultTimeTest {
      * disabled.
      */
     @Test
-    @SuppressFBWarnings("RV")
     void shouldNotEvaluateDayCountIfOptionIsDeactivated() {
         LocalDate today = LocalDate.now();
         stubToday(today);
