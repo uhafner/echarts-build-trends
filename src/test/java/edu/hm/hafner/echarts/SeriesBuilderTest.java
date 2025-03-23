@@ -9,7 +9,6 @@ import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import edu.hm.hafner.echarts.ChartModelConfiguration.AxisType;
 import edu.hm.hafner.util.VisibleForTesting;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -55,7 +54,6 @@ class SeriesBuilderTest {
     private static final String THIRD_KEY = "low";
 
     @SuppressWarnings({"PMD.UnusedPrivateMethod", "unused"})
-    @SuppressFBWarnings("UPM")
     private static Stream<Arguments> createDataSetData() {
         return Stream.of(
                 new TestArgumentsBuilder()
