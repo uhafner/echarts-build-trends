@@ -13,12 +13,12 @@ import static edu.hm.hafner.echarts.assertions.Assertions.*;
  *
  * @author Andreas Pabst
  */
-public class TreeNodeTest {
+class TreeNodeTest {
     /**
      * Test if packages with two identical package levels are inserted correctly.
      */
     @Test
-    public void shouldInsertTwoLevelPackage() {
+    void shouldInsertTwoLevelPackage() {
         var root = new TreeNode("");
 
         var myClass = new TreeNode("com.example.MyClass");
@@ -48,7 +48,7 @@ public class TreeNodeTest {
      * Test if the value of the metric is kept correctly.
      */
     @Test
-    public void shouldGetSpecificMetricValue() {
+    void shouldGetSpecificMetricValue() {
         final double metricValue = 42;
 
         var node = new TreeNode("node", metricValue);
@@ -59,7 +59,7 @@ public class TreeNodeTest {
      * Test if all children values are summed up correctly.
      */
     @Test
-    public void shouldSumUpChildrenValues() {
+    void shouldSumUpChildrenValues() {
         final double metricValue1 = 42;
         final double metricValue2 = 47;
         final double metricValue3 = 11;
@@ -76,7 +76,7 @@ public class TreeNodeTest {
      * Test if the package is collapsed correctly.
      */
     @Test
-    public void shouldCollapsePackage() {
+    void shouldCollapsePackage() {
         var rootNode = threeLevelTree();
         rootNode.collapsePackage();
 
@@ -104,7 +104,7 @@ public class TreeNodeTest {
      * Test the equals and hash functions.
      */
     @Test
-    public void shouldBeEqualAndHash() {
+    void shouldBeEqualAndHash() {
         EqualsVerifier.simple().forClass(TreeNode.class)
                 .withPrefabValues(Map.class, Map.of("key", "value"), Map.of())
                 .verify();
@@ -114,7 +114,7 @@ public class TreeNodeTest {
      * Test if the JSON serialisation is correct.
      */
     @Test
-    public void shouldContainRelevantInformationInJson() {
+    void shouldContainRelevantInformationInJson() {
         var facade = new JacksonFacade();
         var root = new TreeNode("");
         root.insertNode(new TreeNode("com.example.Bar", 5.0));
