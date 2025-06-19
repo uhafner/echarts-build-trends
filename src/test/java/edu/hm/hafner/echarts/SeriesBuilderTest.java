@@ -53,7 +53,6 @@ class SeriesBuilderTest {
     private static final String SECOND_KEY = "normal";
     private static final String THIRD_KEY = "low";
 
-    @SuppressWarnings({"PMD.UnusedPrivateMethod", "unused"})
     private static Stream<Arguments> createDataSetData() {
         return Stream.of(
                 new TestArgumentsBuilder()

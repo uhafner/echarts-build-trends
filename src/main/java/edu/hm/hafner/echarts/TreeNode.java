@@ -88,7 +88,6 @@ public class TreeNode {
      * children are now the children of the current node. This is repeated as long as there are nodes with only one
      * child (package nodes at the top of the hierarchy).
      */
-    @SuppressWarnings("PMD.UnusedAssignment") // false positive https://github.com/pmd/pmd/issues/4960
     public void collapsePackage() {
         while (getChildren().size() == 1) {
             var singleChild = getChildrenMap().values().iterator().next();
