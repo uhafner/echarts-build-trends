@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author Ullrich Hafner
  */
-@SuppressWarnings({"FieldCanBeLocal", "PMD.DataClass"})
+@SuppressWarnings("FieldCanBeLocal")
 public class LineSeries {
     private final String name;
     @SuppressFBWarnings("SS_SHOULD_BE_STATIC")
