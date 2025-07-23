@@ -6,9 +6,9 @@ skinparam rectangle {
   BackgroundColor<<runtime>> lightBlue
   BackgroundColor<<provided>> lightGray
 }
-rectangle "jackson-databind\n\n2.19.1" as com_fasterxml_jackson_core_jackson_databind_jar
-rectangle "jackson-annotations\n\n2.19.1" as com_fasterxml_jackson_core_jackson_annotations_jar
-rectangle "jackson-core\n\n2.19.1" as com_fasterxml_jackson_core_jackson_core_jar
+rectangle "jackson-databind\n\n2.19.2" as com_fasterxml_jackson_core_jackson_databind_jar
+rectangle "jackson-annotations\n\n2.19.2" as com_fasterxml_jackson_core_jackson_annotations_jar
+rectangle "jackson-core\n\n2.19.2" as com_fasterxml_jackson_core_jackson_core_jar
 rectangle "echarts-build-trends\n\n5.2.0-SNAPSHOT" as edu_hm_hafner_echarts_build_trends_jar
 rectangle "codingstyle\n\n5.14.0" as edu_hm_hafner_codingstyle_jar
 rectangle "spotbugs-annotations\n\n4.9.3" as com_github_spotbugs_spotbugs_annotations_jar
