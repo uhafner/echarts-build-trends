@@ -50,7 +50,7 @@
     <module.name>${project.groupId}.echarts.build.trends</module.name>
 
     <!-- Project Dependencies Configuration -->
-    <jackson-databind.version>2.19.1</jackson-databind.version>
+    <jackson-databind.version>2.19.2</jackson-databind.version>
     <json-unit-assertj.version>4.1.1</json-unit-assertj.version>
 
   </properties>
