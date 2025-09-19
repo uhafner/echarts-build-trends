@@ -15,6 +15,7 @@ import java.time.temporal.Temporal;
  */
 @SuppressWarnings("checkstyle:FinalClass")
 public final class TimeFacade {
+    @SuppressWarnings("NonFinalStaticField")
     private static TimeFacade instance = new TimeFacade();
 
     public static TimeFacade getInstance() {
