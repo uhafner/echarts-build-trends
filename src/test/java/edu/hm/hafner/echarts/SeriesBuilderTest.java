@@ -203,6 +203,7 @@ class SeriesBuilderTest {
     /**
      * Dumb test implementation returning integers starting with 1 to n as series, three at a time.
      */
+    @SuppressWarnings("PMD.AssignmentInOperand")
     private static class TestSeriesBuilder extends SeriesBuilder<Object> {
         private int count;
 
