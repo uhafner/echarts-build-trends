@@ -51,7 +51,7 @@
 
     <!-- Project Dependencies Configuration -->
     <jackson-databind.version>2.20.1</jackson-databind.version>
-    <json-unit-assertj.version>5.0.0</json-unit-assertj.version>
+    <json-unit-assertj.version>5.1.0</json-unit-assertj.version>
 
   </properties>
 
