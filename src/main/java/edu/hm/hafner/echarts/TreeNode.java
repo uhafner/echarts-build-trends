@@ -1,7 +1,9 @@
 package edu.hm.hafner.echarts;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import edu.hm.hafner.util.Generated;
 
 import java.util.ArrayDeque;
@@ -18,11 +20,12 @@ import java.util.Objects;
  *
  * @author Andreas Pabst
  */
+@JsonPropertyOrder({"name", "value", "children"})
 public class TreeNode {
     private String name;
     private double value;
 
-    @JsonIgnore
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
     private Map<String, TreeNode> childrenMap = new HashMap<>();
 
     /**

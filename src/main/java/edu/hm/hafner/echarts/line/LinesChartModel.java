@@ -4,6 +4,8 @@ import edu.hm.hafner.echarts.JacksonFacade;
 import edu.hm.hafner.util.Generated;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,6 +21,8 @@ import java.util.stream.DoubleStream;
  *
  * @author Ullrich Hafner
  */
+@JsonPropertyOrder({"domainAxisLabels", "buildNumbers", "series", "domainAxisItemName", "integerRangeAxis", "rangeMax",
+        "rangeMin"})
 public class LinesChartModel {
     private final List<String> domainAxisLabels = new ArrayList<>();
     private final List<Integer> buildNumbers = new ArrayList<>();
