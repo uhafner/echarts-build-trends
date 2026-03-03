@@ -4,7 +4,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
 import edu.hm.hafner.echarts.AreaStyle;
-import edu.hm.hafner.echarts.JacksonFacade;
 import edu.hm.hafner.echarts.line.LineSeries.FilledMode;
 import edu.hm.hafner.echarts.line.LineSeries.StackedMode;
 
@@ -72,6 +71,6 @@ class LineSeriesTest {
     }
 
     private String createLineSeries(final StackedMode stacked, final FilledMode lines) {
-        return new JacksonFacade().toJson(new LineSeries(SEVERITY, COLOR, stacked, lines));
+        return new LineSeries(SEVERITY, COLOR, stacked, lines).toString();
     }
 }

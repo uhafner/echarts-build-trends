@@ -1,23 +1,28 @@
 package edu.hm.hafner.echarts;
 
+import edu.umd.cs.findbugs.annotations.CheckForNull;
+
+import tools.jackson.core.JacksonException;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.node.ObjectNode;
-
-import edu.umd.cs.findbugs.annotations.CheckForNull;
-import tools.jackson.core.JacksonException;
 
 /**
  * Facade for Jackson that does wrap an exception into a {@link RuntimeException}.
  *
  * @author Ullrich Hafner
+ * @deprecated since 5.1.0, because Jackson now uses {@link RuntimeException}s in its API by default
  */
+@Deprecated(since = "5.1.0", forRemoval = true)
 public class JacksonFacade {
     private final ObjectMapper mapper;
 
     /**
      * Creates a new instance of {@link JacksonFacade}.
+     *
+     * @deprecated since 5.1.0, because Jackson now uses {@link RuntimeException}s in its API by default
      */
+    @Deprecated(since = "5.1.0", forRemoval = true)
     public JacksonFacade() {
         mapper = new ObjectMapper();
     }

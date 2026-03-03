@@ -3,6 +3,7 @@ package edu.hm.hafner.echarts;
 import edu.hm.hafner.util.Generated;
 
 import java.util.Objects;
+import tools.jackson.databind.ObjectMapper;
 
 /**
  * UI model for an ECharts pie chart.
@@ -55,8 +56,8 @@ public class PieData {
         return Objects.hash(value, name);
     }
 
-    @Override @Generated
+    @Override
     public String toString() {
-        return "%s->%d".formatted(name, value);
+        return new ObjectMapper().writeValueAsString(this);
     }
 }

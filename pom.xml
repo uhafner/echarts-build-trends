@@ -84,6 +84,7 @@
           </packages>
           <excludes combine.children="append">
             <exclude>.*BuildResult</exclude>
+            <exclude>.*JacksonFacade</exclude>
           </excludes>
           <entryPointClassPackage>edu.hm.hafner.echarts.assertions</entryPointClassPackage>
         </configuration>

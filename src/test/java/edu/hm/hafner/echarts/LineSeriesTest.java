@@ -70,6 +70,6 @@ class LineSeriesTest {
     }
 
     private String createLineSeries(final StackedMode stacked, final FilledMode lines) {
-        return new JacksonFacade().toJson(new LineSeries(SEVERITY, COLOR, stacked, lines));
+        return new LineSeries(SEVERITY, COLOR, stacked, lines).toString();
     }
 }
