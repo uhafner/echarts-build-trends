@@ -1,26 +1,30 @@
 package edu.hm.hafner.echarts;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import edu.umd.cs.findbugs.annotations.CheckForNull;
+
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.node.ObjectNode;
 
 /**
  * Facade for Jackson that does wrap an exception into a {@link RuntimeException}.
  *
  * @author Ullrich Hafner
+ * @deprecated since 5.1.0, because Jackson now uses {@link RuntimeException}s in its API by default
  */
+@Deprecated(since = "5.1.0", forRemoval = true)
 public class JacksonFacade {
     private final ObjectMapper mapper;
 
     /**
      * Creates a new instance of {@link JacksonFacade}.
+     *
+     * @deprecated since 5.1.0, because Jackson now uses {@link RuntimeException}s in its API by default
      */
+    @Deprecated(since = "5.1.0", forRemoval = true)
     public JacksonFacade() {
-        mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        mapper = new ObjectMapper();
     }
 
     /**
@@ -35,7 +39,7 @@ public class JacksonFacade {
         try {
             return mapper.writeValueAsString(bean);
         }
-        catch (JsonProcessingException exception) {
+        catch (JacksonException exception) {
             throw new IllegalArgumentException(
                     "Can't convert %s to JSON object".formatted(bean), exception);
         }
@@ -57,7 +61,7 @@ public class JacksonFacade {
         try {
             return mapper.readValue(json, type);
         }
-        catch (JsonProcessingException exception) {
+        catch (JacksonException exception) {
             throw new IllegalArgumentException(
                     "Can't convert JSON '%s' to bean".formatted(json), exception);
         }
@@ -79,10 +83,10 @@ public class JacksonFacade {
         try {
             var typeNode = getPropertyAsNode(json, property);
             if (typeNode != null) {
-                return typeNode.asText(defaultValue);
+                return typeNode.asString(defaultValue);
             }
         }
-        catch (JsonProcessingException exception) {
+        catch (JacksonException exception) {
             // ignore
         }
 
@@ -108,7 +112,7 @@ public class JacksonFacade {
                 return typeNode.asInt(defaultValue);
             }
         }
-        catch (JsonProcessingException exception) {
+        catch (JacksonException exception) {
             // ignore
         }
 
@@ -117,7 +121,7 @@ public class JacksonFacade {
 
     @CheckForNull
     private JsonNode getPropertyAsNode(final String json, final String property)
-            throws JsonProcessingException {
+            throws JacksonException {
         var node = mapper.readValue(json, ObjectNode.class);
         return node.get(property);
     }
@@ -141,7 +145,7 @@ public class JacksonFacade {
                 return typeNode.asBoolean(defaultValue);
             }
         }
-        catch (JsonProcessingException exception) {
+        catch (JacksonException exception) {
             // ignore
         }
 

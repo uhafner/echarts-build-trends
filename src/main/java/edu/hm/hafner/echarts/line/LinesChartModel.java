@@ -1,6 +1,7 @@
 package edu.hm.hafner.echarts.line;
 
-import edu.hm.hafner.echarts.JacksonFacade;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import edu.hm.hafner.util.Generated;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.DoubleStream;
+import tools.jackson.databind.ObjectMapper;
 
 /**
  * UI model for an ECharts line chart. Simple data bean that will be converted to JSON. On the client side, the
@@ -19,6 +21,8 @@ import java.util.stream.DoubleStream;
  *
  * @author Ullrich Hafner
  */
+@JsonPropertyOrder({"domainAxisLabels", "buildNumbers", "series", "domainAxisItemName", "integerRangeAxis", "rangeMax",
+        "rangeMin"})
 public class LinesChartModel {
     private final List<String> domainAxisLabels = new ArrayList<>();
     private final List<Integer> buildNumbers = new ArrayList<>();
@@ -201,6 +205,6 @@ public class LinesChartModel {
     @Override
     @Generated
     public String toString() {
-        return new JacksonFacade().toJson(this);
+        return new ObjectMapper().writeValueAsString(this);
     }
 }

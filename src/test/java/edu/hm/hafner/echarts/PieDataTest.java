@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import tools.jackson.databind.ObjectMapper;
 
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.*;
 
@@ -21,7 +22,7 @@ class PieDataTest {
         models.add(first);
         models.add(second);
 
-        assertThatJson(new JacksonFacade().toJson(models)).isArray().hasSize(2)
+        assertThatJson(new ObjectMapper().writeValueAsString(models)).isArray().hasSize(2)
                 .contains(first)
                 .contains(second);
     }

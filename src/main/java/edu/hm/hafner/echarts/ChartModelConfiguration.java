@@ -1,5 +1,9 @@
 package edu.hm.hafner.echarts;
 
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.node.ObjectNode;
+
 /**
  * Configures the model of a trend chart.
  *
@@ -13,7 +17,6 @@ public class ChartModelConfiguration {
     private static final String NUMBER_OF_BUILDS_PROPERTY = "numberOfBuilds";
     private static final String NUMBER_OF_DAYS_PROPERTY = "numberOfDays";
     private static final String BUILD_AS_DOMAIN_PROPERTY = "buildAsDomain";
-    private static final JacksonFacade JACKSON = new JacksonFacade();
 
     private final AxisType axisType;
 
@@ -62,10 +65,22 @@ public class ChartModelConfiguration {
      * @return the created configuration instance
      */
     public static ChartModelConfiguration fromJson(final String json) {
-        return new ChartModelConfiguration(
-                JACKSON.getBoolean(json, BUILD_AS_DOMAIN_PROPERTY, true) ? AxisType.BUILD : AxisType.DATE,
-                JACKSON.getInteger(json, NUMBER_OF_BUILDS_PROPERTY, DEFAULT_BUILD_COUNT),
-                JACKSON.getInteger(json, NUMBER_OF_DAYS_PROPERTY, DEFAULT_DAY_COUNT));
+        try {
+            var objectNode = new ObjectMapper().readValue(json, ObjectNode.class);
+            var axisType = objectNode.optional(BUILD_AS_DOMAIN_PROPERTY)
+                    .map(value -> value.asBoolean(true))
+                    .orElse(true) ? AxisType.BUILD : AxisType.DATE;
+            var buildCount = objectNode.optional(NUMBER_OF_BUILDS_PROPERTY)
+                    .map(value -> value.asInt(DEFAULT_BUILD_COUNT))
+                    .orElse(DEFAULT_BUILD_COUNT);
+            var dayCount = objectNode.optional(NUMBER_OF_DAYS_PROPERTY)
+                    .map(value -> value.asInt(DEFAULT_DAY_COUNT))
+                    .orElse(DEFAULT_DAY_COUNT);
+            return new ChartModelConfiguration(axisType, buildCount, dayCount);
+        }
+        catch (JacksonException exception) {
+            return new ChartModelConfiguration();
+        }
     }
 
     /**

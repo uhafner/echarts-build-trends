@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 import nl.jqno.equalsverifier.EqualsVerifier;
+import tools.jackson.databind.ObjectMapper;
 
 import static edu.hm.hafner.echarts.assertions.Assertions.*;
 
@@ -115,13 +116,12 @@ class TreeNodeTest {
      */
     @Test
     void shouldContainRelevantInformationInJson() {
-        var facade = new JacksonFacade();
         var root = new TreeNode("");
         root.insertNode(new TreeNode("com.example.Bar", 5.0));
         root.insertNode(new TreeNode("com.example.package.Foo", 2.0));
         root.collapsePackage();
 
-        assertThat(facade.toJson(root)).isEqualTo("{\"name\":\"com.example\",\"value\":7.0,\"children\":["
+        assertThat(new ObjectMapper().writeValueAsString(root)).isEqualTo("{\"name\":\"com.example\",\"value\":7.0,\"children\":["
                 + "{\"name\":\"Bar\",\"value\":5.0,\"children\":[]},"
                 + "{\"name\":\"package\",\"value\":2.0,\"children\":["
                 + "{\"name\":\"Foo\",\"value\":2.0,\"children\":[]}"

@@ -7,6 +7,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import java.util.ArrayList;
 import java.util.List;
+import tools.jackson.databind.ObjectMapper;
 
 /**
  * UI model for an ECharts line chart series property. Simple data bean that will be converted to JSON.
@@ -104,6 +105,11 @@ public class LineSeries {
      */
     public void addAll(final List<Integer> values) {
         data.addAll(values);
+    }
+
+    @Override
+    public String toString() {
+        return new ObjectMapper().writeValueAsString(this);
     }
 
     /** Determines whether multiple lines of a chart will be stacked or shown as separate lines. */
