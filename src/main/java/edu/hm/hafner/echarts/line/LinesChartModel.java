@@ -21,8 +21,9 @@ import tools.jackson.databind.ObjectMapper;
  *
  * @author Ullrich Hafner
  */
-@JsonPropertyOrder({"domainAxisLabels", "buildNumbers", "series", "domainAxisItemName", "integerRangeAxis", "rangeMax",
-        "rangeMin"})
+@SuppressWarnings("PMD.DataClass")
+@JsonPropertyOrder({"domainAxisLabels", "buildNumbers", "series", "domainAxisItemName", "integerRangeAxis",
+        "zeroBasedYAxis", "rangeMax", "rangeMin"})
 public class LinesChartModel {
     private final List<String> domainAxisLabels = new ArrayList<>();
     private final List<Integer> buildNumbers = new ArrayList<>();
@@ -30,6 +31,7 @@ public class LinesChartModel {
 
     private String domainAxisItemName = "Build";
     private boolean integerRangeAxis = true;
+    private boolean zeroBasedYAxis = false;
 
     @CheckForNull
     private Double rangeMax;
@@ -83,6 +85,20 @@ public class LinesChartModel {
 
     public String getDomainAxisItemName() {
         return domainAxisItemName;
+    }
+
+    /**
+     * Sets whether the Y-axis should start at zero.
+     *
+     * @param zeroBasedYAxis
+     *         {@code true} if the Y-axis should start at zero, {@code false} otherwise
+     */
+    public void setZeroBasedYAxis(final boolean zeroBasedYAxis) {
+        this.zeroBasedYAxis = zeroBasedYAxis;
+    }
+
+    public boolean isZeroBasedYAxis() {
+        return zeroBasedYAxis;
     }
 
     /**
