@@ -33,6 +33,9 @@ class LinesChartModelTest {
         model.computeVisibleRange();
         assertThat(model.getRangeMax()).isZero();
         assertThat(model.getRangeMin()).isZero();
+
+        assertThat(model.isZeroBasedYAxis()).isFalse();
+        assertThat(model.isIntegerRangeAxis()).isTrue();
     }
 
     @Test
@@ -47,6 +50,12 @@ class LinesChartModelTest {
         model.setRangeMax(100);
         model.setRangeMin(1000);
         model.useContinuousRangeAxis();
+        model.setZeroBasedYAxis(true);
+
+        assertThat(model.getRangeMax()).isEqualTo(100);
+        assertThat(model.getRangeMin()).isEqualTo(1000);
+        assertThat(model.isIntegerRangeAxis()).isFalse();
+        assertThat(model.isZeroBasedYAxis()).isTrue();
     }
 
     @Test
