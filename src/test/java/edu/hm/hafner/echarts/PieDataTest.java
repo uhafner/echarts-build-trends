@@ -1,12 +1,11 @@
 package edu.hm.hafner.echarts;
 
-import org.junit.jupiter.api.Test;
+import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.Test;
 import tools.jackson.databind.ObjectMapper;
-
-import static net.javacrumbs.jsonunit.assertj.JsonAssertions.*;
 
 /**
  * Tests the class {@link PieData}.
@@ -22,7 +21,9 @@ class PieDataTest {
         models.add(first);
         models.add(second);
 
-        assertThatJson(new ObjectMapper().writeValueAsString(models)).isArray().hasSize(2)
+        assertThatJson(new ObjectMapper().writeValueAsString(models))
+                .isArray()
+                .hasSize(2)
                 .contains(first)
                 .contains(second);
     }

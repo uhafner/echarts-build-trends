@@ -1,6 +1,4 @@
-/**
- * Provides server side logic and JSON models for the ECharts JS library.
- */
+/** Provides server side logic and JSON models for the ECharts JS library. */
 @DefaultAnnotation(NonNull.class)
 package edu.hm.hafner.echarts;
 

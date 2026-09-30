@@ -1,7 +1,6 @@
 package edu.hm.hafner.echarts;
 
 import edu.umd.cs.findbugs.annotations.CheckForNull;
-
 import tools.jackson.core.JacksonException;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.ObjectMapper;
@@ -30,53 +29,39 @@ public class JacksonFacade {
     /**
      * Creates a JSON representation of the specified bean using Jackson data binding.
      *
-     * @param bean
-     *         the bean to convert
-     *
+     * @param bean the bean to convert
      * @return the JSON representation (as a String)
      */
     public String toJson(final Object bean) {
         try {
             return mapper.writeValueAsString(bean);
-        }
-        catch (JacksonException exception) {
-            throw new IllegalArgumentException(
-                    "Can't convert %s to JSON object".formatted(bean), exception);
+        } catch (JacksonException exception) {
+            throw new IllegalArgumentException("Can't convert %s to JSON object".formatted(bean), exception);
         }
     }
 
     /**
      * Creates a bean from the specified JSON string.
      *
-     * @param json
-     *         the bean properties given as JSON string
-     * @param type
-     *         the type of the bean
-     * @param <T>
-     *         type of the bean
-     *
+     * @param json the bean properties given as JSON string
+     * @param type the type of the bean
+     * @param <T> type of the bean
      * @return the JSON representation (as a String)
      */
     public <T> T fromJson(final String json, final Class<T> type) {
         try {
             return mapper.readValue(json, type);
-        }
-        catch (JacksonException exception) {
-            throw new IllegalArgumentException(
-                    "Can't convert JSON '%s' to bean".formatted(json), exception);
+        } catch (JacksonException exception) {
+            throw new IllegalArgumentException("Can't convert JSON '%s' to bean".formatted(json), exception);
         }
     }
 
     /**
      * Returns the text value of the specified JSON property.
      *
-     * @param json
-     *         the JSON object to extract the property value from
-     * @param property
-     *         the name of the property
-     * @param defaultValue
-     *         the default value if the property is undefined or invalid
-     *
+     * @param json the JSON object to extract the property value from
+     * @param property the name of the property
+     * @param defaultValue the default value if the property is undefined or invalid
      * @return the value of the property
      */
     public String getString(final String json, final String property, final String defaultValue) {
@@ -85,8 +70,7 @@ public class JacksonFacade {
             if (typeNode != null) {
                 return typeNode.asString(defaultValue);
             }
-        }
-        catch (JacksonException exception) {
+        } catch (JacksonException exception) {
             // ignore
         }
 
@@ -96,13 +80,9 @@ public class JacksonFacade {
     /**
      * Returns the text value of the specified JSON property.
      *
-     * @param json
-     *         the JSON object to extract the property value from
-     * @param property
-     *         the name of the property
-     * @param defaultValue
-     *         the default value if the property is undefined or invalid
-     *
+     * @param json the JSON object to extract the property value from
+     * @param property the name of the property
+     * @param defaultValue the default value if the property is undefined or invalid
      * @return the value of the property
      */
     public int getInteger(final String json, final String property, final int defaultValue) {
@@ -111,8 +91,7 @@ public class JacksonFacade {
             if (typeNode != null) {
                 return typeNode.asInt(defaultValue);
             }
-        }
-        catch (JacksonException exception) {
+        } catch (JacksonException exception) {
             // ignore
         }
 
@@ -120,8 +99,7 @@ public class JacksonFacade {
     }
 
     @CheckForNull
-    private JsonNode getPropertyAsNode(final String json, final String property)
-            throws JacksonException {
+    private JsonNode getPropertyAsNode(final String json, final String property) throws JacksonException {
         var node = mapper.readValue(json, ObjectNode.class);
         return node.get(property);
     }
@@ -129,13 +107,9 @@ public class JacksonFacade {
     /**
      * Returns the boolean value of the specified JSON property.
      *
-     * @param json
-     *         the JSON object to extract the property value from
-     * @param property
-     *         the name of the property
-     * @param defaultValue
-     *         the default value if the property is undefined or invalid
-     *
+     * @param json the JSON object to extract the property value from
+     * @param property the name of the property
+     * @param defaultValue the default value if the property is undefined or invalid
      * @return the value of the property
      */
     public boolean getBoolean(final String json, final String property, final boolean defaultValue) {
@@ -144,8 +118,7 @@ public class JacksonFacade {
             if (typeNode != null) {
                 return typeNode.asBoolean(defaultValue);
             }
-        }
-        catch (JacksonException exception) {
+        } catch (JacksonException exception) {
             // ignore
         }
 

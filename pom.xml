@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
@@ -7,7 +6,7 @@
   <parent>
     <groupId>edu.hm.hafner</groupId>
     <artifactId>codingstyle-pom</artifactId>
-    <version>6.18.0</version>
+    <version>7.1.0</version>
     <relativePath />
   </parent>
 
@@ -31,8 +30,8 @@
 
   <developers>
     <developer>
-      <name>Ullrich Hafner</name>
       <id>uhafner</id>
+      <name>Ullrich Hafner</name>
       <email>ullrich.hafner@hm.edu</email>
       <organization>Munich University of Applied Sciences</organization>
       <organizationUrl>https://www.hm.edu/en/index.en.html</organizationUrl>
@@ -42,8 +41,8 @@
   <scm>
     <connection>scm:git:https://github.com/uhafner/echarts-build-trends.git</connection>
     <developerConnection>scm:git:git@github.com:uhafner/echarts-build-trends.git</developerConnection>
-    <url>https://github.com/uhafner/echarts-build-trends</url>
     <tag>HEAD</tag>
+    <url>https://github.com/uhafner/echarts-build-trends</url>
   </scm>
 
   <properties>

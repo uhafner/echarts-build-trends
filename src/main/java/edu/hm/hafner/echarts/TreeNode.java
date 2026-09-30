@@ -3,7 +3,6 @@ package edu.hm.hafner.echarts;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import edu.hm.hafner.util.Generated;
-
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,8 +28,7 @@ public class TreeNode {
     /**
      * Create a new {@link TreeNode} with value 0.0.
      *
-     * @param name
-     *         the name of the node
+     * @param name the name of the node
      */
     public TreeNode(final String name) {
         this(name, 0.0);
@@ -39,10 +37,8 @@ public class TreeNode {
     /**
      * Create a new {@link TreeNode}.
      *
-     * @param name
-     *         the name of the node
-     * @param value
-     *         the value of the node
+     * @param name the name of the node
+     * @param value the value of the node
      */
     public TreeNode(final String name, final double value) {
         this.value = value;
@@ -60,8 +56,7 @@ public class TreeNode {
     /**
      * Add to the current value of this node.
      *
-     * @param amount
-     *         the amount to add
+     * @param amount the amount to add
      */
     private void addValue(final double amount) {
         this.value += amount;
@@ -94,8 +89,7 @@ public class TreeNode {
             var singleChild = getChildrenMap().values().iterator().next();
             if (name.isEmpty()) {
                 setName(singleChild.getName());
-            }
-            else {
+            } else {
                 setName(name + "." + singleChild.getName());
             }
             childrenMap = singleChild.getChildrenMap();
@@ -105,11 +99,11 @@ public class TreeNode {
     /**
      * Insert a node in the tree.
      *
-     * @param node
-     *         the node to insert
+     * @param node the node to insert
      */
     public void insertNode(final TreeNode node) {
-        Deque<String> packageLevels = new ArrayDeque<>(Arrays.asList(node.getName().split("\\.")));
+        Deque<String> packageLevels =
+                new ArrayDeque<>(Arrays.asList(node.getName().split("\\.")));
         insertNode(node, packageLevels);
     }
 
@@ -120,8 +114,7 @@ public class TreeNode {
         if (levels.isEmpty()) {
             node.setName(nextLevelName);
             childrenMap.put(nextLevelName, node);
-        }
-        else {
+        } else {
             updateChildren(node, levels, nextLevelName);
         }
     }

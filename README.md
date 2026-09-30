@@ -8,7 +8,7 @@
 [![Warnings](https://raw.githubusercontent.com/uhafner/echarts-build-trends/main/badges/warnings.svg)](https://github.com/uhafner/echarts-build-trends/actions/workflows/ci.yml)
 
 Provides a Java API to render build trend charts with [ECharts](https://echarts.apache.org/en/index.html).
-This API can be used in standalone web applications that show build trend charts. See the 
+This API can be used in standalone web applications that show build trend charts. See the
 Jenkins [Warnings Next Generation Plugin](https://github.com/jenkinsci/warnings-ng-plugin) to see on how to use this API
-in practice. 
- 
+in practice.
+

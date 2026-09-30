@@ -29,9 +29,7 @@ public enum Palette {
     /**
      * Returns the color at the specified index.
      *
-     * @param index
-     *         the index to use
-     *
+     * @param index the index to use
      * @return the color at the index
      */
     public static Palette color(final int index) {

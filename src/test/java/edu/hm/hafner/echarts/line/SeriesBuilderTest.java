@@ -1,11 +1,12 @@
 package edu.hm.hafner.echarts.line;
 
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import static java.util.Arrays.asList;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
-
 import edu.hm.hafner.echarts.Build;
 import edu.hm.hafner.echarts.BuildResult;
 import edu.hm.hafner.echarts.ChartModelConfiguration;
@@ -14,7 +15,6 @@ import edu.hm.hafner.echarts.ResultTime;
 import edu.hm.hafner.echarts.TimeFacade;
 import edu.hm.hafner.util.VisibleForTesting;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
-
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -22,15 +22,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
-
-import static java.util.Arrays.*;
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 /**
- * Tests the class {@link SeriesBuilder} using the dumb implementation {@link TestSeriesBuilder} for testing purposes to not depend on any
- * concrete implementations.
+ * Tests the class {@link SeriesBuilder} using the dumb implementation {@link TestSeriesBuilder} for testing purposes to
+ * not depend on any concrete implementations.
  *
  * @author Florian Pirchmoser
  */
@@ -67,7 +65,6 @@ class SeriesBuilderTest {
                         .setRuns(RUN_SAME_DAY, RUN_DAY)
                         .setExpected(FIRST_SERIES)
                         .build(),
-
                 new TestArgumentsBuilder()
                         .setTestName("build count 1, 2 runs")
                         .setTime(resultTime(false))
@@ -75,7 +72,6 @@ class SeriesBuilderTest {
                         .setRuns(RUN_SAME_DAY, RUN_DAY)
                         .setExpected(FIRST_SERIES)
                         .build(),
-
                 new TestArgumentsBuilder()
                         .setTestName("build count 2, 0 runs")
                         .setTime(resultTime(false))
@@ -83,7 +79,6 @@ class SeriesBuilderTest {
                         .setRuns()
                         .setExpected()
                         .build(),
-
                 new TestArgumentsBuilder()
                         .setTestName("build count 2, 1 run")
                         .setTime(resultTime(false))
@@ -91,7 +86,6 @@ class SeriesBuilderTest {
                         .setRuns(RUN_DAY)
                         .setExpected(FIRST_SERIES)
                         .build(),
-
                 new TestArgumentsBuilder()
                         .setTestName("build count 2, 2 runs")
                         .setTime(resultTime(false))
@@ -99,7 +93,6 @@ class SeriesBuilderTest {
                         .setRuns(RUN_DAY, RUN_NEXT_DAY)
                         .setExpected(FIRST_SERIES, SECOND_SERIES)
                         .build(),
-
                 new TestArgumentsBuilder()
                         .setTestName("build date, never too old, 0 runs")
                         .setTime(resultTime(false))
@@ -107,7 +100,6 @@ class SeriesBuilderTest {
                         .setRuns()
                         .setExpected()
                         .build(),
-
                 new TestArgumentsBuilder()
                         .setTestName("build date, never too old, 1 runs")
                         .setTime(resultTime(false))
@@ -115,7 +107,6 @@ class SeriesBuilderTest {
                         .setRuns(RUN_DAY)
                         .setExpected(FIRST_SERIES)
                         .build(),
-
                 new TestArgumentsBuilder()
                         .setTestName("build date, never too old, 2 runs")
                         .setTime(resultTime(false))
@@ -123,7 +114,6 @@ class SeriesBuilderTest {
                         .setRuns(RUN_PREVIOUS_DAY, RUN_DAY)
                         .setExpected(FIRST_SERIES, SECOND_SERIES)
                         .build(),
-
                 new TestArgumentsBuilder()
                         .setTestName("build date, always true, 2 runs")
                         .setTime(resultTime(true))
@@ -131,7 +121,6 @@ class SeriesBuilderTest {
                         .setRuns(RUN_PREVIOUS_DAY, RUN_DAY)
                         .setExpected()
                         .build(),
-
                 new TestArgumentsBuilder()
                         .setTestName("build date, first too old, 2 runs")
                         .setTime(resultTime(false, true))
@@ -139,22 +128,23 @@ class SeriesBuilderTest {
                         .setRuns(RUN_PREVIOUS_DAY, RUN_DAY)
                         .setExpected(FIRST_SERIES)
                         .build(),
-
                 new TestArgumentsBuilder()
                         .setTestName("build date, never too old, average same days")
                         .setTime(resultTime(false))
                         .setConfig(CONFIG_BUILD_DATE)
                         .setRuns(RUN_PREVIOUS_DAY, RUN_DAY, RUN_SAME_DAY, RUN_NEXT_DAY)
                         .setExpected(FIRST_SERIES, AVERAGE_SECOND_AND_THIRD_SERIES, FORTH_SERIES)
-                        .build()
-        );
+                        .build());
     }
 
     @ParameterizedTest(name = "{0}")
     @MethodSource("createDataSetData")
-    void shouldCreateDataSet(@SuppressWarnings("unused") final String testName,
-            final ResultTime time, final ChartModelConfiguration config,
-            final Iterable<? extends BuildResult<Object>> runs, final List<List<Double>> expected) {
+    void shouldCreateDataSet(
+            @SuppressWarnings("unused") final String testName,
+            final ResultTime time,
+            final ChartModelConfiguration config,
+            final Iterable<? extends BuildResult<Object>> runs,
+            final List<List<Double>> expected) {
         TimeFacade.reset();
         SeriesBuilder<Object> seriesBuilder = new TestSeriesBuilder(time);
 
@@ -162,8 +152,7 @@ class SeriesBuilderTest {
 
         if (expected.isEmpty()) {
             assertThat(result.getDataSetIds()).isEmpty();
-        }
-        else {
+        } else {
             assertThat(result.getSeries(FIRST_KEY)).isEqualTo(expected.get(0));
             assertThat(result.getSeries(SECOND_KEY)).isEqualTo(expected.get(1));
             assertThat(result.getSeries(THIRD_KEY)).isEqualTo(expected.get(2));
@@ -188,8 +177,8 @@ class SeriesBuilderTest {
     }
 
     private static BuildResult<?> createRun(final int buildNumber, final LocalDateTime buildTime) {
-        var build = new Build(buildNumber, "#%s".formatted(buildNumber),
-                (int) buildTime.atZone(ZoneId.systemDefault()).toInstant().getEpochSecond());
+        var build = new Build(buildNumber, "#%s".formatted(buildNumber), (int)
+                buildTime.atZone(ZoneId.systemDefault()).toInstant().getEpochSecond());
 
         return new BuildResult<>(build, DAY);
     }
@@ -205,9 +194,7 @@ class SeriesBuilderTest {
         return asList(values);
     }
 
-    /**
-     * Dumb test implementation returning integers starting with 1 to n as series, three at a time.
-     */
+    /** Dumb test implementation returning integers starting with 1 to n as series, three at a time. */
     @SuppressWarnings("PMD.AssignmentInOperand")
     private static class TestSeriesBuilder extends SeriesBuilder<Object> {
         private int count;
@@ -227,18 +214,20 @@ class SeriesBuilderTest {
         }
     }
 
-    /**
-     * Helps to build arguments to parameterized test.
-     */
+    /** Helps to build arguments to parameterized test. */
     private static class TestArgumentsBuilder {
         @CheckForNull
         private String testName;
+
         @CheckForNull
         private ChartModelConfiguration config;
+
         @CheckForNull
         private List<BuildResult<?>> runs;
+
         @CheckForNull
         private List<List<Double>> series;
+
         @CheckForNull
         private ResultTime time;
 
@@ -252,9 +241,7 @@ class SeriesBuilderTest {
         /**
          * Set the name displayed as test name.
          *
-         * @param name
-         *         of the test
-         *
+         * @param name of the test
          * @return this
          */
         @CanIgnoreReturnValue
@@ -267,9 +254,7 @@ class SeriesBuilderTest {
         /**
          * Set the result time used in test.
          *
-         * @param time
-         *         used in test.
-         *
+         * @param time used in test.
          * @return this
          */
         @CanIgnoreReturnValue
@@ -282,9 +267,7 @@ class SeriesBuilderTest {
         /**
          * Set the analysis runs used in test.
          *
-         * @param runs
-         *         used in test, defaults to empty list
-         *
+         * @param runs used in test, defaults to empty list
          * @return this
          */
         @CanIgnoreReturnValue
@@ -297,9 +280,7 @@ class SeriesBuilderTest {
         /**
          * Set the tests expectations.
          *
-         * @param expectedSeries
-         *         to use in test, defaults to empty list
-         *
+         * @param expectedSeries to use in test, defaults to empty list
          * @return this
          */
         @SafeVarargs
@@ -335,13 +316,7 @@ class SeriesBuilderTest {
          * @return test arg
          */
         Arguments build() {
-            return Arguments.of(
-                    testName,
-                    time,
-                    config,
-                    runs,
-                    series
-            );
+            return Arguments.of(testName, time, config, runs, series);
         }
     }
 }

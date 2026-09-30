@@ -14,11 +14,8 @@ public class ResultTime {
     /**
      * Returns whether the specified build result is too old to be considered for the trend graph.
      *
-     * @param configuration
-     *         configuration of the model
-     * @param analysisRun
-     *         the results of a analysis run
-     *
+     * @param configuration configuration of the model
+     * @param analysisRun the results of a analysis run
      * @return {@code true} if the build is too old
      */
     public boolean isResultTooOld(final ChartModelConfiguration configuration, final BuildResult<?> analysisRun) {
@@ -27,10 +24,13 @@ public class ResultTime {
 
     private long computeDayDelta(final BuildResult<?> result) {
         return Math.abs(ChronoUnit.DAYS.between(
-                toLocalDate(result.getBuild().getBuildTime()), TimeFacade.getInstance().getToday()));
+                toLocalDate(result.getBuild().getBuildTime()),
+                TimeFacade.getInstance().getToday()));
     }
 
     private LocalDate toLocalDate(final long timeInSeconds) {
-        return Instant.ofEpochSecond(timeInSeconds).atZone(ZoneId.systemDefault()).toLocalDate();
+        return Instant.ofEpochSecond(timeInSeconds)
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
     }
 }

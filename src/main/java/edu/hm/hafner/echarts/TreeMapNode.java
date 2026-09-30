@@ -1,14 +1,12 @@
 package edu.hm.hafner.echarts;
 
-import org.apache.commons.lang3.ArrayUtils;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import org.apache.commons.lang3.ArrayUtils;
 
 /**
- * Node for constructing a tree structure of {@code double} values for a sunburst or treemap
- * ECharts diagram.
+ * Node for constructing a tree structure of {@code double} values for a sunburst or treemap ECharts diagram.
  *
  * @author Andreas Pabst
  * @author Ullrich Hafner
@@ -27,8 +25,7 @@ public class TreeMapNode {
     /**
      * Creates a new {@link TreeMapNode} with the value 0.0.
      *
-     * @param name
-     *         the name of the node
+     * @param name the name of the node
      */
     public TreeMapNode(final String name) {
         this(name, 0.0);
@@ -37,10 +34,8 @@ public class TreeMapNode {
     /**
      * Creates a new {@link TreeMapNode} with the given value.
      *
-     * @param name
-     *         the name of the node
-     * @param value
-     *         the value of the node
+     * @param name the name of the node
+     * @param value the value of the node
      */
     public TreeMapNode(final String name, final double value) {
         this(name, "-", value);
@@ -49,38 +44,38 @@ public class TreeMapNode {
     /**
      * Creates a new {@link TreeMapNode} with the given values.
      *
-     * @param name
-     *         the name of the node
-     * @param color
-     *         the color of the node
-     * @param value
-     *         the value of the node
-     * @param additionalValues
-     *         additional values of the node
+     * @param name the name of the node
+     * @param color the color of the node
+     * @param value the value of the node
+     * @param additionalValues additional values of the node
      */
     public TreeMapNode(final String name, final String color, final double value, final double... additionalValues) {
-        this(name, new ItemStyle(color), new Label(false, "#ffffff"),
-                new Label(false, "#ffffff"), value, additionalValues);
+        this(
+                name,
+                new ItemStyle(color),
+                new Label(false, "#ffffff"),
+                new Label(false, "#ffffff"),
+                value,
+                additionalValues);
     }
 
     /**
      * Creates a new {@link TreeMapNode} with the given values.
      *
-     * @param name
-     *         the name of the node
-     * @param itemStyle
-     *         the style of the node
-     * @param label
-     *         the label style of the node
-     * @param upperLabel
-     *         the label style of the node if it contains children
-     * @param value
-     *         the value of the node
-     * @param additionalValues
-     *         additional values of the node
+     * @param name the name of the node
+     * @param itemStyle the style of the node
+     * @param label the label style of the node
+     * @param upperLabel the label style of the node if it contains children
+     * @param value the value of the node
+     * @param additionalValues additional values of the node
      */
-    public TreeMapNode(final String name, final ItemStyle itemStyle, final Label label, final Label upperLabel,
-                       final double value, final double... additionalValues) {
+    public TreeMapNode(
+            final String name,
+            final ItemStyle itemStyle,
+            final Label label,
+            final Label upperLabel,
+            final double value,
+            final double... additionalValues) {
         this.itemStyle = itemStyle;
         this.label = label;
         this.upperLabel = upperLabel;
@@ -116,8 +111,7 @@ public class TreeMapNode {
     /**
      * Inserts the specified node in the tree.
      *
-     * @param node
-     *         the node to insert
+     * @param node the node to insert
      */
     public void insertNode(final TreeMapNode node) {
         children.add(node);

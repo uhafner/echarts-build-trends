@@ -1,10 +1,8 @@
 package edu.hm.hafner.echarts.line;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
 import edu.hm.hafner.util.Generated;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,15 +13,21 @@ import tools.jackson.databind.ObjectMapper;
  * UI model for an ECharts line chart. Simple data bean that will be converted to JSON. On the client side, the
  * properties need to be placed into the correct place in the {@code options} structure.
  *
- * <p>
- * This class will be automatically converted to a JSON object.
- * </p>
+ * <p>This class will be automatically converted to a JSON object.
  *
  * @author Ullrich Hafner
  */
 @SuppressWarnings("PMD.DataClass")
-@JsonPropertyOrder({"domainAxisLabels", "buildNumbers", "series", "domainAxisItemName", "integerRangeAxis",
-        "zeroBasedYAxis", "rangeMax", "rangeMin"})
+@JsonPropertyOrder({
+    "domainAxisLabels",
+    "buildNumbers",
+    "series",
+    "domainAxisItemName",
+    "integerRangeAxis",
+    "zeroBasedYAxis",
+    "rangeMax",
+    "rangeMin"
+})
 public class LinesChartModel {
     private final List<String> domainAxisLabels = new ArrayList<>();
     private final List<Integer> buildNumbers = new ArrayList<>();
@@ -35,14 +39,14 @@ public class LinesChartModel {
 
     @CheckForNull
     private Double rangeMax;
+
     @CheckForNull
     private Double rangeMin;
 
     /**
      * Creates a new {@link LinesChartModel}.
      *
-     * @param dataSet
-     *         the dataset to render
+     * @param dataSet the dataset to render
      */
     public LinesChartModel(final LinesDataSet dataSet) {
         this();
@@ -56,19 +60,15 @@ public class LinesChartModel {
     /**
      * Creates a new {@link LinesChartModel}.
      *
-     * @param labels
-     *         the X-axis labels of the model
-     * @param builds
-     *         the build numbers of the model
+     * @param labels the X-axis labels of the model
+     * @param builds the build numbers of the model
      */
     public LinesChartModel(final List<String> labels, final List<Integer> builds) {
         domainAxisLabels.addAll(labels);
         buildNumbers.addAll(builds);
     }
 
-    /**
-     * Creates a new {@link LinesChartModel}.
-     */
+    /** Creates a new {@link LinesChartModel}. */
     public LinesChartModel() {
         // nothing to do
     }
@@ -76,8 +76,7 @@ public class LinesChartModel {
     /**
      * Sets the name of the X-axis items. This name is used in the tooltip of the charts.
      *
-     * @param name
-     *         the name
+     * @param name the name
      */
     public void setDomainAxisItemName(final String name) {
         domainAxisItemName = name;
@@ -90,8 +89,7 @@ public class LinesChartModel {
     /**
      * Sets whether the Y-axis should start at zero.
      *
-     * @param zeroBasedYAxis
-     *         {@code true} if the Y-axis should start at zero, {@code false} otherwise
+     * @param zeroBasedYAxis {@code true} if the Y-axis should start at zero, {@code false} otherwise
      */
     public void setZeroBasedYAxis(final boolean zeroBasedYAxis) {
         this.zeroBasedYAxis = zeroBasedYAxis;
@@ -101,9 +99,7 @@ public class LinesChartModel {
         return zeroBasedYAxis;
     }
 
-    /**
-     * Sets the type of the range axis (Y-axis) to a continuous axis. Otherwise, an integer axis is used.
-     */
+    /** Sets the type of the range axis (Y-axis) to a continuous axis. Otherwise, an integer axis is used. */
     public void useContinuousRangeAxis() {
         integerRangeAxis = false;
     }
@@ -115,8 +111,7 @@ public class LinesChartModel {
     /**
      * Sets the maximum value of the range axis. By default, the maximum is automatically computed.
      *
-     * @param rangeMax
-     *         the maximum to use
+     * @param rangeMax the maximum to use
      */
     public void setRangeMax(final double rangeMax) {
         this.rangeMax = rangeMax;
@@ -130,8 +125,7 @@ public class LinesChartModel {
     /**
      * Sets the minimum value of the range axis. By default, the minimum is automatically computed.
      *
-     * @param rangeMin
-     *         the minimum to use
+     * @param rangeMin the minimum to use
      */
     public void setRangeMin(final double rangeMin) {
         this.rangeMin = rangeMin;
@@ -142,26 +136,20 @@ public class LinesChartModel {
         return rangeMin;
     }
 
-    /**
-     * Computes the range of the data points in this model. The range is computed only once.
-     */
+    /** Computes the range of the data points in this model. The range is computed only once. */
     public void computeVisibleRange() {
         rangeMax = streamValues().max().orElse(0);
         rangeMin = streamValues().min().orElse(0);
     }
 
     private DoubleStream streamValues() {
-        return series.stream()
-                .map(LineSeries::getData)
-                .flatMap(List::stream)
-                .mapToDouble(Number::doubleValue);
+        return series.stream().map(LineSeries::getData).flatMap(List::stream).mapToDouble(Number::doubleValue);
     }
 
     /**
      * Adds the specified domain axis (X-axis) labels to this model.
      *
-     * @param labels
-     *         the X-axis labels of the model
+     * @param labels the X-axis labels of the model
      */
     public void setDomainAxisLabels(final List<String> labels) {
         domainAxisLabels.addAll(labels);
@@ -170,8 +158,7 @@ public class LinesChartModel {
     /**
      * Adds the specified build numbers to this model.
      *
-     * @param builds
-     *         the build numbers of the model
+     * @param builds the build numbers of the model
      */
     public void setBuildNumbers(final List<Integer> builds) {
         buildNumbers.addAll(builds);
@@ -180,8 +167,7 @@ public class LinesChartModel {
     /**
      * Adds the series to this model.
      *
-     * @param lineSeries
-     *         the series of the model
+     * @param lineSeries the series of the model
      */
     void addSeries(final List<LineSeries> lineSeries) {
         series.addAll(lineSeries);
@@ -190,8 +176,7 @@ public class LinesChartModel {
     /**
      * Adds the series to this model.
      *
-     * @param lineSeries
-     *         the series of the model
+     * @param lineSeries the series of the model
      */
     public void addSeries(final LineSeries... lineSeries) {
         Collections.addAll(series, lineSeries);

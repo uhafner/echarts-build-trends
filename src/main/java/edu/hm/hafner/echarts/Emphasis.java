@@ -5,9 +5,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 /**
  * Emphasis: currently we only need this to disable the emphasis for line charts.
  *
- * <p>
- * This class will be automatically converted to a JSON object.
- * </p>
+ * <p>This class will be automatically converted to a JSON object.
  *
  * @author Ullrich Hafner
  */

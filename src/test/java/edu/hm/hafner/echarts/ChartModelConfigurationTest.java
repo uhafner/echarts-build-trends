@@ -1,10 +1,9 @@
 package edu.hm.hafner.echarts;
 
-import org.junit.jupiter.api.Test;
+import static edu.hm.hafner.echarts.assertions.Assertions.assertThat;
 
 import edu.hm.hafner.echarts.ChartModelConfiguration.AxisType;
-
-import static edu.hm.hafner.echarts.assertions.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests the class {@link ChartModelConfiguration}.
@@ -53,7 +52,8 @@ class ChartModelConfigurationTest {
         assertThat(dataDomainAxis).hasBuildCount(ChartModelConfiguration.DEFAULT_BUILD_COUNT);
         assertThat(dataDomainAxis).hasDayCount(ChartModelConfiguration.DEFAULT_DAY_COUNT);
 
-        ChartModelConfiguration brokenDomainAxis = ChartModelConfiguration.fromJson("{\"buildAsDomain\": \"undefined\"}");
+        ChartModelConfiguration brokenDomainAxis =
+                ChartModelConfiguration.fromJson("{\"buildAsDomain\": \"undefined\"}");
 
         assertThat(brokenDomainAxis).hasAxisType(ChartModelConfiguration.DEFAULT_DOMAIN_AXIS_TYPE);
         assertThat(brokenDomainAxis).hasBuildCount(ChartModelConfiguration.DEFAULT_BUILD_COUNT);
@@ -74,7 +74,8 @@ class ChartModelConfigurationTest {
         assertThat(dataDomainAxis).hasBuildCount(ChartModelConfiguration.DEFAULT_BUILD_COUNT);
         assertThat(dataDomainAxis).hasDayCount(ChartModelConfiguration.DEFAULT_DAY_COUNT);
 
-        ChartModelConfiguration brokenDomainAxis = ChartModelConfiguration.fromJson("{\"numberOfBuilds\": \"undefined\"}");
+        ChartModelConfiguration brokenDomainAxis =
+                ChartModelConfiguration.fromJson("{\"numberOfBuilds\": \"undefined\"}");
 
         assertThat(brokenDomainAxis).hasAxisType(ChartModelConfiguration.DEFAULT_DOMAIN_AXIS_TYPE);
         assertThat(brokenDomainAxis).hasBuildCount(ChartModelConfiguration.DEFAULT_BUILD_COUNT);
@@ -95,7 +96,8 @@ class ChartModelConfigurationTest {
         assertThat(dataDomainAxis).hasBuildCount(ChartModelConfiguration.DEFAULT_BUILD_COUNT);
         assertThat(dataDomainAxis).hasDayCount(ChartModelConfiguration.DEFAULT_DAY_COUNT);
 
-        ChartModelConfiguration brokenDomainAxis = ChartModelConfiguration.fromJson("{\"numberOfDays\": \"undefined\"}");
+        ChartModelConfiguration brokenDomainAxis =
+                ChartModelConfiguration.fromJson("{\"numberOfDays\": \"undefined\"}");
 
         assertThat(brokenDomainAxis).hasAxisType(ChartModelConfiguration.DEFAULT_DOMAIN_AXIS_TYPE);
         assertThat(brokenDomainAxis).hasBuildCount(ChartModelConfiguration.DEFAULT_BUILD_COUNT);

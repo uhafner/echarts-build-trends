@@ -3,9 +3,7 @@ package edu.hm.hafner.echarts;
 /**
  * Item style for a chart.
  *
- * <p>
- * This class will be automatically converted to a JSON object.
- * </p>
+ * <p>This class will be automatically converted to a JSON object.
  *
  * @author Ullrich Hafner
  */
@@ -17,8 +15,7 @@ public class ItemStyle {
     /**
      * Creates a new {@link ItemStyle} instance with the specified color.
      *
-     * @param color
-     *         the color to use
+     * @param color the color to use
      */
     public ItemStyle(final String color) {
         this(color, "#ffffff", 0);
@@ -27,12 +24,9 @@ public class ItemStyle {
     /**
      * Creates a new {@link ItemStyle} instance with the specified color and border.
      *
-     * @param color
-     *         the color to use
-     * @param borderColor
-     *         the border color to use
-     * @param borderWidth
-     *         the border width
+     * @param color the color to use
+     * @param borderColor the border color to use
+     * @param borderWidth the border width
      */
     public ItemStyle(final String color, final String borderColor, final int borderWidth) {
         this.color = color;

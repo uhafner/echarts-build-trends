@@ -3,9 +3,7 @@ package edu.hm.hafner.echarts;
 /**
  * Provides results of a build that should be rendered.
  *
- * @param <T>
- *         type of the result
- *
+ * @param <T> type of the result
  * @author Ullrich Hafner
  */
 public class BuildResult<T> {
@@ -15,10 +13,8 @@ public class BuildResult<T> {
     /**
      * Creates a new instance of {@link BuildResult}.
      *
-     * @param build
-     *         the build
-     * @param result
-     *         the result of the specified build
+     * @param build the build
+     * @param result the result of the specified build
      */
     public BuildResult(final Build build, final T result) {
         this.build = build;

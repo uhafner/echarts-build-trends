@@ -23,9 +23,7 @@ public class ChartModelConfiguration {
     private final int buildCount;
     private final int dayCount;
 
-    /**
-     * Creates a new chart configuration with the Jenkins build number as X-Axis.
-     */
+    /** Creates a new chart configuration with the Jenkins build number as X-Axis. */
     public ChartModelConfiguration() {
         this(DEFAULT_DOMAIN_AXIS_TYPE);
     }
@@ -33,8 +31,7 @@ public class ChartModelConfiguration {
     /**
      * Creates a new chart configuration with the specified X-Axis type.
      *
-     * @param axisType
-     *         the type of the X-Axis
+     * @param axisType the type of the X-Axis
      */
     public ChartModelConfiguration(final AxisType axisType) {
         this(axisType, DEFAULT_BUILD_COUNT, DEFAULT_DAY_COUNT);
@@ -43,12 +40,9 @@ public class ChartModelConfiguration {
     /**
      * Creates a new chart configuration with the specified X-Axis type.
      *
-     * @param axisType
-     *         the type of the X-Axis
-     * @param buildCount
-     *         the number of builds to consider
-     * @param dayCount
-     *         the number of days to consider
+     * @param axisType the type of the X-Axis
+     * @param buildCount the number of builds to consider
+     * @param dayCount the number of days to consider
      */
     public ChartModelConfiguration(final AxisType axisType, final int buildCount, final int dayCount) {
         this.axisType = axisType;
@@ -59,26 +53,28 @@ public class ChartModelConfiguration {
     /**
      * Creates a new chart configuration from the specified JSON configuration object.
      *
-     * @param json
-     *         the string in JSON representation that contains the configuration
-     *
+     * @param json the string in JSON representation that contains the configuration
      * @return the created configuration instance
      */
     public static ChartModelConfiguration fromJson(final String json) {
         try {
             var objectNode = new ObjectMapper().readValue(json, ObjectNode.class);
-            var axisType = objectNode.optional(BUILD_AS_DOMAIN_PROPERTY)
-                    .map(value -> value.asBoolean(true))
-                    .orElse(true) ? AxisType.BUILD : AxisType.DATE;
-            var buildCount = objectNode.optional(NUMBER_OF_BUILDS_PROPERTY)
+            var axisType = objectNode
+                            .optional(BUILD_AS_DOMAIN_PROPERTY)
+                            .map(value -> value.asBoolean(true))
+                            .orElse(true)
+                    ? AxisType.BUILD
+                    : AxisType.DATE;
+            var buildCount = objectNode
+                    .optional(NUMBER_OF_BUILDS_PROPERTY)
                     .map(value -> value.asInt(DEFAULT_BUILD_COUNT))
                     .orElse(DEFAULT_BUILD_COUNT);
-            var dayCount = objectNode.optional(NUMBER_OF_DAYS_PROPERTY)
+            var dayCount = objectNode
+                    .optional(NUMBER_OF_DAYS_PROPERTY)
                     .map(value -> value.asInt(DEFAULT_DAY_COUNT))
                     .orElse(DEFAULT_DAY_COUNT);
             return new ChartModelConfiguration(axisType, buildCount, dayCount);
-        }
-        catch (JacksonException exception) {
+        } catch (JacksonException exception) {
             return new ChartModelConfiguration();
         }
     }

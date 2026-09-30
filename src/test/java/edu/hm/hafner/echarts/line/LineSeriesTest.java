@@ -1,13 +1,12 @@
 package edu.hm.hafner.echarts.line;
 
-import org.apache.commons.lang3.StringUtils;
-import org.junit.jupiter.api.Test;
+import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 
 import edu.hm.hafner.echarts.AreaStyle;
 import edu.hm.hafner.echarts.line.LineSeries.FilledMode;
 import edu.hm.hafner.echarts.line.LineSeries.StackedMode;
-
-import static net.javacrumbs.jsonunit.assertj.JsonAssertions.*;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests the class {@link LineSeries}.

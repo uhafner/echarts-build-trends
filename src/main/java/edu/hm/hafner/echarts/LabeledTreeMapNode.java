@@ -1,11 +1,10 @@
 package edu.hm.hafner.echarts;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Node for constructing a tree structure of {@code double} values for a sunburst or treemap ECharts diagram.
@@ -29,10 +28,8 @@ public class LabeledTreeMapNode {
     /**
      * Creates a new {@link LabeledTreeMapNode} with an empty String as a value.
      *
-     * @param id
-     *         the id of the node
-     * @param name
-     *         the name of the node
+     * @param id the id of the node
+     * @param name the name of the node
      */
     public LabeledTreeMapNode(final String id, final String name) {
         this(id, name, StringUtils.EMPTY);
@@ -41,12 +38,9 @@ public class LabeledTreeMapNode {
     /**
      * Creates a new {@link LabeledTreeMapNode} with the given value.
      *
-     * @param id
-     *         the id of the node
-     * @param name
-     *         the name of the node
-     * @param value
-     *         the value of the node
+     * @param id the id of the node
+     * @param name the name of the node
+     * @param value the value of the node
      */
     public LabeledTreeMapNode(final String id, final String name, final String value) {
         this(id, name, "-", value);
@@ -55,44 +49,47 @@ public class LabeledTreeMapNode {
     /**
      * Creates a new {@link LabeledTreeMapNode} with the given values.
      *
-     * @param id
-     *         the id of the node
-     * @param name
-     *         the name of the node
-     * @param color
-     *         the color of the node
-     * @param value
-     *         the value of the node
-     * @param additionalValues
-     *         additional values of the node
+     * @param id the id of the node
+     * @param name the name of the node
+     * @param color the color of the node
+     * @param value the value of the node
+     * @param additionalValues additional values of the node
      */
-    public LabeledTreeMapNode(final String id, final String name, final String color,
-            final String value, final String... additionalValues) {
-        this(id, name, new ItemStyle(color), new Label(false, "#ffffff"),
-                new Label(false, "#ffffff"), value, additionalValues);
+    public LabeledTreeMapNode(
+            final String id,
+            final String name,
+            final String color,
+            final String value,
+            final String... additionalValues) {
+        this(
+                id,
+                name,
+                new ItemStyle(color),
+                new Label(false, "#ffffff"),
+                new Label(false, "#ffffff"),
+                value,
+                additionalValues);
     }
 
     /**
      * Creates a new {@link LabeledTreeMapNode} with the given values.
      *
-     * @param id
-     *         the id of the node
-     * @param name
-     *         the name of the node
-     * @param itemStyle
-     *         the style of the node
-     * @param label
-     *         the label style of the node
-     * @param upperLabel
-     *         the label style of the node if it contains children
-     * @param value
-     *         the value of the node
-     * @param additionalValues
-     *         additional values of the node
+     * @param id the id of the node
+     * @param name the name of the node
+     * @param itemStyle the style of the node
+     * @param label the label style of the node
+     * @param upperLabel the label style of the node if it contains children
+     * @param value the value of the node
+     * @param additionalValues additional values of the node
      */
-    public LabeledTreeMapNode(final String id, final String name, final ItemStyle itemStyle,
-            final Label label, final Label upperLabel,
-            final String value, final String... additionalValues) {
+    public LabeledTreeMapNode(
+            final String id,
+            final String name,
+            final ItemStyle itemStyle,
+            final Label label,
+            final Label upperLabel,
+            final String value,
+            final String... additionalValues) {
         this.id = id;
         this.name = name;
         this.itemStyle = itemStyle;
@@ -129,8 +126,7 @@ public class LabeledTreeMapNode {
     /**
      * Inserts the specified node in the tree.
      *
-     * @param node
-     *         the node to insert
+     * @param node the node to insert
      */
     public void insertNode(final LabeledTreeMapNode node) {
         children.add(node);
@@ -165,9 +161,12 @@ public class LabeledTreeMapNode {
             return false;
         }
         var that = (LabeledTreeMapNode) o;
-        return Objects.equals(itemStyle, that.itemStyle) && Objects.equals(label, that.label)
-                && Objects.equals(upperLabel, that.upperLabel) && Objects.equals(id, that.id)
-                && Objects.equals(name, that.name) && Objects.equals(values, that.values)
+        return Objects.equals(itemStyle, that.itemStyle)
+                && Objects.equals(label, that.label)
+                && Objects.equals(upperLabel, that.upperLabel)
+                && Objects.equals(id, that.id)
+                && Objects.equals(name, that.name)
+                && Objects.equals(values, that.values)
                 && Objects.equals(children, that.children);
     }
 
