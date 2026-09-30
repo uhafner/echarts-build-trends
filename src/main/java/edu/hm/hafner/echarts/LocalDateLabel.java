@@ -2,7 +2,6 @@ package edu.hm.hafner.echarts;
 
 import edu.hm.hafner.util.Generated;
 import edu.umd.cs.findbugs.annotations.NonNull;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -20,8 +19,7 @@ public class LocalDateLabel implements Comparable<LocalDateLabel> {
     /**
      * Creates a new instance of {@link LocalDateLabel}.
      *
-     * @param date
-     *         the date of the build
+     * @param date the date of the build
      */
     public LocalDateLabel(final LocalDate date) {
         this.date = date;
@@ -38,7 +36,8 @@ public class LocalDateLabel implements Comparable<LocalDateLabel> {
         return formatter.format(date);
     }
 
-    @Override @Generated
+    @Override
+    @Generated
     public boolean equals(final Object o) {
         if (this == o) {
             return true;
@@ -50,7 +49,8 @@ public class LocalDateLabel implements Comparable<LocalDateLabel> {
         return date.equals(that.date) && formatter.equals(that.formatter);
     }
 
-    @Override @Generated
+    @Override
+    @Generated
     public int hashCode() {
         return Objects.hash(date, formatter);
     }

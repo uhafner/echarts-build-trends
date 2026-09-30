@@ -2,7 +2,6 @@ package edu.hm.hafner.echarts;
 
 import edu.hm.hafner.util.Generated;
 import edu.hm.hafner.util.VisibleForTesting;
-
 import java.util.Objects;
 
 /**
@@ -18,8 +17,7 @@ public class Build implements Comparable<Build> {
     /**
      * Creates a new instance of {@link Build}.
      *
-     * @param number
-     *         build number
+     * @param number build number
      */
     @VisibleForTesting
     public Build(final int number) {
@@ -29,13 +27,10 @@ public class Build implements Comparable<Build> {
     /**
      * Creates a new instance of {@link Build}.
      *
-     * @param number
-     *         build number
-     * @param displayName
-     *         human-readable name of the build
-     * @param buildTime
-     *         the build time (given as number of seconds since the standard base time known as "the epoch", namely
-     *         January 1, 1970, 00:00:00 GMT).
+     * @param number build number
+     * @param displayName human-readable name of the build
+     * @param buildTime the build time (given as number of seconds since the standard base time known as "the epoch",
+     *     namely January 1, 1970, 00:00:00 GMT).
      */
     public Build(final int number, final String displayName, final int buildTime) {
         this.buildTime = buildTime;
@@ -76,7 +71,8 @@ public class Build implements Comparable<Build> {
         return getNumber() - o.getNumber();
     }
 
-    @Override @Generated
+    @Override
+    @Generated
     public boolean equals(final Object o) {
         if (this == o) {
             return true;
@@ -88,12 +84,14 @@ public class Build implements Comparable<Build> {
         return number == that.number;
     }
 
-    @Override @Generated
+    @Override
+    @Generated
     public int hashCode() {
         return Objects.hash(number);
     }
 
-    @Override @Generated
+    @Override
+    @Generated
     public String toString() {
         return getDisplayName();
     }

@@ -1,15 +1,12 @@
 package edu.hm.hafner.echarts;
 
+import static edu.hm.hafner.echarts.assertions.Assertions.assertThat;
+
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
-import nl.jqno.equalsverifier.EqualsVerifier;
-
-import static edu.hm.hafner.echarts.assertions.Assertions.*;
-
-/**
- * Tests the class {@link LabeledTreeMapNode}.
- */
+/** Tests the class {@link LabeledTreeMapNode}. */
 class LabeledTreeMapNodeTest {
     private static final String ID = "id";
 
@@ -17,20 +14,17 @@ class LabeledTreeMapNodeTest {
     void shouldCreateNode() {
         var root = createRoot();
 
-        assertThat(root).hasName("Root")
-                .hasNoChildren()
-                .hasValue(StringUtils.EMPTY);
-        assertThat(root.getItemStyle()).satisfies(
-                itemStyle -> assertThat(itemStyle.getColor()).isEqualTo("-")
-        );
-        assertThat(root.getLabel()).satisfies(
-                label -> assertThat(label.getShow()).isFalse(),
-                label -> assertThat(label.getColor()).isEqualTo("#ffffff")
-        );
-        assertThat(root.getUpperLabel()).satisfies(
-                upperLabel -> assertThat(upperLabel.getShow()).isFalse(),
-                upperLabel -> assertThat(upperLabel.getColor()).isEqualTo("#ffffff")
-        );
+        assertThat(root).hasName("Root").hasNoChildren().hasValue(StringUtils.EMPTY);
+        assertThat(root.getItemStyle())
+                .satisfies(itemStyle -> assertThat(itemStyle.getColor()).isEqualTo("-"));
+        assertThat(root.getLabel())
+                .satisfies(
+                        label -> assertThat(label.getShow()).isFalse(),
+                        label -> assertThat(label.getColor()).isEqualTo("#ffffff"));
+        assertThat(root.getUpperLabel())
+                .satisfies(
+                        upperLabel -> assertThat(upperLabel.getShow()).isFalse(),
+                        upperLabel -> assertThat(upperLabel.getColor()).isEqualTo("#ffffff"));
     }
 
     @Test
@@ -80,7 +74,8 @@ class LabeledTreeMapNodeTest {
     void shouldHaveEquals() {
         EqualsVerifier.simple()
                 .forClass(LabeledTreeMapNode.class)
-                .withPrefabValues(LabeledTreeMapNode.class, new LabeledTreeMapNode(ID, "1"), new LabeledTreeMapNode(ID, "2"))
+                .withPrefabValues(
+                        LabeledTreeMapNode.class, new LabeledTreeMapNode(ID, "1"), new LabeledTreeMapNode(ID, "2"))
                 .verify();
     }
 

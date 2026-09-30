@@ -1,33 +1,27 @@
 package edu.hm.hafner.echarts;
 
-import org.junit.jupiter.api.Test;
+import static edu.hm.hafner.echarts.assertions.Assertions.assertThat;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
+import org.junit.jupiter.api.Test;
 
-import static edu.hm.hafner.echarts.assertions.Assertions.*;
-
-/**
- * Tests the class {@link TreeMapNode}.
- */
+/** Tests the class {@link TreeMapNode}. */
 class TreeMapNodeTest {
     @Test
     void shouldCreateNode() {
         var root = createRoot();
 
-        assertThat(root).hasName("Root")
-                .hasNoChildren()
-                .hasValue(0.0);
-        assertThat(root.getItemStyle()).satisfies(
-                itemStyle -> assertThat(itemStyle.getColor()).isEqualTo("-")
-        );
-        assertThat(root.getLabel()).satisfies(
-                label -> assertThat(label.getShow()).isFalse(),
-                label -> assertThat(label.getColor()).isEqualTo("#ffffff")
-        );
-        assertThat(root.getUpperLabel()).satisfies(
-                upperLabel -> assertThat(upperLabel.getShow()).isFalse(),
-                upperLabel -> assertThat(upperLabel.getColor()).isEqualTo("#ffffff")
-        );
+        assertThat(root).hasName("Root").hasNoChildren().hasValue(0.0);
+        assertThat(root.getItemStyle())
+                .satisfies(itemStyle -> assertThat(itemStyle.getColor()).isEqualTo("-"));
+        assertThat(root.getLabel())
+                .satisfies(
+                        label -> assertThat(label.getShow()).isFalse(),
+                        label -> assertThat(label.getColor()).isEqualTo("#ffffff"));
+        assertThat(root.getUpperLabel())
+                .satisfies(
+                        upperLabel -> assertThat(upperLabel.getShow()).isFalse(),
+                        upperLabel -> assertThat(upperLabel.getColor()).isEqualTo("#ffffff"));
     }
 
     @Test

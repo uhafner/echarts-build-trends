@@ -1,17 +1,15 @@
 package edu.hm.hafner.echarts.line;
 
-import org.junit.jupiter.api.Test;
+import static edu.hm.hafner.echarts.assertions.Assertions.assertThat;
+import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 
 import edu.hm.hafner.echarts.line.LineSeries.FilledMode;
 import edu.hm.hafner.echarts.line.LineSeries.StackedMode;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import static edu.hm.hafner.echarts.assertions.Assertions.*;
-import static net.javacrumbs.jsonunit.assertj.JsonAssertions.*;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests the class {@link LinesChartModel}.
@@ -105,8 +103,10 @@ class LinesChartModelTest {
         model.setDomainAxisLabels(builds);
         model.addSeries(series);
 
-        assertThatJson(model).node("domainAxisLabels")
-                .isArray().hasSize(5)
+        assertThatJson(model)
+                .node("domainAxisLabels")
+                .isArray()
+                .hasSize(5)
                 .contains("#1")
                 .contains("#2")
                 .contains("#3")

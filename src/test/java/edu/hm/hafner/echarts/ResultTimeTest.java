@@ -1,12 +1,14 @@
 package edu.hm.hafner.echarts;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests the class {@link ResultTime}.
@@ -31,13 +33,15 @@ class ResultTimeTest {
 
         BuildResult<?> run = createRunAt(today.minusYears(20));
 
-        assertThat(time.isResultTooOld(configuration, run)).as("Result date marked as too old").isFalse();
+        assertThat(time.isResultTooOld(configuration, run))
+                .as("Result date marked as too old")
+                .isFalse();
         verify(configuration, never()).getDayCount();
     }
 
     /**
-     * Verifies that the day count property is correctly evaluated if {@link ChartModelConfiguration#isDayCountDefined()}
-     * is enabled.
+     * Verifies that the day count property is correctly evaluated if
+     * {@link ChartModelConfiguration#isDayCountDefined()} is enabled.
      */
     @Test
     void shouldEvaluateDayCountIfOptionIsEnabled() {
@@ -69,7 +73,8 @@ class ResultTimeTest {
     private BuildResult<?> createRunAt(final LocalDate now) {
         BuildResult<?> run = mock(BuildResult.class);
         Build build = mock(Build.class);
-        when(build.getBuildTime()).thenReturn(now.atStartOfDay(ZoneId.systemDefault()).toInstant().getEpochSecond());
+        when(build.getBuildTime())
+                .thenReturn(now.atStartOfDay(ZoneId.systemDefault()).toInstant().getEpochSecond());
         when(run.getBuild()).thenReturn(build);
         return run;
     }
@@ -85,7 +90,9 @@ class ResultTimeTest {
 
         BuildResult<?> run = createRunAt(runDate);
 
-        assertThat(time.isResultTooOld(configuration, run)).as("Result date marked as ok").isEqualTo(true);
+        assertThat(time.isResultTooOld(configuration, run))
+                .as("Result date marked as ok")
+                .isEqualTo(true);
     }
 
     private void assertThatRunIsWithinDayCount(final LocalDate runDate, final ResultTime time) {
@@ -93,7 +100,9 @@ class ResultTimeTest {
 
         BuildResult<?> run = createRunAt(runDate);
 
-        assertThat(time.isResultTooOld(configuration, run)).as("Result date marked as too old").isEqualTo(false);
+        assertThat(time.isResultTooOld(configuration, run))
+                .as("Result date marked as too old")
+                .isEqualTo(false);
     }
 
     private ChartModelConfiguration createChartModelConfigurationWithDayCount() {

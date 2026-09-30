@@ -1,7 +1,6 @@
 package edu.hm.hafner.echarts;
 
 import edu.hm.hafner.util.VisibleForTesting;
-
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -22,9 +21,7 @@ public final class TimeFacade {
         return instance;
     }
 
-    /**
-     * Replaces a stubbed facade with the real facade.
-     */
+    /** Replaces a stubbed facade with the real facade. */
     @VisibleForTesting
     public static void reset() {
         setInstance(new TimeFacade());
@@ -44,7 +41,8 @@ public final class TimeFacade {
      *
      * @return current date from the system clock in the default time-zone
      */
-    @SuppressWarnings("JavaTimeDefaultTimeZone") // TODO: It would make sense to render charts using the time zone of the user
+    @SuppressWarnings(
+            "JavaTimeDefaultTimeZone") // TODO: It would make sense to render charts using the time zone of the user
     public Temporal getToday() {
         return LocalDate.now();
     }
@@ -52,9 +50,7 @@ public final class TimeFacade {
     /**
      * Return the date of a build, i.e., a {@code LocalDate} with the same year, month and day as today.
      *
-     * @param build
-     *         the build to get the date for
-     *
+     * @param build the build to get the date for
      * @return current date from the system clock in the default time-zone
      */
     public LocalDate getBuildDate(final Build build) {

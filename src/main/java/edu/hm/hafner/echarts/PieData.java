@@ -1,16 +1,13 @@
 package edu.hm.hafner.echarts;
 
 import edu.hm.hafner.util.Generated;
-
 import java.util.Objects;
 import tools.jackson.databind.ObjectMapper;
 
 /**
  * UI model for an ECharts pie chart.
  *
- * <p>
- * This class will be automatically converted to a JSON object.
- * </p>
+ * <p>This class will be automatically converted to a JSON object.
  *
  * @author Ullrich Hafner
  */
@@ -21,10 +18,8 @@ public class PieData {
     /**
      * A new data point for a pie or doughnut chart.
      *
-     * @param name
-     *         name of the data point
-     * @param value
-     *         value of the data point
+     * @param name name of the data point
+     * @param value value of the data point
      */
     public PieData(final String name, final int value) {
         this.value = value;
@@ -39,7 +34,8 @@ public class PieData {
         return name;
     }
 
-    @Override @Generated
+    @Override
+    @Generated
     public boolean equals(final Object o) {
         if (this == o) {
             return true;
@@ -51,7 +47,8 @@ public class PieData {
         return value == pieData.value && Objects.equals(name, pieData.name);
     }
 
-    @Override @Generated
+    @Override
+    @Generated
     public int hashCode() {
         return Objects.hash(value, name);
     }

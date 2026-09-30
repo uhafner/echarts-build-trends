@@ -1,17 +1,15 @@
 package edu.hm.hafner.echarts;
 
-import org.junit.jupiter.api.Test;
+import static edu.hm.hafner.echarts.assertions.Assertions.assertThat;
+import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 
 import edu.hm.hafner.echarts.LineSeries.FilledMode;
 import edu.hm.hafner.echarts.LineSeries.StackedMode;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import static edu.hm.hafner.echarts.assertions.Assertions.*;
-import static net.javacrumbs.jsonunit.assertj.JsonAssertions.*;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests the class {@link LinesChartModel}.
@@ -39,15 +37,17 @@ class LinesChartModelTest {
 
         assertThat(model.size()).isEqualTo(3);
         assertThat(model).hasDomainAxisLabels("#1", "#2", "#3");
-        assertThat(model).hasToString(
-                "{\"domainAxisLabels\":[\"#1\",\"#2\",\"#3\"],\"buildNumbers\":[],\"series\":[],\"domainAxisItemName\":\"Build\",\"integerRangeAxis\":true,\"rangeMax\":null,\"rangeMin\":null}");
+        assertThat(model)
+                .hasToString(
+                        "{\"domainAxisLabels\":[\"#1\",\"#2\",\"#3\"],\"buildNumbers\":[],\"series\":[],\"domainAxisItemName\":\"Build\",\"integerRangeAxis\":true,\"rangeMax\":null,\"rangeMin\":null}");
 
         model.setRangeMax(100);
         model.setRangeMin(1000);
         model.useContinuousRangeAxis();
 
-        assertThat(model).hasToString(
-                "{\"domainAxisLabels\":[\"#1\",\"#2\",\"#3\"],\"buildNumbers\":[],\"series\":[],\"domainAxisItemName\":\"Build\",\"integerRangeAxis\":false,\"rangeMax\":100,\"rangeMin\":1000}");
+        assertThat(model)
+                .hasToString(
+                        "{\"domainAxisLabels\":[\"#1\",\"#2\",\"#3\"],\"buildNumbers\":[],\"series\":[],\"domainAxisItemName\":\"Build\",\"integerRangeAxis\":false,\"rangeMax\":100,\"rangeMin\":1000}");
     }
 
     @Test
@@ -97,8 +97,10 @@ class LinesChartModelTest {
         model.setDomainAxisLabels(builds);
         model.addSeries(series);
 
-        assertThatJson(model).node("domainAxisLabels")
-                .isArray().hasSize(5)
+        assertThatJson(model)
+                .node("domainAxisLabels")
+                .isArray()
+                .hasSize(5)
                 .contains("#1")
                 .contains("#2")
                 .contains("#3")

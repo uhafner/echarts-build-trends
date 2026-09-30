@@ -1,7 +1,6 @@
 package edu.hm.hafner.echarts;
 
 import edu.hm.hafner.util.Ensure;
-
 import java.util.function.Function;
 
 /**
@@ -16,9 +15,7 @@ public class PercentagePieChart {
     /**
      * Creates the chart for the specified percentage. Uses the default color model.
      *
-     * @param percentage
-     *         the percentage to render
-     *
+     * @param percentage the percentage to render
      * @return the chart model
      */
     public PieChartModel create(final int percentage) {
@@ -28,11 +25,8 @@ public class PercentagePieChart {
     /**
      * Creates the chart for the specified percentage.
      *
-     * @param percentage
-     *         the percentage to render
-     * @param colorMapper
-     *         maps the percentage to a color {@link Palette} instance
-     *
+     * @param percentage the percentage to render
+     * @param colorMapper maps the percentage to a color {@link Palette} instance
      * @return the chart model
      */
     public PieChartModel createWithPaletteMapper(final int percentage, final Function<Integer, Palette> colorMapper) {
@@ -42,11 +36,8 @@ public class PercentagePieChart {
     /**
      * Creates the chart for the specified percentage.
      *
-     * @param percentage
-     *         the percentage to render
-     * @param colorMapper
-     *         maps the percentage to a color value
-     *
+     * @param percentage the percentage to render
+     * @param colorMapper maps the percentage to a color value
      * @return the chart model
      */
     public PieChartModel createWithStringMapper(final int percentage, final Function<Integer, String> colorMapper) {
@@ -68,11 +59,9 @@ public class PercentagePieChart {
     private Palette computeColor(final int percentage) {
         if (percentage < YELLOW_LIMIT) {
             return Palette.RED;
-        }
-        else if (percentage < GREEN_LIMIT) {
+        } else if (percentage < GREEN_LIMIT) {
             return Palette.YELLOW;
-        }
-        else {
+        } else {
             return Palette.GREEN;
         }
     }

@@ -1,13 +1,12 @@
 package edu.hm.hafner.echarts;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
+import static edu.hm.hafner.echarts.assertions.Assertions.assertThat;
 
 import java.util.Map;
 import nl.jqno.equalsverifier.EqualsVerifier;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
 import tools.jackson.databind.ObjectMapper;
-
-import static edu.hm.hafner.echarts.assertions.Assertions.*;
 
 /**
  * Test for the class {@link TreeNode}.
@@ -15,9 +14,7 @@ import static edu.hm.hafner.echarts.assertions.Assertions.*;
  * @author Andreas Pabst
  */
 class TreeNodeTest {
-    /**
-     * Test if packages with two identical package levels are inserted correctly.
-     */
+    /** Test if packages with two identical package levels are inserted correctly. */
     @Test
     void shouldInsertTwoLevelPackage() {
         var root = new TreeNode("");
@@ -45,9 +42,7 @@ class TreeNodeTest {
         assertThat(child.getChildren().get(0)).hasName("OtherClass");
     }
 
-    /**
-     * Test if the value of the metric is kept correctly.
-     */
+    /** Test if the value of the metric is kept correctly. */
     @Test
     void shouldGetSpecificMetricValue() {
         final double metricValue = 42;
@@ -56,9 +51,7 @@ class TreeNodeTest {
         Assertions.assertThat(node.getValue()).isEqualTo(42);
     }
 
-    /**
-     * Test if all children values are summed up correctly.
-     */
+    /** Test if all children values are summed up correctly. */
     @Test
     void shouldSumUpChildrenValues() {
         final double metricValue1 = 42;
@@ -73,9 +66,7 @@ class TreeNodeTest {
         Assertions.assertThat(root.getValue()).isEqualTo(metricValue1 + metricValue2 + metricValue3);
     }
 
-    /**
-     * Test if the package is collapsed correctly.
-     */
+    /** Test if the package is collapsed correctly. */
     @Test
     void shouldCollapsePackage() {
         var rootNode = threeLevelTree();
@@ -101,19 +92,16 @@ class TreeNodeTest {
         return rootNode;
     }
 
-    /**
-     * Test the equals and hash functions.
-     */
+    /** Test the equals and hash functions. */
     @Test
     void shouldBeEqualAndHash() {
-        EqualsVerifier.simple().forClass(TreeNode.class)
+        EqualsVerifier.simple()
+                .forClass(TreeNode.class)
                 .withPrefabValues(Map.class, Map.of("key", "value"), Map.of())
                 .verify();
     }
 
-    /**
-     * Test if the JSON serialisation is correct.
-     */
+    /** Test if the JSON serialisation is correct. */
     @Test
     void shouldContainRelevantInformationInJson() {
         var root = new TreeNode("");
@@ -121,10 +109,11 @@ class TreeNodeTest {
         root.insertNode(new TreeNode("com.example.package.Foo", 2.0));
         root.collapsePackage();
 
-        assertThat(new ObjectMapper().writeValueAsString(root)).isEqualTo("{\"name\":\"com.example\",\"value\":7.0,\"children\":["
-                + "{\"name\":\"Bar\",\"value\":5.0,\"children\":[]},"
-                + "{\"name\":\"package\",\"value\":2.0,\"children\":["
-                + "{\"name\":\"Foo\",\"value\":2.0,\"children\":[]}"
-                + "]}]}");
+        assertThat(new ObjectMapper().writeValueAsString(root))
+                .isEqualTo("{\"name\":\"com.example\",\"value\":7.0,\"children\":["
+                        + "{\"name\":\"Bar\",\"value\":5.0,\"children\":[]},"
+                        + "{\"name\":\"package\",\"value\":2.0,\"children\":["
+                        + "{\"name\":\"Foo\",\"value\":2.0,\"children\":[]}"
+                        + "]}]}");
     }
 }

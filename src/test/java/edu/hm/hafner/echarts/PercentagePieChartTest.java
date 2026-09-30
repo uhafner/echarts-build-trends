@@ -1,10 +1,10 @@
 package edu.hm.hafner.echarts;
 
-import org.junit.jupiter.api.Test;
+import static edu.hm.hafner.echarts.assertions.Assertions.assertThat;
+import static edu.hm.hafner.echarts.assertions.Assertions.assertThatExceptionOfType;
 
 import java.util.function.Function;
-
-import static edu.hm.hafner.echarts.assertions.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests the class {@link PercentagePieChart}.
@@ -49,48 +49,42 @@ class PercentagePieChartTest {
     void shouldComputeColorToRedLowerBoundary() {
         var chart = new PercentagePieChart();
 
-        assertThat(chart.create(0)).hasColors(RED, GRAY)
-                .hasData(createFilledTo(0), getNotFilledTo(100));
+        assertThat(chart.create(0)).hasColors(RED, GRAY).hasData(createFilledTo(0), getNotFilledTo(100));
     }
 
     @Test
     void shouldComputeColorToRedUpperBoundary() {
         var chart = new PercentagePieChart();
 
-        assertThat(chart.create(49)).hasColors(RED, GRAY)
-                .hasData(createFilledTo(49), getNotFilledTo(51));
+        assertThat(chart.create(49)).hasColors(RED, GRAY).hasData(createFilledTo(49), getNotFilledTo(51));
     }
 
     @Test
     void shouldComputeColorToYellowLowerBoundary() {
         var chart = new PercentagePieChart();
 
-        assertThat(chart.create(50)).hasColors(YELLOW, GRAY)
-                .hasData(createFilledTo(50), getNotFilledTo(50));
+        assertThat(chart.create(50)).hasColors(YELLOW, GRAY).hasData(createFilledTo(50), getNotFilledTo(50));
     }
 
     @Test
     void shouldComputeColorToYellowUpperBoundary() {
         var chart = new PercentagePieChart();
 
-        assertThat(chart.create(79)).hasColors(YELLOW, GRAY)
-                .hasData(createFilledTo(79), getNotFilledTo(21));
+        assertThat(chart.create(79)).hasColors(YELLOW, GRAY).hasData(createFilledTo(79), getNotFilledTo(21));
     }
 
     @Test
     void shouldComputeColorToGreenLowerBoundary() {
         var chart = new PercentagePieChart();
 
-        assertThat(chart.create(80)).hasColors(GREEN, GRAY)
-                .hasData(createFilledTo(80), getNotFilledTo(20));
+        assertThat(chart.create(80)).hasColors(GREEN, GRAY).hasData(createFilledTo(80), getNotFilledTo(20));
     }
 
     @Test
     void shouldComputeColorToGreenUpperBoundary() {
         var chart = new PercentagePieChart();
 
-        assertThat(chart.create(100)).hasColors(GREEN, GRAY)
-                .hasData(createFilledTo(100), getNotFilledTo(0));
+        assertThat(chart.create(100)).hasColors(GREEN, GRAY).hasData(createFilledTo(100), getNotFilledTo(0));
     }
 
     private PieData getNotFilledTo(final int percentage) {
